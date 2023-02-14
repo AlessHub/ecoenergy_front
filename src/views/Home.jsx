@@ -1,10 +1,14 @@
 import React from 'react'
-import Navbar from '../components/layout/navigation/Navbar'
+import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
+import NavLoggedIn from '../components/layout/navigation/Navbar/NavLoggedIn';
+import { useState } from 'react';
 
 const Home = () => {
+
+  const[isLogin,setIsLogin]=useState(true);
   return (
     <>
-        <Navbar/>
+        <NavPublic/>
         <h1>Holi</h1>
     </>
   )

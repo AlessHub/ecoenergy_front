@@ -20,9 +20,9 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 
 
-  const Navbar = () => {
-    const pages = ['Forum', 'Log In'];
-    const settings = ['Profile', 'Forum', 'Logout'];
+  const NavPublic = () => {
+    const pages = ['Profile', 'Forum', 'Log In'];
+    const settings = ['Profile', 'Forum', 'Log In'];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -50,8 +50,7 @@ import AdbIcon from '@mui/icons-material/Adb';
                 <div className="placeHolderLogo"></div>
                 <Typography color='tertiary'>EcoEnergy</Typography>
             </Box>
-          <Box sx={{ flexGrow: 0, display:'flex' }}>
-          <Stack sx={{mr:5 , gap:2, alignItems:'center', display: {xs:'none', sm: 'flex', md: 'flex'}}} direction="row">
+            <Stack sx={{mr:5 , gap:2, alignItems:'center', display: {xs:'none', sm: 'flex', md: 'flex'}}} direction="row">
             <LinkReact to='/'>
               <LinkMui sx={{}} color='secondary'>Profile</LinkMui>
             </LinkReact>
@@ -60,33 +59,41 @@ import AdbIcon from '@mui/icons-material/Adb';
               <LinkMui color='secondary'>Forum</LinkMui>
             </LinkReact>
             <LinkReact to='/'>
-                <LinkMui color='secondary'>Log Out</LinkMui>
+                <LinkMui color='secondary'>Log In</LinkMui>
             </LinkReact>
           </Stack>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+          <Box sx={{ flexGrow: 1, justifyContent:'flex-end', display: { xs: 'flex', sm:'none', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="secondary"
+            >
+              <MenuIcon />
+            </IconButton>
             <Menu
-              sx={{ mt: '45px' }}
               id="menu-appbar"
-              anchorEl={anchorElUser}
+              anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -96,5 +103,5 @@ import AdbIcon from '@mui/icons-material/Adb';
       </div>
     )};
   
-  export default Navbar;
+  export default NavPublic;
   
