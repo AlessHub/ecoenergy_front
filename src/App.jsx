@@ -5,22 +5,18 @@ import PublicRoute from './router/public/Router';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { green, purple, grey } from '@mui/material/colors';
+import { green, grey } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: green[400],
+    main: {
+      primary: green[400],
+      secondary: grey[50],
+      tertiary: green[900],
     },
-    secondary: {
-      main: grey[50],
+    background: {
+      paper: green[400],
     },
-    tertiary: {
-      main: green[900],
-    },
-    black: {
-      main: grey[900],
-    }
   },
 });
 

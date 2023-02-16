@@ -43,23 +43,26 @@ import AdbIcon from '@mui/icons-material/Adb';
 
     return (
       <div>
-       <AppBar color="primary">
+       <AppBar color="main">
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{display:'flex', alignItems: 'center', gap:3}}>
                 <img src='#' className="placeHolderLogoPic"/>
                 <div className="placeHolderLogo"></div>
-                <Typography color='tertiary'>EcoEnergy</Typography>
+                <Typography color='main.tertiary'>EcoEnergy</Typography>
             </Box>
             <Stack sx={{mr:5 , gap:2, alignItems:'center', display: {xs:'none', sm: 'flex', md: 'flex'}}} direction="row">
             <LinkReact to='/'>
-              <LinkMui sx={{}} color='secondary'>Profile</LinkMui>
+              <LinkMui sx={{"&:hover": {
+      color:'main.tertiary'}}} underline="none" color='main.secondary'>Profile</LinkMui>
             </LinkReact>
             
             <LinkReact to='/'>
-              <LinkMui color='secondary'>Forum</LinkMui>
+              <LinkMui sx={{"&:hover": {
+      color:'main.tertiary'}}} underline="none" color='main.secondary'>Forum</LinkMui>
             </LinkReact>
             <LinkReact to='/'>
-                <LinkMui color='secondary'>Log In</LinkMui>
+                <LinkMui sx={{"&:hover": {
+      color:'main.tertiary'}}} underline="none" color='main.secondary'>Log In</LinkMui>
             </LinkReact>
           </Stack>
           <Box sx={{ flexGrow: 1, justifyContent:'flex-end', display: { xs: 'flex', sm:'none', md: 'none' } }}>
@@ -69,11 +72,13 @@ import AdbIcon from '@mui/icons-material/Adb';
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="secondary"
+              sx={{color:'white'}}
             >
               <MenuIcon />
             </IconButton>
             <Menu
+            
+               color="main.secondary"
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -88,12 +93,12 @@ import AdbIcon from '@mui/icons-material/Adb';
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: {color:'white', xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem  key={page} onClick={handleCloseNavMenu}>
+                  <Typography color="main.secondary" textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
