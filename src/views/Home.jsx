@@ -5,6 +5,7 @@ import Slider from "../components/layout/navigation/Slider/Slider";
 import { useState } from "react";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
+import Footer from "../components/layout/navigation/Footer";
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -24,10 +25,17 @@ const Home = () => {
       </Typography>
       <NavPublic />
       <Slider />
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
       <Button
         variant="contained"
         sx={{
           mt:2,
+          mb: 5,
           textTransform: 'capitalize',
           backgroundColor: "main.primary",
           "&:hover": {
@@ -50,7 +58,7 @@ const Home = () => {
       >
         Get Started
       </Button>
-      <h1>Holi</h1>
+      <Footer></Footer>
     </>
   );
 };
