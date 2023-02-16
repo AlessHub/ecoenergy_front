@@ -13,7 +13,7 @@ const theme = createTheme({
       primary: green[400],
       secondary: grey[50],
       tertiary: green[900],
-      danger: red[500],
+      danger: red[400],
       warning: orange[500]
     },
     background: {
