@@ -54,6 +54,8 @@ const ElectricityPrices = () => {
       setPriceNowTextColor("main.secondary");
     }
   }, [priceNow]);
+
+  
   console.log(priceNow);
   return (
     <>
