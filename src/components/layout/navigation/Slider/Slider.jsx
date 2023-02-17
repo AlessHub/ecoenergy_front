@@ -19,6 +19,7 @@ const Slider = () => {
         observeParents={true}
         modules={[FreeMode, Navigation, Pagination, Autoplay]}
         grabCursor={true}
+        autoplay
         parallax={true}
         loop={true}
         className="mySwiper"

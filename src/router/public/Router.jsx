@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 
 import Home from '../../views/Home';
-import WelcomeMui from '../../views/Welcome';
+import SignUp from '../../views/SignUp';
+import Login from '../../views/Login'
 
 export default class PublicRoute extends React.Component {
     render() {
@@ -15,8 +16,8 @@ export default class PublicRoute extends React.Component {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
-                <Route exact path="/Login" element={<Login/>}/>
-                <Route exact path="/Welcome" element={<WelcomeMui/>}/>
+                <Route exact path="/login" element={<Login/>}/>
+                <Route exact path="/signup" element={<SignUp/>}/>
             </Routes>
         </Router>
       );
