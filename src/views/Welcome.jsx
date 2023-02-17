@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -7,11 +6,13 @@ import Menu from "@mui/material/Menu";
 import { Link as LinkReact } from "react-router-dom";
 import { Link as LinkMui, TextField, Button,} from "@mui/material";
 
-import { Login } from "@mui/icons-material";
+import { Email, Login } from "@mui/icons-material";
 
-const LoginMui = () => {
-  const [username, setUsername] = useState("");
+const WelcomeMui = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,31 +32,42 @@ const LoginMui = () => {
           width: "100%",
         },
         "& .MuiButton-root": {
-          width: "100%",
+          width: "50%",
         },
       
       }}
       onSubmit={handleSubmit}
     >
+        <Typography sx= {{ mb:4, color:"black"}}variant="h3">Welcome</Typography>
+
       <TextField
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        label="Name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
+
+    <TextField sx= {{ background:""}}
+        label="Email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
       <TextField
-        label="Password "
+        label="Password"
         type="password"
         value={password} 
         onChange={(e) => setPassword(e.target.value)}
       />
-      
-      <Button sx={{mb:1, color:"white"}} type="submit" color="primary" variant="contained">
-        Login
+      <Typography sx= {{ mt:0, color:"black"}}variant="p">I would like to receive your newsletter and other promotional information</Typography>
+
+      <Button sx={{mt:2, color:"white"}} type="submit" color="primary" variant="contained">
+        Sign up
       </Button><LinkReact to='/NavLoggedIn.jsx'></LinkReact>
 
-      <Typography sx= {{ mt:1, color:"green"}}variant="p">Forgot your password?</Typography>
-      <Typography sx= {{ mt:1,display:"flex", flexDirection:"row", gap:1,}}variant="p">New user? <Typography sx= {{ mt:0,  color:"green"}}variant="p"> Sign up</Typography>
-     </Typography>
+      
+      
 
     
     </Box>
@@ -67,4 +79,4 @@ const LoginMui = () => {
   );
 };
 
-export default LoginMui;
+export default WelcomeMui;
