@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import Home from '../../views/Home';
-import Login from '../../views/Login';
 import WelcomeMui from '../../views/Welcome';
 
 export default class PublicRoute extends React.Component {
@@ -16,8 +15,8 @@ export default class PublicRoute extends React.Component {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
-                <Route path="/Login" element={<Login/>}/>
-                <Route path="/Welcome" element={<WelcomeMui/>}/>
+                <Route exact path="/Login" element={<Login/>}/>
+                <Route exact path="/Welcome" element={<WelcomeMui/>}/>
             </Routes>
         </Router>
       );
