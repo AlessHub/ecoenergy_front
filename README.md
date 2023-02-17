@@ -1,11 +1,11 @@
 # ecoenergy_front
 
-##EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings
+## EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings
 
 This project is part of my final bootcamp project at Factoria F5. The goal is to build a mobile application that helps people save money, energy, and reduce their environmental impact. The application offers personalized advice based on the user's behavior and home usage data.
 
 
-##Features
+## Features
 
         -User login and registration
         -Monitoring of energy and water usage
@@ -25,7 +25,7 @@ Back-End:
 ```
 
 
-##Screenshot
+## Screenshot
 
 ```
 Digital Advisor for Economic, Energy, and Environmental Savings
@@ -46,7 +46,7 @@ Back-End:
         -PhpMyAdmin: A free software tool written in PHP for managing MySQL databases.
 
 
-##Installation
+## Installation
 
         -Clone the repository to your local machine
         -Install the project dependencies using the npm install or yarn install command
@@ -56,12 +56,12 @@ Back-End:
         -Access the application at http://localhost:8000
 
 
-##Contribution
+## Contribution
 
 If you want to contribute to the project, feel free to send a pull request or open an issue.
 
 
-##Authors
+## Authors
         -Alessandro(https://github.com/AlessHub)
         -Alexandra(https://github.com/AlexandraJaramillo)
         -Eberth(https://github.com/EberthCastro)
