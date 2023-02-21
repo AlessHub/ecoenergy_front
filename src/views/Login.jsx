@@ -7,21 +7,39 @@ import { Link as LinkReact } from "react-router-dom";
 import { Link as LinkMui, TextField, Button } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 
+import axios from "axios";
+
 import { Login } from "@mui/icons-material";
 
 const LoginMui = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate the username and password
-    // If successful, redirect the user to the dashboard page
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('https://energy-production-b228.up.railway.app/api/login', formData);
+      console.log(response.data);
+      setUser(response.data.user);
+      localStorage.getItem('token', response.data.token);
+    //   setRedirect(true);
+    } catch (error) {
+      
+      setError(error.response.data.message);
+    }
+  };
+  
+
 
   return (
     <>
@@ -50,15 +68,20 @@ const LoginMui = () => {
       onSubmit={handleSubmit}
     >
       <TextField
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        label="email"
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
       />
       <TextField
         label="Password "
         type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        required
       />
 
       <Button
