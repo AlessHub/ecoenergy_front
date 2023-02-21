@@ -29,6 +29,8 @@ const SignUp = () => {
         sx={{
           p: 5,
           display: "flex",
+          margin: 'auto',
+          maxWidth: "500px",
           flexDirection: "column",
           alignItems: "center",
           "& .MuiTextField-root": {

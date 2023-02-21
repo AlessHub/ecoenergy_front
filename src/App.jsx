@@ -14,7 +14,7 @@ const theme = createTheme({
       secondary: grey[50],
       tertiary: green[900],
       danger: red[400],
-      warning: orange[500]
+      warning: orange[500],
     },
     background: {
       paper: green[400],
