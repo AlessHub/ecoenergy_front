@@ -175,7 +175,7 @@ function Forum() {
       />
       <TextField
         label="cover"
-        type="string"
+        type="file"
         name="cover"
         value={formData.cover}
         onChange={handleChange}

@@ -4,6 +4,8 @@ import AvatarPlaceholder from '../../src/assets/avatar_template.png'
 import { Container } from '@mui/system';
 import CardMedia from '@mui/material/CardMedia';
 
+import SimpleBarCharts from '../components/layout/organization/SimpleBarCharts';
+
 function Profile() {
   return (
     <>
@@ -24,6 +26,8 @@ function Profile() {
       />
     
     </Container>
+
+    <SimpleBarCharts/>
 
     </>
   )

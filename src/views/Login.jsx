@@ -34,7 +34,6 @@ const LoginMui = () => {
       localStorage.getItem('token', response.data.token);
     //   setRedirect(true);
     } catch (error) {
-      
       setError(error.response.data.message);
     }
   };
