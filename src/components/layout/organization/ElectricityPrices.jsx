@@ -67,7 +67,6 @@ const ElectricityPrices = () => {
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
-  const isLgLaptop = useMediaQuery(theme.breakpoints.up("lg"));
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [pageCount, setPageCount] = useState(5);
@@ -77,11 +76,10 @@ const ElectricityPrices = () => {
       setPageCount(3);
       setItemsPerPage(8);
     } else if (isTablet) {
-      setPageCount(4)
+      setPageCount(4);
       setItemsPerPage(6);
-    }
-    else {
-      setPageCount(6)
+    } else {
+      setPageCount(6);
       setItemsPerPage(4);
     }
   }, [isLaptop, isTablet]);
@@ -151,36 +149,41 @@ const ElectricityPrices = () => {
         </Typography>
       </Box>
       <Box
-        sx={{ display:'flex', flexDirection: {
-          xs: 'column',
-          sm:'row',
-          md:'row',
-          xl: 'row'
-        },
-       flexWrap:{
-        xs:'nowrap',
-        sm:'wrap',
-        md:'wrap',
-        xl:'wrap',
-       },
-       gap:{
-        xs: '0',
-        sm:'5px',
-        md:'5px',
-        xl:'5px'
-       },
-       marginRight:{
-        xs:0,
-        sm:'60px',
-        md:'60px',
-        xl:'60px'
-       },
-       marginLeft:{
-        xs:0,
-        sm:'60px',
-        md:'60px',
-        xl:'60px'
-       }, alignItems: "center", justifyContent:'center' }}
+        sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+            md: "row",
+            xl: "row",
+          },
+          flexWrap: {
+            xs: "nowrap",
+            sm: "wrap",
+            md: "wrap",
+            xl: "wrap",
+          },
+          gap: {
+            xs: "0",
+            sm: "5px",
+            md: "5px",
+            xl: "5px",
+          },
+          marginRight: {
+            xs: 0,
+            sm: "60px",
+            md: "60px",
+            xl: "60px",
+          },
+          marginLeft: {
+            xs: 0,
+            sm: "60px",
+            md: "60px",
+            xl: "60px",
+          },
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
         {Object.values(currentItems).map((price, index) => {
           let bgColor, textColor;
@@ -211,7 +214,7 @@ const ElectricityPrices = () => {
                 display: "flex",
                 bgcolor: bgColor,
                 gap: 5,
-                minWidth:'250px'
+                minWidth: "250px",
               }}
             >
               <Box sx={{ display: "flex" }}>
@@ -223,7 +226,7 @@ const ElectricityPrices = () => {
           );
         })}
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center"}}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Pagination
           count={pageCount}
           page={currentPage}
