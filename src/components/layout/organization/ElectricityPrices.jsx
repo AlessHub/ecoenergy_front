@@ -154,35 +154,28 @@ const ElectricityPrices = () => {
           flexDirection: {
             xs: "column",
             sm: "row",
-            md: "row",
-            xl: "row",
           },
           flexWrap: {
             xs: "nowrap",
             sm: "wrap",
-            md: "wrap",
-            xl: "wrap",
           },
           gap: {
             xs: "0",
             sm: "5px",
-            md: "5px",
-            xl: "5px",
           },
           marginRight: {
             xs: 0,
             sm: "60px",
-            md: "60px",
-            xl: "60px",
           },
           marginLeft: {
             xs: 0,
             sm: "60px",
-            md: "60px",
-            xl: "60px",
           },
           alignItems: "center",
           justifyContent: "center",
+        p:{
+          lg:5
+        }
         }}
       >
         {Object.values(currentItems).map((price, index) => {
