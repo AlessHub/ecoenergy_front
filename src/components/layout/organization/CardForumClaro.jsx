@@ -14,7 +14,7 @@ const CardForumClaro = () => {
     <>
     <center>
       
-    <Card sx={{ mb: "1%", maxWidth: "60%" ,display:"flex", alignItems:"center" }}>
+    <Card sx={{  mb: "1%", pr: "1%", maxWidth: "60%" ,display:"flex", alignItems:"center" }}>
       <div>
       <CardMedia
         component="img"
