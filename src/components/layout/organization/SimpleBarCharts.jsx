@@ -1,3 +1,4 @@
+import { color } from '@mui/system'
 import React from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
@@ -18,28 +19,45 @@ const data = [
 
 const SimpleBarCharts = () => {
   return (
-    <ResponsiveContainer width="100%" aspect={2}>
+    <div style={{ width: '100%', height: 300, aspectRatio:2 }} >
+    <ResponsiveContainer width="100%" height="100%" >
         <BarChart 
             data={data}
-            width={500}
-            height={300}
+            width={400}
+            height={200}
             margin={{
                 top:5,
                 right:30,
                 left:20,
-                bottom:5,
-            }}
-            
+                bottom:15,
+            }}  
+            barCategoryGap={5}
+            barSize={25}
+                      
         >
-        {/* <CartesianGrid strokeDasharray="4 1 2" />     */}
-        <XAxis dataKey="name"/>
-        <YAxis />
+          <CartesianGrid  strokeDasharray=""
+        stroke=''
+        radius={10} />
+        
+        <XAxis 
+             dataKey="name"              
+             style={{ border: 'none', width: '50px', textAlign: 'center'}}
+             angle={-60}  
+             dx={-6}          
+            //  interval={0}
+             dy={20} 
+             stroke="semi-transparent"        
+            
+            />
+        
         <Tooltip />
-        <Legend />
-        <Bar dataKey="expense" fill="#5DB075" radius={10}/>
-        {/* <Bar dataKey="age" fill="#1ee3cf"/> */}
+        {/* <Legend /> */}
+        <Bar dataKey="expense" fill="#5DB075" radius={10} />
+        
+        
         </BarChart>
     </ResponsiveContainer>
+    </div>
   )
 }
 

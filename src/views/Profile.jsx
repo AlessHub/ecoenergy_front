@@ -5,6 +5,8 @@ import { Container } from '@mui/system';
 import CardMedia from '@mui/material/CardMedia';
 
 import SimpleBarCharts from '../components/layout/organization/SimpleBarCharts';
+import Footer from '../components/layout/navigation/Footer';
+import Buttons from '../components/layout/buttons/Buttons';
 
 function Profile() {
   return (
@@ -26,8 +28,13 @@ function Profile() {
       />
     
     </Container>
+    <Container sx={{p:{xs:0, sm:0, md:20, lg:10, xl:4} }}>
 
     <SimpleBarCharts/>
+    <Buttons/>
+    </Container>
+
+    {/* <Footer/> */}
 
     </>
   )
