@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
 import AvatarPlaceholder from '../../src/assets/avatar_template.png'
 import { Container } from '@mui/system';
@@ -8,7 +8,45 @@ import SimpleBarCharts from '../components/layout/organization/SimpleBarCharts';
 import Footer from '../components/layout/navigation/Footer';
 import Buttons from '../components/layout/buttons/Buttons';
 
+const data1 = [
+  {name: "Jan",  expense: 60},
+  {name: 'Feb',  expense: 70},
+  {name: 'Mar',  expense: 65},
+  {name: 'Apr',  expense: 85},
+  {name: 'May',  expense: 48},
+  {name: 'Jun',  expense: 69},
+  {name: 'Jul',  expense: 78},
+  {name: 'Aug',  expense: 85},
+  {name: 'Sep',  expense: 48},
+  {name: 'Oct',  expense: 69},
+  {name: 'Nov',  expense: 78},
+  {name: 'Dec',  expense: 78},
+]
+const data2 = [
+{name: "Jan",  expense: 50},
+{name: 'Feb',  expense: 60},
+{name: 'Mar',  expense: 75},
+{name: 'Apr',  expense: 85},
+{name: 'May',  expense: 68},
+{name: 'Jun',  expense: 79},
+{name: 'Jul',  expense: 88},
+{name: 'Aug',  expense: 85},
+{name: 'Sep',  expense: 58},
+{name: 'Oct',  expense: 49},
+{name: 'Nov',  expense: 98},
+{name: 'Dec',  expense: 98},
+]
+
 function Profile() {
+  
+  const [selectedOption, setSelectedOption] = useState("electric");
+  const color = selectedOption === "electric" ? "#5DB075" : "#1263ce";
+  const data = selectedOption === "electric" ? data1 : data2;
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  }
+
   return (
     <>
       <NavPublic />
@@ -20,8 +58,7 @@ function Profile() {
         sx={{
           overflow:'hidden', 
             width: '140px',
-            height: '140px',
-            // backgroundColor: 'red',
+            height: '140px',            
             maxWidth: '150px',
             mt: '-250px'
             }}
@@ -30,11 +67,11 @@ function Profile() {
     </Container>
     <Container sx={{p:{xs:0, sm:0, md:20, lg:10, xl:4} }}>
 
-    <SimpleBarCharts/>
-    <Buttons/>
+    <SimpleBarCharts color={color} data={data} />
+        <Buttons handleOptionClick={handleOptionClick} />
     </Container>
 
-    {/* <Footer/> */}
+    
 
     </>
   )
