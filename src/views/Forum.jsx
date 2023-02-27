@@ -1,16 +1,18 @@
 import React from 'react';
-
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import CardForum from '../components/layout/organization/CardForum';
+import CardForumOscuro from '../components/layout/organization/CardForumOscuro';
+import CardForumClaro from '../components/layout/organization/CardForumClaro';
 import Footer from "../components/layout/navigation/Footer";
-import { display } from '@mui/system';
 
+//tienes repeticion de card para darle una ideai visual despues del consumo de bd, o sea tienes que quitar despues.
 
 const Forum = () => {
   return (
     <>
     <NavPublic/>
-    <CardForum/>
+    <CardForumOscuro/>
+    <CardForumClaro/>
+    <CardForumOscuro/>
     <Footer/>
     </>
 
