@@ -13,9 +13,15 @@ import axios from "axios";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 const ElectricityPrices = () => {
   const formatHour = (hour) => {
+    // Esto nos dara una string vacia si el lenght es menor de 2, y sino sacará los 2 primeros para obtener la hora
+    // de esta manera el test funcionará en Jest
+    if (typeof hour !== "string" || hour.length < 2) {
+      return "";
+    }
     const firstHour = hour.substring(0, 2);
     return `${firstHour}:00`;
   };
+
   const [priceNow, setPriceNow] = useState([]);
   const [prices, setPrices] = useState([]);
 
@@ -35,34 +41,36 @@ const ElectricityPrices = () => {
     }
   }, [priceNow]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const responseNow = await axios.get(
-          "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB",
-          {
-            headers: {
-              "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
-            },
-          }
-        );
-        setPriceNow(responseNow.data);
 
-        const responseAll = await axios.get(
-          "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB",
-          {
-            headers: {
-              "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
-            },
-          }
-        );
-        setPrices(responseAll.data);
+  const API_URL_NOW = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB"
+
+  const API_URL_ALL = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB"
+
+  const headers = {
+    headers: {
+      "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
+    },
+  }
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [responseNow, responseAll] = await Promise.all([
+          axios.get(API_URL_NOW, headers),
+          axios.get(API_URL_ALL, headers)
+        ]);
+        setPriceNow(responseNow.data);
+        if (responseAll && responseAll.data) {
+          setPrices(responseAll.data);
+        }
       } catch (error) {
         console.error(error.message);
       }
     }
     fetchData();
-  }, []);
+  });
 
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
@@ -112,7 +120,7 @@ const ElectricityPrices = () => {
         textAlign="center"
         p={2}
       >
-        <Typography
+        <Box
           sx={{
             display: "flex",
             justifyContent: "space-around",
@@ -146,7 +154,7 @@ const ElectricityPrices = () => {
             </Typography>
           </Box>
           <Typography>{priceNow.price} €/kWh</Typography>
-        </Typography>
+        </Box>
       </Box>
       <Box
         sx={{
@@ -173,9 +181,9 @@ const ElectricityPrices = () => {
           },
           alignItems: "center",
           justifyContent: "center",
-        p:{
-          lg:5
-        }
+          p: {
+            lg: 5,
+          },
         }}
       >
         {Object.values(currentItems).map((price, index) => {
@@ -197,7 +205,7 @@ const ElectricityPrices = () => {
           return (
             <Typography
               key={index}
-              variant="body1"
+              variant="div"
               color={textColor}
               sx={{
                 p: 2,
@@ -210,11 +218,11 @@ const ElectricityPrices = () => {
                 minWidth: "250px",
               }}
             >
-              <Box sx={{ display: "flex" }}>
+              <Typography variant="body1" sx={{ display: "flex" }}>
                 <AccessTimeIcon sx={{ mr: 1 }} />
                 {`${formatHour(price.hour)}`}
-              </Box>
-              <Box>{`${price.price} €/kWh`}</Box>
+              </Typography>
+              <Typography>{`${price.price} €/kWh`}</Typography>
             </Typography>
           );
         })}
