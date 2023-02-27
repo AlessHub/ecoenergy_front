@@ -8,22 +8,43 @@ import { Link as LinkMui, TextField, Button } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
 
+import axios from "axios";
+
 import { Email, Login } from "@mui/icons-material";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate the username and password
-    // If successful, redirect the user to the dashboard page
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('https://energy-production-b228.up.railway.app/api/register', formData);
+      console.log(response.data);
+      setUser(response.data.user);
+      localStorage.setItem('token', response.data.token);
+    //   setRedirect(true);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+ 
 
   return (
     <>
-      <NavPublic />
+      <NavPublic />      
+
       <Box
         component="form"
         sx={{
@@ -53,30 +74,36 @@ const SignUp = () => {
         <TextField
           label="Name"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+          name="name"
+          value={formData.name}
+        onChange={handleChange}
+        required
+          />
 
         <TextField
           sx={{ background: "" }}
           label="Email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          name="email"
+          value={formData.email}
+        onChange={handleChange}
+        required
+          />
 
         <TextField
           label="Password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          name="password"
+          value={formData.password}
+        onChange={handleChange}
+        required
+          />
         <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
           <Checkbox defaultChecked color="success" />
           <Typography
             sx={{ mt: 0, color: "black", fontSize: "0.7rem" }}
             variant="body"
-          >
+            >
             I would like to receive your newsletter and other promotional
             information
           </Typography>
@@ -103,14 +130,27 @@ const SignUp = () => {
                       boxShadow: "0 0 0 0.2rem main.primary",
                     },
                   }}
-          type="submit"
+                  type="submit"
           color="primary"
           variant="contained"
-        >
+          >
           Sign up
         </Button>
         <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
       </Box>
+      {error && (
+    <div className="mt-6 text-center text-red-500">
+      {error}
+    </div>
+  )}
+  {user && (
+    <div className="mt-6 text-center">
+      <h3 className="text-gray-700 font-medium">User Details</h3>
+      <p><strong className="text-gray-700">Name:</strong> {user.name}</p>
+      <p><strong className="text-gray-700">Email:</strong> {user.email}</p>
+    </div>
+  )}
+          
     </>
   );
 };

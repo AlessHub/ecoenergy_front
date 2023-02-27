@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <BottomNavigation
-        sx={{ minHeight: "100px", width: "100%" }}
+        sx={{ minHeight: "100px", width: "100%"}}
         showLabels
         onChange={(event, newValue) => {
           setValue(newValue);
