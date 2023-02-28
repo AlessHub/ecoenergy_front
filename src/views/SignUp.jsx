@@ -4,16 +4,19 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import { Link as LinkReact } from "react-router-dom";
-import { Link as LinkMui, TextField, Button } from "@mui/material";
+import { Link as LinkMui, TextField, Button} from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
 
-import { Email, Login } from "@mui/icons-material";
+
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
+   
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +32,8 @@ const SignUp = () => {
         sx={{
           p: 5,
           display: "flex",
+          maxWidth: "500px",
+          margin: "auto",
           flexDirection: "column",
           alignItems: "center",
           "& .MuiTextField-root": {
@@ -36,7 +41,7 @@ const SignUp = () => {
             width: "100%",
           },
           "& .MuiButton-root": {
-            width: "50%",
+            width: "100%",
           },   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "main.primary",
             color:'main.primary'
@@ -69,6 +74,15 @@ const SignUp = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+<TextField
+          label="ConfirmPassword"
+          type="Password"
+          value={ConfirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        
+       
         <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
           <Checkbox defaultChecked color="success" />
           <Typography

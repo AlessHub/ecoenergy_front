@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import Footer from "../components/layout/navigation/Footer";
 import ElectricityPrices from "../components/layout/organization/ElectricityPrices";
+import Congratulations from "./Congratulations";
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -54,6 +55,7 @@ const Home = () => {
         Get Started
       </Button>
       <ElectricityPrices/>
+      <Congratulations/>
       <Footer/>
     </>
   );
