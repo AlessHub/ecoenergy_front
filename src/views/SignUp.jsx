@@ -92,7 +92,7 @@ const SignUp = () => {
 
         <TextField
           label="Password"
-          type="password"
+          type="current-password"
           name="password"
           value={formData.password}
         onChange={handleChange}
