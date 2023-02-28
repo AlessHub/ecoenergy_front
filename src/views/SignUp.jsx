@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import { Link as LinkReact } from "react-router-dom";
-import { Link as LinkMui, TextField, Button } from "@mui/material";
+import { Link as LinkMui, TextField, Button, Container } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
+import Footer from "../components/layout/navigation/Footer";
+import ButtonGreen from '../components/layout/navigation/ButtonGreen';
+import LinkButton from "../components/layout/navigation/LinkButton";
 
 import { Email, Login } from "@mui/icons-material";
 
@@ -24,46 +25,43 @@ const SignUp = () => {
   return (
     <>
       <NavPublic />
-      <Box
+      <Container
         component="form"
         sx={{
-          p: 5,
           display: "flex",
+          maxWidth: "500px",
+          mt: 1,
           flexDirection: "column",
+          justifyContent: 'space-between',
           alignItems: "center",
-          "& .MuiTextField-root": {
-            mb: 3,
-            width: "100%",
-          },
-          "& .MuiButton-root": {
-            width: "50%",
-          },   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+          "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "main.primary",
             color:'main.primary'
           },
+          gap: 2
         }}
         onSubmit={handleSubmit}
       >
-        <Typography  color="main.tertiary" sx={{ mb: 4}} variant="h3">
-          Welcome
+        <Typography  
+        color="main.tertiary" variant="h3">
+          Sign Up
         </Typography>
 
-        <TextField
+        <TextField sx={{minWidth: '30%'}}
           label="Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
-        <TextField
-          sx={{ background: "" }}
+        <TextField sx={{minWidth: '30%'}}
           label="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <TextField
+        <TextField sx={{minWidth: '30%'}}
           label="Password"
           type="password"
           value={password}
@@ -80,35 +78,19 @@ const SignUp = () => {
           </Typography>
         </Box>
 
-        <Button
-                  sx={{
-                    mt:2,
-                    textTransform: "capitalize",
-                    backgroundColor: "main.primary",
-                    "&:hover": {
-                      backgroundColor: "main.primary",
-                      borderColor: "main.primary",
-                      boxShadow: "none",
-                      color: "main.secondary",
-                    },
-                    "&:active": {
-                      boxShadow: "none",
-                      backgroundColor: "main.primary",
-                      borderColor: "main.primary",
-                      color: "main.secondary",
-                    },
-                    "&:focus": {
-                      boxShadow: "0 0 0 0.2rem main.primary",
-                    },
-                  }}
-          type="submit"
-          color="primary"
-          variant="contained"
-        >
-          Sign up
-        </Button>
+        <ButtonGreen
+            text='Sign up'/>
         <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
-      </Box>
+        <Typography
+        variant="p">
+
+        Already registered?{" "}
+
+        <LinkButton text='Log In'/>
+        </Typography>
+    
+      </Container>
+      <Footer/>
     </>
   );
 };
