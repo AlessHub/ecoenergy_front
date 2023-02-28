@@ -8,10 +8,11 @@ import {
 
 import Home from '../../views/Home';
 import SignUp from '../../views/SignUp';
-import Login from '../../views/Login';
-import Congratulations from '../../views/Congratulations';
-import NewUserProfile from '../../views/NewUserProfile';
-import CommunityPolicy from '../../views/CommunityPolicy';
+import Login from '../../views/Login'
+import Profile from '../../views/Profile';
+import Forum from '../../views/Forum';
+import Congratulations from '../../views/Congratulations'
+import CommunityPolicy from '../../views/CommunityPolicy'
 
 
 export default class PublicRoute extends React.Component {
@@ -22,9 +23,10 @@ export default class PublicRoute extends React.Component {
                 <Route exact path="/" element={<Home/>}/>
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/signup" element={<SignUp/>}/>
-                <Route exact path="/congratulations" element={<Congratulations/>}/>
-                <Route exact path="/NewUserProfile" element={<NewUserProfile/>}/>
+                <Route exact path="/profile" element={<Profile/>}/>
+                <Route exact path="/forum" element={<Forum/>}/>
                 <Route exact path="/CommunityPolicy" element={<CommunityPolicy/>}/>
+                <Route exact path="/Congratulations" element={<Congratulations/>}/>
             </Routes>
         </Router>
       );

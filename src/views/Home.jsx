@@ -11,9 +11,11 @@ import Congratulations from "./Congratulations";
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
+  
 
   return (
     <>
+    <NavPublic />
       <Typography
         sx={{ fontWeight: "bold", mt: 10 }}
         variant="h4"
@@ -25,7 +27,7 @@ const Home = () => {
         Consequat velit qui adipisicing sunt do reprehenderit ad la Consequat
         velit qui adipisicing sunt.
       </Typography>
-      <NavPublic />
+
       <Slider />
       <Button
         variant="contained"

@@ -1,43 +1,29 @@
 import React from "react";
-import { Box, Typography, Container } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Container,
+  useTheme,
+  useMediaQuery,
+  PaginationItem,
+  Pagination,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-
 const ElectricityPrices = () => {
   const formatHour = (hour) => {
+    // Esto nos dara una string vacia si el lenght es menor de 2, y sino sacará los 2 primeros para obtener la hora
+    // de esta manera el test funcionará en Jest
+    if (typeof hour !== "string" || hour.length < 2) {
+      return "";
+    }
     const firstHour = hour.substring(0, 2);
     return `${firstHour}:00`;
   };
+
   const [priceNow, setPriceNow] = useState([]);
   const [prices, setPrices] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB",
-        {
-          headers: {
-            "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
-          },
-        }
-      )
-      .then((response) => setPriceNow(response.data))
-      .catch((error) => console.error(error.message));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB",
-        {
-          headers: {
-            "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
-          },
-        }
-      )
-      .then((response) => setPrices(response.data))
-      .catch((error) => console.error(error.message));
-  }, []);
 
   const [priceNowBgColor, setPriceNowBgColor] = useState("main.primary");
   const [priceNowTextColor, setPriceNowTextColor] = useState("main.secondary");
@@ -55,8 +41,67 @@ const ElectricityPrices = () => {
     }
   }, [priceNow]);
 
-  
-  console.log(priceNow);
+
+  const API_URL_NOW = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB"
+
+  const API_URL_ALL = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB"
+
+  const headers = {
+    headers: {
+      "x-cors-api-key": "temp_96f4c56fd3ea427dd7aa10a51badf9a9",
+    },
+  }
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [responseNow, responseAll] = await Promise.all([
+          axios.get(API_URL_NOW, headers),
+          axios.get(API_URL_ALL, headers)
+        ]);
+        setPriceNow(responseNow.data);
+        setPrices(responseAll.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+  });
+
+  const theme = useTheme();
+  const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
+  const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [pageCount, setPageCount] = useState(5);
+
+  useEffect(() => {
+    if (isLaptop) {
+      setPageCount(3);
+      setItemsPerPage(8);
+    } else if (isTablet) {
+      setPageCount(4);
+      setItemsPerPage(6);
+    } else {
+      setPageCount(6);
+      setItemsPerPage(4);
+    }
+  }, [isLaptop, isTablet]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = Object.values(prices).slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(Math.ceil(value));
+  };
+  const hasNextPage = indexOfLastItem < Object.values(prices).length;
+
   return (
     <>
       <Typography
@@ -73,7 +118,7 @@ const ElectricityPrices = () => {
         textAlign="center"
         p={2}
       >
-        <Typography
+        <Box
           sx={{
             display: "flex",
             justifyContent: "space-around",
@@ -81,32 +126,65 @@ const ElectricityPrices = () => {
           }}
           color={priceNowTextColor}
         >
-          <Box sx={{outline:'1px solid',
-            height:'70px',
-            width:'70px',
-            borderRadius:'50%',
-            outlineOffset:'10px'}}>
-            <Typography sx={{fontSize:'0.75rem', mb:1, mt:0.80}}>Price now</Typography>
+          <Box
+            sx={{
+              outline: "1px solid",
+              height: "70px",
+              width: "70px",
+              borderRadius: "50%",
+              outlineOffset: "10px",
+            }}
+          >
+            <Typography data-testid="price-now" sx={{ fontSize: "0.75rem", mb: 1, mt: 0.8 }}>
+              Price now
+            </Typography>
             <Typography>
               {(() => {
                 switch (true) {
-                    case !priceNow["is-cheap"] && priceNow["is-under-avg"]:
+                  case !priceNow["is-cheap"] && priceNow["is-under-avg"]:
                     return "Moderate";
-                    case !priceNow["is-cheap"] && !priceNow["is-under-avg"]:
+                  case !priceNow["is-cheap"] && !priceNow["is-under-avg"]:
                     return "Expensive";
-                    default:
-                      return "Cheap";
-                  }
+                  default:
+                    return "Cheap";
+                }
               })()}
             </Typography>
           </Box>
-          <Box>{priceNow.price} €/kWh</Box>
-        </Typography>
+          <Typography>{priceNow.price} €/kWh</Typography>
+        </Box>
       </Box>
       <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
+          flexWrap: {
+            xs: "nowrap",
+            sm: "wrap",
+          },
+          gap: {
+            xs: "0",
+            sm: "5px",
+          },
+          marginRight: {
+            xs: 0,
+            sm: "60px",
+          },
+          marginLeft: {
+            xs: 0,
+            sm: "60px",
+          },
+          alignItems: "center",
+          justifyContent: "center",
+          p: {
+            lg: 5,
+          },
+        }}
       >
-        {Object.values(prices).map((price, index) => {
+        {Object.values(currentItems).map((price, index) => {
           let bgColor, textColor;
           switch (true) {
             case !price["is-cheap"] && price["is-under-avg"]:
@@ -125,27 +203,45 @@ const ElectricityPrices = () => {
           return (
             <Typography
               key={index}
-              variant="body1"
+              variant="div"
               color={textColor}
               sx={{
                 p: 2,
                 borderRadius: 3,
                 mb: 5,
-                width: "80%",
                 justifyContent: "center",
                 display: "flex",
                 bgcolor: bgColor,
                 gap: 5,
+                minWidth: "250px",
               }}
             >
-              <Box sx={{ display: "flex" }}>
+              <Typography variant="body1" sx={{ display: "flex" }}>
                 <AccessTimeIcon sx={{ mr: 1 }} />
                 {`${formatHour(price.hour)}`}
-              </Box>
-              <Box>{`${price.price} €/kWh`}</Box>
+              </Typography>
+              <Typography>{`${price.price} €/kWh`}</Typography>
             </Typography>
           );
         })}
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Pagination
+          test-page={currentPage}
+          count={pageCount}
+          page={currentPage}
+          data-testid="pagination-current-page"
+          color="success"
+          onChange={handlePageChange}
+          size={isTablet ? "medium" : "small"}
+          sx={{ mb: 4 }}
+          renderItem={(item) => {
+            if (item.type === "next") {
+              return <PaginationItem {...item} data-testid="next-button" disabled={!hasNextPage} />;
+            }
+            return <PaginationItem {...item} />;
+          }}
+        />
       </Box>
     </>
   );
