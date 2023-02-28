@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import SimpleBarCharts from '../components/layout/organization/SimpleBarCharts';
 import Footer from '../components/layout/navigation/Footer';
 import Buttons from '../components/layout/buttons/Buttons';
+import BarData from '../components/layout/organization/BarData';
 
 const data1 = [
   {name: "Jan",  expense: 60},
@@ -50,7 +51,7 @@ function Profile() {
   return (
     <>
       <NavPublic />
-      <Container sx={{p:{xs:0, sm:0, md:0, xl:0} ,display:'flex', flexDirection:'column', alignItems:'center'}}>
+      <Container sx={{p:{xs:0, sm:0, md:0, xl:0} ,display:'flex', flexDirection:'column',width:'100%' ,alignItems:'center', justifyContent:'center'}}>
       <CardMedia
         component="img"
         alt="thumbnail"
@@ -60,7 +61,7 @@ function Profile() {
             width: '140px',
             height: '140px',            
             maxWidth: '150px',
-            mt: '-250px'
+            mt: '20px'
             }}
       />
     
@@ -68,8 +69,13 @@ function Profile() {
     <Container sx={{p:{xs:0, sm:0, md:20, lg:10, xl:4} }}>
 
     <SimpleBarCharts color={color} data={data} />
-        <Buttons handleOptionClick={handleOptionClick} />
+    {data.map((datas) =>{
+      return <BarData color={color} datas={datas}/>
+    })}
+    <Buttons handleOptionClick={handleOptionClick} />
+    
     </Container>
+
 
     
 

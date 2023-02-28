@@ -1,9 +1,7 @@
 import React from 'react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 
-const SimpleBarCharts = ({color,data}) => {
-  
- 
+const SimpleBarCharts = ({color,data}) => { 
 
   return (
     <div style={{ width: '100%', height: 300, aspectRatio:2 }} >
@@ -13,7 +11,7 @@ const SimpleBarCharts = ({color,data}) => {
             width={400}
             height={200}
             margin={{
-                top:5,
+                top:1,
                 right:30,
                 left:20,
                 bottom:15,
