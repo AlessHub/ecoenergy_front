@@ -11,6 +11,7 @@ const Footer = () => {
     <>
       <BottomNavigation
         sx={{ minHeight: "100px", width: "100%" }}
+
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

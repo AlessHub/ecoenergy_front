@@ -19,9 +19,11 @@
     "jest-environment-jsdom": "^29.4.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "reacharts": "^0.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
+    "recharts": "^2.4.3",
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.6",
     "swiper": "^9.0.4"
