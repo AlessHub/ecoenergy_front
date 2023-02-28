@@ -48,7 +48,7 @@ const ElectricityPrices = () => {
 
   const headers = {
     headers: {
-      "x-cors-api-key": "temp_d3327eae2b0f5beff70458b15678dae8",
+      "x-cors-api-key": "temp_96f4c56fd3ea427dd7aa10a51badf9a9",
     },
   }
 
@@ -62,11 +62,9 @@ const ElectricityPrices = () => {
           axios.get(API_URL_ALL, headers)
         ]);
         setPriceNow(responseNow.data);
-        if (responseAll && responseAll.data) {
-          setPrices(responseAll.data);
-        }
+        setPrices(responseAll.data);
       } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
       }
     }
     fetchData();
@@ -137,7 +135,7 @@ const ElectricityPrices = () => {
               outlineOffset: "10px",
             }}
           >
-            <Typography sx={{ fontSize: "0.75rem", mb: 1, mt: 0.8 }}>
+            <Typography data-testid="price-now" sx={{ fontSize: "0.75rem", mb: 1, mt: 0.8 }}>
               Price now
             </Typography>
             <Typography>
@@ -229,15 +227,17 @@ const ElectricityPrices = () => {
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Pagination
+          test-page={currentPage}
           count={pageCount}
           page={currentPage}
+          data-testid="pagination-current-page"
           color="success"
           onChange={handlePageChange}
           size={isTablet ? "medium" : "small"}
           sx={{ mb: 4 }}
           renderItem={(item) => {
             if (item.type === "next") {
-              return <PaginationItem {...item} disabled={!hasNextPage} />;
+              return <PaginationItem {...item} data-testid="next-button" disabled={!hasNextPage} />;
             }
             return <PaginationItem {...item} />;
           }}
