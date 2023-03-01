@@ -17,7 +17,7 @@ const Home = () => {
     <>
     <NavPublic />
       <Typography
-        sx={{ fontWeight: "bold", mt: 10 }}
+        sx={{ fontWeight: "bold", mt: 1 }}
         variant="h4"
         color="main.tertiary"
       >
@@ -27,7 +27,7 @@ const Home = () => {
         Consequat velit qui adipisicing sunt do reprehenderit ad la Consequat
         velit qui adipisicing sunt.
       </Typography>
-
+      
       <Slider />
       <Button
         variant="contained"
