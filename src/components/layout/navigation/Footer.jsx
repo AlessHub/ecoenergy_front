@@ -10,8 +10,8 @@ const Footer = () => {
   return (
     <>
       <BottomNavigation
-        sx={{ minHeight: "100px", width: "100%"}}
-        showLabels
+        sx={{ minHeight: "100px", width: "100%" }}
+
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
@@ -48,17 +48,14 @@ const Footer = () => {
             <Box>
               <BottomNavigationAction
                 sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
-                label="Recents"
                 icon={<TwitterIcon />}
               />
               <BottomNavigationAction
                 sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
-                label="Favorites"
                 icon={<FacebookIcon />}
               />
               <BottomNavigationAction
                 sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
-                label="Nearby"
                 icon={<InstagramIcon />}
               />
             </Box>
