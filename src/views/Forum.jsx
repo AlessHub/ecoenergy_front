@@ -3,7 +3,8 @@ import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import GridForum from "../components/layout/organization/GridForum";
 import Footer from "../components/layout/navigation/Footer";
 import IconButton from "@mui/material/IconButton";
-import { Box } from "@mui/material"
+import { Box } from "@mui/material";
+
 
 const Forum = () => {
   return (
