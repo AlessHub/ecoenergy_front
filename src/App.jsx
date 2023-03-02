@@ -5,7 +5,7 @@ import PublicRoute from './router/public/Router';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { green, grey, red, orange } from '@mui/material/colors';
+import { green, grey, red, orange, blue } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -14,7 +14,7 @@ const theme = createTheme({
       secondary: grey[50],
       tertiary: green[900],
       danger: red[400],
-      warning: orange[500]
+      warning: orange[500],
     },
     background: {
       paper: green[400],

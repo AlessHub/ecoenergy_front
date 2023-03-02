@@ -5,82 +5,106 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Link as LinkReact } from "react-router-dom";
 import { Link as LinkMui, TextField, Button } from "@mui/material";
-import axios from "axios";
-import { setAuthToken } from "../router/private/auth";
+import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+
+import { Login } from "@mui/icons-material";
 
 const LoginMui = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
 
-  const dispatch = useDispatch();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post("/api/login", {
-        username,
-        password,
-      });
-
-      setAuthenticated(true);
-      localStorage.setItem("token", response.data.token);
-      dispatch(setAuthToken(response.data.token));
-      history.push("/dashboard");
-
-    } catch (error) {
-      setError("Nombre de usuario o contraseña inválidos.");
-    }
+    // Validate the username and password
+    // If successful, redirect the user to the dashboard page
   };
+  
+
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <Typography variant="h5">Login</Typography>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ display: "flex", flexDirection: "column", width: "100%", mt: 1 }}
+    <>
+    <NavPublic></NavPublic>
+    <Typography color="main.tertiary" variant="h3">Log In</Typography>
+    <Box
+      component="form"
+      sx={{
+        p: 5,
+        display: "flex",
+        maxWidth: "500px",
+        margin: "auto",
+        flexDirection: "column",
+        alignItems: "center",
+        "& .MuiTextField-root": {
+          mb: 3,
+          width: "100%",
+        },
+        "& .MuiButton-root": {
+          width: "100%",
+        },   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: "main.primary",
+          color:'main.primary'
+        },
+      }}
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        label="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <TextField
+        label="Password "
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <Button
+        type="submit"
+        sx={{
+          textTransform: "capitalize",
+          backgroundColor: "main.primary",
+          "&:hover": {
+            backgroundColor: "main.primary",
+            borderColor: "main.primary",
+            boxShadow: "none",
+            color: "main.secondary",
+          },
+          "&:active": {
+            boxShadow: "none",
+            backgroundColor: "main.primary",
+            borderColor: "main.primary",
+            color: "main.secondary",
+          },
+          "&:focus": {
+            boxShadow: "0 0 0 0.2rem main.primary",
+          },
+        }}
+        variant="contained"
       >
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="username"
-          label="Nome de usuário"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label="Senha"
-          type={showPassword ? "text" : "password"}
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <IconButton onClick={handleClickShowPassword}>
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            ),
-          }}
-        />
-        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-          Entrar
-        </Button>
-        <LinkMui component={LinkReact} to="/register" variant="body2">
-          {"No tienes una cuenta? Registrese"}
-        </LinkMui>
-      </Box>
+        Login
+      </Button>
+      <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
+
+      <Typography sx={{ mt: 1, color: "green" }} variant="p">
+        Forgot your password?
+      </Typography>
+      <Typography
+        sx={{ mt: 1, display: "flex", flexDirection: "row", gap: 1 }}
+        variant="p"
+      >
+        New user?{" "}
+        <Typography sx={{ mt: 0, color: "green" }} variant="p">
+          {" "}
+          Sign up
+        </Typography>
+      </Typography>
     </Box>
+    </>
   );
 };
 
