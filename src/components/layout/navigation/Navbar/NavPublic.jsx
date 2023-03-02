@@ -55,7 +55,7 @@ const NavPublic = () => {
             }}
             direction="row"
           >
-            <LinkReact to="/">
+            <LinkReact to="/profile">
               <LinkMui
                 sx={{
                   "&:hover": {
@@ -69,7 +69,7 @@ const NavPublic = () => {
               </LinkMui>
             </LinkReact>
 
-            <LinkReact to="/">
+            <LinkReact to="/forum">
               <LinkMui
                 sx={{
                   "&:hover": {

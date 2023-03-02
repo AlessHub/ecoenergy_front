@@ -52,8 +52,10 @@ import AdbIcon from '@mui/icons-material/Adb';
             </Box>
           <Box sx={{ flexGrow: 0, display:'flex' }}>
           <Stack sx={{mr:5 , gap:2, alignItems:'center', display: {xs:'none', sm: 'flex', md: 'flex'}}} direction="row">
+
             <LinkReact to='/'>
               <LinkMui sx={{}} color='main.secondary'>Profile</LinkMui>
+              
             </LinkReact>
             
             <LinkReact to='/'>

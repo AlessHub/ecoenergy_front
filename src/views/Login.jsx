@@ -8,21 +8,38 @@ import LinkButton from "../components/layout/navigation/LinkButton";
 import Footer from "../components/layout/navigation/Footer";
 import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 
+import axios from "axios";
+
 import { Login } from "@mui/icons-material";
 
 const LoginMui = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate the username and password
-    // If successful, redirect the user to the dashboard page
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('https://energy-production-b228.up.railway.app/api/login', formData);
+      console.log(response.data);
+      setUser(response.data.user);
+      localStorage.getItem('token', response.data.token);
+    //   setRedirect(true);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+  
+
 
   return (
     <>
@@ -43,6 +60,7 @@ const LoginMui = () => {
       }}
       onSubmit={handleSubmit}
     >
+
     <Typography color="main.tertiary" variant="h3">
       Log In
       </Typography>
@@ -51,12 +69,15 @@ const LoginMui = () => {
         label="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+
       />
       <TextField sx={{minWidth: '30%'}}
         label="Password "
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        type="current-password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        required
       />
       <ButtonGreen
             text='Log In'/>

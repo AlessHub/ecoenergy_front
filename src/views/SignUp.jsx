@@ -9,26 +9,49 @@ import Footer from "../components/layout/navigation/Footer";
 import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 import LinkButton from "../components/layout/navigation/LinkButton";
 
+import axios from "axios";
+
 import { Email, Login } from "@mui/icons-material";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate the username and password
-    // If successful, redirect the user to the dashboard page
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('https://energy-production-b228.up.railway.app/api/register', formData);
+      console.log(response.data);
+      setUser(response.data.user);
+      localStorage.setItem('token', response.data.token);
+    //   setRedirect(true);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+ 
 
   return (
     <>
+
       <NavPublic />
       <Container
+
         component="form"
         sx={{
           display: "flex",
+
           maxWidth: "500px",
           mt: 1,
           flexDirection: "column",
@@ -50,34 +73,40 @@ const SignUp = () => {
         <TextField sx={{minWidth: '30%'}}
           label="Name"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+          name="name"
+          value={formData.name}
+        onChange={handleChange}
+        required
+          />
 
         <TextField sx={{minWidth: '30%'}}
           label="Email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          name="email"
+          value={formData.email}
+        onChange={handleChange}
+        required
+          />
 
         <TextField sx={{minWidth: '30%'}}
           label="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          type="current-password"
+          name="password"
+          value={formData.password}
+        onChange={handleChange}
+        required
+          />
         <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
           <Checkbox defaultChecked color="success" />
           <Typography
             sx={{ mt: 0, color: "black", fontSize: "0.7rem" }}
             variant="body"
-          >
+            >
             I would like to receive your newsletter and other promotional
             information
           </Typography>
         </Box>
-
+        
         <ButtonGreen
             text='Sign up'/>
         <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
@@ -91,6 +120,7 @@ const SignUp = () => {
     
       </Container>
       <Footer/>
+
     </>
   );
 };

@@ -10,6 +10,7 @@ import ElectricityPrices from "../components/layout/organization/ElectricityPric
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
+  
 
   return (
     <>
@@ -25,7 +26,7 @@ const Home = () => {
         Consequat velit qui adipisicing sunt do reprehenderit ad la Consequat
         velit qui adipisicing sunt.
       </Typography>
-      
+
       <Slider />
       <Button
         variant="contained"
