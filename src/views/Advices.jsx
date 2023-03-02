@@ -54,7 +54,7 @@ const Advices = () => {
     <CardAdvice text='Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica'/>
           <CardAdvice/>
-    <CardAdvice text='Text' image='src/assets/avatar_template.png'/>
+    <CardAdvice text='Text' type='Water' image='src/assets/avatar_template.png'/>
     <CardAdvice/>
     <CardAdvice/>
     </Container>

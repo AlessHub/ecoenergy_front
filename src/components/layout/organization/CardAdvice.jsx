@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const CardAdvice = ({text, image, title, name, value, filter}) => {
+const CardAdvice = ({text, image}) => {
   return (
     <>
     <Card sx={{ 
@@ -18,10 +18,7 @@ const CardAdvice = ({text, image, title, name, value, filter}) => {
       border: 2,
       borderColor: 'main.primary',
       textAlign: 'initial',
-    }}
-      name={name}
-      value={value}
-      filter={filter}>
+    }}>
 
       <CardMedia
         sx={{ 
@@ -31,7 +28,6 @@ const CardAdvice = ({text, image, title, name, value, filter}) => {
           border: 2 }}
 
         image={image}
-        title={title}
       />
       <CardContent>
         <Typography 
