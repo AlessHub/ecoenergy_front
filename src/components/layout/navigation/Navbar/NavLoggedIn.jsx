@@ -43,7 +43,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
     return (
       <div>
-       <AppBar color="primary">
+       <AppBar color="main" sx={{position:'sticky'}}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{display:'flex', alignItems: 'center', gap:3}}>
                 <img src='#' className="placeHolderLogoPic"/>
@@ -52,15 +52,17 @@ import AdbIcon from '@mui/icons-material/Adb';
             </Box>
           <Box sx={{ flexGrow: 0, display:'flex' }}>
           <Stack sx={{mr:5 , gap:2, alignItems:'center', display: {xs:'none', sm: 'flex', md: 'flex'}}} direction="row">
-            <LinkReact to='/profile'>
-              <LinkMui sx={{}} color='secondary'>Profile</LinkMui>
+
+            <LinkReact to='/'>
+              <LinkMui sx={{}} color='main.secondary'>Profile</LinkMui>
+              
             </LinkReact>
             
             <LinkReact to='/'>
-              <LinkMui color='secondary'>Forum</LinkMui>
+              <LinkMui color='main.secondary'>Forum</LinkMui>
             </LinkReact>
             <LinkReact to='/'>
-                <LinkMui color='secondary'>Log Out</LinkMui>
+                <LinkMui color='main.secondary'>Log Out</LinkMui>
             </LinkReact>
           </Stack>
             <Tooltip title="Open settings">
