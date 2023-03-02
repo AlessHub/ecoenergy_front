@@ -1,59 +1,57 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import React, { useState, useEffect } from 'react'
+import { styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
+import axios from 'axios'
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(2),
-  maxWidth: 1000,
   color: theme.palette.text.primary,
-}));
+  maxWidth: 1000,
+  margin: 'auto',
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  padding: theme.spacing(2),
+}))
 
-const message = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, dolorum.`;
+const StyledCardMedia = styled(CardMedia)({
+  width: 75,
+})
 
-export default function AutoGridNoWrap() {
+export default function MediaCard() {
+  const [forums, setForums] = useState([])
+
+  useEffect(() => {
+    const getForums = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+        const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        setForums(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getForums()
+  }, [])
+
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-            <img src="https://images.unsplash.com/photo-1560707303-4e980ce876ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVlbnRlJTIwZGUlMjBhZ3VhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="Placeholder" width="75"/>
-          </Grid>
-          <Grid item>
-            <Typography variant="h6">Title</Typography>
-            <Typography>{message}</Typography>
-            <Typography variant="caption">8:00 AM</Typography>
-          </Grid>
-        </Grid>
-      </StyledPaper>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-            <img src="https://images.unsplash.com/photo-1529704193007-e8c78f0f46f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bGlnaHR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60" alt="Placeholder"width="75" />
-          </Grid>
-          <Grid item>
-            <Typography variant="h6">Title</Typography>
-            <Typography>{message}</Typography>
-            <Typography variant="caption">9:00 AM</Typography>
-          </Grid>
-        </Grid>
-      </StyledPaper>
+      {forums.map((forum) => (
+        <StyledCard key={forum.id}>
+          <StyledCardMedia component="img" image={forum.cover} alt="image" />
+          <Typography variant="h6">{forum.title}</Typography>
+          <Typography>{forum.description}</Typography>
+          <Typography>{forum.author}</Typography>
+          <Typography variant="caption">{forum.created_at}</Typography>
+        </StyledCard>
+      ))}
     </Box>
-  );
+  )
 }

@@ -50,7 +50,7 @@ function PostForum() {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        const response = await axios.post('https://energy-production-b228.up.railway.app/api/forums', formData, { headers });
+        const response = await axios.post('http://127.0.0.1:8000/api/forums', formData, { headers });
         console.log(response.data);
         setUser(response.data.user);
         
