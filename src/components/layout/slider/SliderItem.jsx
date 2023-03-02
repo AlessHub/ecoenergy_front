@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { green } from '@mui/material/colors';
+
 
 
 function valuetext(value) {
@@ -21,7 +21,7 @@ const SliderItem =  () => {
         marks
         min={0}
         max={5}
-        
+        color="success"
         
       />
     </Box>

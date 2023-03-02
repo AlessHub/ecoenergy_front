@@ -18,7 +18,7 @@ const SliderHours = () => {
         marks
         min={0}
         max={24}
-        color="primary"
+        color="success"
       />
     </Box>
     </>
