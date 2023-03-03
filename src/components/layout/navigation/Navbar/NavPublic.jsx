@@ -75,7 +75,7 @@ const NavPublic = () => {
 
   return (
     <div>
-      <AppBar color="main">
+      <AppBar color="main"sx={{position:'sticky'}}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <img src="#"  className="placeHolderLogoPic" />
