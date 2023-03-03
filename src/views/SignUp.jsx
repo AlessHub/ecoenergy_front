@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import { Link as LinkReact } from "react-router-dom";
+import { Link as LinkReact, useNavigate } from "react-router-dom";
 import { Link as LinkMui, TextField, Button } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
@@ -22,6 +22,8 @@ const SignUp = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -30,11 +32,11 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('https://energy-production-b228.up.railway.app/api/register', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/register', formData);
       console.log(response.data);
       setUser(response.data.user);
       localStorage.setItem('token', response.data.token);
-    //   setRedirect(true);
+      navigate("/login");
     } catch (error) {
       setError(error.response.data.message);
     }

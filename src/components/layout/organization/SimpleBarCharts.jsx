@@ -1,10 +1,10 @@
 import React from 'react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 
-const SimpleBarCharts = ({color,data}) => { 
+const SimpleBarCharts = ({color,data, app_id}) => { 
 
   return (
-    <div style={{ width: '100%', height: 300, aspectRatio:2 }} >
+    <div style={{ width: '100%', height: 300, aspectRatio:2 }} key={app_id}>
     <ResponsiveContainer width="100%" height="100%" >
         <BarChart 
             data={data}
