@@ -67,8 +67,8 @@ const LoginMui = () => {
     
       <TextField sx={{minWidth: '30%'}}
         label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={formData.email}
+        onChange={handleChange}
 
       />
       <TextField sx={{minWidth: '30%'}}
@@ -84,14 +84,27 @@ const LoginMui = () => {
       <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
       <Typography 
         variant="p">
-        <LinkButton text='Forgot your password?'/>
+        <LinkButton text='Forgot your password?' to='/' sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
       </Typography>
-      <Typography
+      <Typography sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
         variant="p">
 
         New user?{" "}
 
-        <LinkButton text='Sign up'/>
+        
+      <LinkButton text='Sign Up' to="/signup" sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
 
       </Typography>
     </Container>

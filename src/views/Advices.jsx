@@ -7,13 +7,14 @@ import Footer from "../components/layout/navigation/Footer";
 import LinkButton from '../components/layout/navigation/LinkButton';
 import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 import CardAdvice from '../components/layout/organization/CardAdvice';
-import TabsChoice from '../components/layout/navigation/TabsChoice'
+import TabsChoice from '../components/layout/navigation/TabsChoice';
+import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
 
 
 const Advices = () => {
   return (
     <>
-   <NavLoggedIn/>
+   <NavPublic/>
     <Container
     
     sx= {{
@@ -50,13 +51,21 @@ const Advices = () => {
     </Box>
 
     
-
+    <Box
+        sx= {{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center', 
+          gap:'1rem'
+          }}>
+           
     <CardAdvice text='Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica'/>
           <CardAdvice/>
     <CardAdvice text='Text' type='Water' image='src/assets/avatar_template.png'/>
     <CardAdvice/>
     <CardAdvice/>
+    </Box>
     </Container>
     <Footer/>
     </>

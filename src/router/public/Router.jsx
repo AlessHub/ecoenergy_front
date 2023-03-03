@@ -26,7 +26,7 @@ export default class PublicRoute extends React.Component {
                 <Route exact path="/signup" element={<SignUp/>}/>
 
                 <Route exact path="/profile" element={<Profile/>}/>
-                <Route exact path="/forum" element={<Forum/>}/>
+                <Route exact path="/forumpost" element={<Forum/>}/>
                 <Route exact path="/advices" element={<Advices/>}/>
 
             </Routes>

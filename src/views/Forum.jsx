@@ -12,6 +12,7 @@ import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
 import AvatarPlaceholder from '../../src/assets/avatar_template.png'
 import { Container } from '@mui/system';
 import CardMedia from '@mui/material/CardMedia';
+import Footer from "../components/layout/navigation/Footer";
 
 import axios from "axios";
 
@@ -172,9 +173,9 @@ function Forum() {
         onChange={handleChange}
         id="autor"
         required
+        
       />
       <TextField
-        label="cover"
         type="file"
         name="cover"
         value={formData.cover}
@@ -237,7 +238,7 @@ function Forum() {
       <p><strong className="text-gray-700">Email:</strong> {user.email}</p>
     </div>
   )}
-
+  <Footer/>
     </>
   )
 }

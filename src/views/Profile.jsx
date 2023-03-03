@@ -3,7 +3,7 @@ import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
 import AvatarPlaceholder from '../../src/assets/avatar_template.png'
 import { Container } from '@mui/system';
 import CardMedia from '@mui/material/CardMedia';
-
+import { Typography } from "@mui/material";
 import SimpleBarCharts from '../components/layout/organization/SimpleBarCharts';
 import Footer from '../components/layout/navigation/Footer';
 import Buttons from '../components/layout/buttons/Buttons';
@@ -41,7 +41,7 @@ const data2 = [
 function Profile() {
   
   const [selectedOption, setSelectedOption] = useState("electric");
-  const color = selectedOption === "electric" ? "#5DB075" : "#1263ce";
+  const color = selectedOption === "electric" ? "#d4bc32" : "#1263ce";
   const data = selectedOption === "electric" ? data1 : data2;
 
   const handleOptionClick = (option) => {
@@ -64,10 +64,18 @@ function Profile() {
             mt: '20px'
             }}
       />
+      <Typography color="main.tertiary" variant="h4">
+        Victoria Robertson
+      </Typography>
+      <Typography color="main.tertiary" sx={{ mb: '2rem' }} variant="h6">
+      Reduced carbon emission (value) 
+      </Typography>
     
     </Container>
     <Container sx={{p:{xs:0, sm:0, md:20, lg:10, xl:4} }}>
-
+    <Typography color="main.tertiary" variant="h5">
+        Monthly Costs
+      </Typography>
     <SimpleBarCharts color={color} data={data} />
     {data.map((datas) =>{
       return <BarData color={color} datas={datas}/>
@@ -76,7 +84,7 @@ function Profile() {
     
     </Container>
 
-
+    <Footer/>
     
 
     </>

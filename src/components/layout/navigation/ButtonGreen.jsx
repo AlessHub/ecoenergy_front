@@ -7,6 +7,7 @@ const ButtonGreen = ({text}) => {
         <Button
          variant="contained"
          sx={{
+            width: 'fit-content' ,
            textTransform: 'capitalize',
            backgroundColor: "main.primary",
            "&:hover": {

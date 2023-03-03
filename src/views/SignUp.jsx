@@ -110,12 +110,19 @@ const SignUp = () => {
         <ButtonGreen
             text='Sign up'/>
         <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
-        <Typography
+        <Typography sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
         variant="p">
 
         Already registered?{" "}
 
-        <LinkButton text='Log In'/>
+        
+                <LinkButton text='Log In' to="/login" sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
         </Typography>
     
       </Container>
