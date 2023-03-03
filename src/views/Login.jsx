@@ -29,7 +29,7 @@ const LoginMui = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('https://energy-production-b228.up.railway.app/api/login', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
       console.log(response.data);
       setUser(response.data.user);
       localStorage.getItem('token', response.data.token);

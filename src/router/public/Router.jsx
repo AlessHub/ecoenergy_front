@@ -13,6 +13,7 @@ import SignUp from '../../views/SignUp';
 import Login from '../../views/Login'
 import Profile from '../../views/Profile';
 import Forum from '../../views/Forum';
+import PostForum from '../../views/PostForum';
 import Advices from '../../views/Advices';
 
 
@@ -27,6 +28,7 @@ export default class PublicRoute extends React.Component {
 
                 <Route exact path="/profile" element={<Profile/>}/>
                 <Route exact path="/forum" element={<Forum/>}/>
+                <Route exact path="/PostForum" element={<PostForum/>}/>
                 <Route exact path="/advices" element={<Advices/>}/>
 
             </Routes>
