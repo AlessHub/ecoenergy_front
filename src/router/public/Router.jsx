@@ -9,6 +9,7 @@ import Forum from '../../views/Forum';
 import PrivateRoute from '../private/PrivateRoute';
 import LoginMui from '../../views/Login';
 import SignUp from '../../views/SignUp'
+import PostForum from '../../views/PostForum';
 
 function PublicRoute() {
   
@@ -34,12 +35,14 @@ function PublicRoute() {
         <Route path="/" element={<home />} />
         <Route path="/login" element={<LoginMui />} />
         <Route path="/signup" element={<SignUp />} />
+        
 
         <Route element={<PrivateRoute isAllowed={!!user} />}>
 
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/Forum" element={<Forum />} />
+          <Route path="/postForum" element={<PostForum />} />
           
         </Route>
         {/* <Route

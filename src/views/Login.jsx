@@ -82,34 +82,38 @@ const LoginMui = () => {
   return (
     <>
     <NavPublic/>
-    <Container
+    <Typography color="main.tertiary" variant="h3">Log In</Typography>
+    <Box
       component="form"
       sx={{
+        p: 5,
         display: "flex",
-        mt: 1,
+        maxWidth: "500px",
+        margin: "auto",
         flexDirection: "column",
-        justifyContent: 'space-between',
         alignItems: "center",
-        "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+        "& .MuiTextField-root": {
+          mb: 3,
+          width: "100%",
+        },
+        "& .MuiButton-root": {
+          width: "100%",
+        },   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
           borderColor: "main.primary",
           color:'main.primary'
         },
-        gap: 2
       }}
       onSubmit={handleSubmit}
     >
-
-    <Typography color="main.tertiary" variant="h3">
-      Log In
-      </Typography>
-    
-      <TextField sx={{minWidth: '30%'}}
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-
+      <TextField
+        label="email"
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
       />
-      <TextField sx={{minWidth: '30%'}}
+      <TextField
         label="Password "
         type="password"
         name="password"
@@ -117,24 +121,48 @@ const LoginMui = () => {
         onChange={handleChange}
         required
       />
-      <ButtonGreen
-            text='Log In'/>
+
+      <Button
+        type="submit"
+        sx={{
+          textTransform: "capitalize",
+          backgroundColor: "main.primary",
+          "&:hover": {
+            backgroundColor: "main.primary",
+            borderColor: "main.primary",
+            boxShadow: "none",
+            color: "main.secondary",
+          },
+          "&:active": {
+            boxShadow: "none",
+            backgroundColor: "main.primary",
+            borderColor: "main.primary",
+            color: "main.secondary",
+          },
+          "&:focus": {
+            boxShadow: "0 0 0 0.2rem main.primary",
+          },
+        }}
+        variant="contained"
+      >
+        Login
+      </Button>
       <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
-      <Typography 
-        variant="p">
-        <LinkButton text='Forgot your password?'/>
+
+      <Typography sx={{ mt: 1, color: "green" }} variant="p">
+        Forgot your password?
       </Typography>
       <Typography
-        variant="p">
-
+        sx={{ mt: 1, display: "flex", flexDirection: "row", gap: 1 }}
+        variant="p"
+      >
         New user?{" "}
-
-        <LinkButton text='Sign up'/>
-
+        <Typography sx={{ mt: 0, color: "green" }} variant="p">
+          {" "}
+          Sign up
+        </Typography>
       </Typography>
-    </Container>
-    <Footer/>
-
+    </Box>
     </>
   );
 };

@@ -4,6 +4,8 @@ import GridForum from "../components/layout/organization/GridForum";
 import Footer from "../components/layout/navigation/Footer";
 import IconButton from "@mui/material/IconButton";
 import { Box } from "@mui/material";
+import { Link } from 'react-router-dom';
+
 
 
 const Forum = () => {
@@ -12,10 +14,13 @@ const Forum = () => {
       <NavPublic/>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', px: '64px' }}>
         <IconButton href="profile" margin-left="30">
-          Back
+        <Link to='/profile'>Back
+          </Link>
         </IconButton>
-        <IconButton variant="contained" margin-rigth='30' color="primary" href="/PostForum">
-          Post
+        <IconButton variant="contained" margin-rigth='30' color="primary" >
+          <Link to='/postForum'>Post
+          </Link>
+          
         </IconButton>
       </Box>
       <GridForum/>
