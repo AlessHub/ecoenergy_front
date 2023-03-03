@@ -10,44 +10,58 @@ const Footer = () => {
   return (
     <>
       <BottomNavigation
-        sx={{ minHeight: "100px", width: "100%" }}
+
+        sx={{ minHeight: "100px", width: "100%", marginTop: 2 }}
         showLabels
+
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
       >
-        <Container sx={{ display: "flex", alignItems:'center', justifyContent:'space-evenly', pl:0, pr:0 }}>
-          <Typography textAlign="left" sx={{fontSize:12}} color="main.secondary">
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            pl: 0,
+            pr: 0,
+          }}
+        >
+          <Typography
+            textAlign="left"
+            sx={{ fontSize: 12 }}
+            color="main.secondary"
+          >
             <Box color="main.tertiary">Links</Box>
             <Box>Community Policy</Box>
             <Box>Contact</Box>
           </Typography>
-          <Typography textAlign="left" sx={{fontSize:12}} color="main.secondary">
+          <Typography
+            textAlign="left"
+            sx={{ fontSize: 12 }}
+            color="main.secondary"
+          >
             <Box color="main.tertiary">About us</Box>
             <Box>Our works</Box>
             <Box>FAQ</Box>
           </Typography>
-            <Typography  sx={{fontSize:12}} color="main.tertiary">
-              <Box sx={{}}>Social Media</Box>
-              <Box>
+          <Typography sx={{ fontSize: 12 }} color="main.tertiary">
+            <Box>Social Media</Box>
+            <Box>
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p:0, minWidth: '20px' }}
-                label="Recents"
+                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
                 icon={<TwitterIcon />}
               />
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p:0, minWidth: '20px' }}
-                label="Favorites"
+                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
                 icon={<FacebookIcon />}
               />
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p:0 , minWidth: '20px'}}
-                label="Nearby"
+                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
                 icon={<InstagramIcon />}
               />
-
-              </Box>
-            </Typography>
+            </Box>
+          </Typography>
         </Container>
       </BottomNavigation>
     </>

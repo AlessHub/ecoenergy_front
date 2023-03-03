@@ -1,6 +1,6 @@
 import { Toolbar, Stack, Button, Container, AppBar } from "@mui/material";
 import React from "react";
-import { Link as LinkReact } from "react-router-dom";
+import { Link as LinkReact, useNavigate } from "react-router-dom";
 import { Link as LinkMui } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import axios from "axios";
 
 const NavPublic = () => {
   const pages = [
@@ -21,6 +22,8 @@ const NavPublic = () => {
   ];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,9 +40,42 @@ const NavPublic = () => {
     setAnchorElUser(null);
   };
 
+  // const handleLogout = () => {
+  //   axios.post("http://127.0.0.1:8000/api/logout")
+  //   .then((response) => {
+  //       localStorage.getItem('token', response.data.token);
+  //       console.log(response);
+  //       localStorage.removeItem("token");
+
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+  const handleLogout = async () => {
+    // event.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+          const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+      const response = await axios.post('http://127.0.0.1:8000/api/logout',null,{ headers });
+      console.log(response);
+      console.log(token);
+      localStorage.removeItem("token");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
   return (
     <div>
-      <AppBar color="main">
+      <AppBar color="main"sx={{position:'sticky'}}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <img src="#"  className="placeHolderLogoPic" />
@@ -55,7 +91,7 @@ const NavPublic = () => {
             }}
             direction="row"
           >
-            <LinkReact to="/">
+            <LinkReact to="/profile">
               <LinkMui
                 sx={{
                   "&:hover": {
@@ -69,7 +105,7 @@ const NavPublic = () => {
               </LinkMui>
             </LinkReact>
 
-            <LinkReact to="/">
+            <LinkReact to="/forum">
               <LinkMui
                 sx={{
                   "&:hover": {
@@ -162,6 +198,13 @@ const NavPublic = () => {
                   </LinkReact>
                 </MenuItem>
               ))}
+              <Tooltip title="Logout">
+            <Button onClick={handleLogout} sx={{ color: "white" }}>
+              <Avatar sx={{ bgcolor: "white", color: "main.primary" }}>
+                <AdbIcon />
+              </Avatar>
+            </Button>
+          </Tooltip>
             </Menu>
           </Box>
         </Toolbar>
