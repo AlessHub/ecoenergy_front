@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link as LinkReact } from "react-router-dom";
-import { Link as LinkMui, TextField, Button, Container } from "@mui/material";
+
+import Menu from "@mui/material/Menu";
+import { Link as LinkReact, useNavigate } from "react-router-dom";
+import { Link as LinkMui, TextField, Button } from "@mui/material";
+
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
 import Footer from "../components/layout/navigation/Footer";
@@ -23,6 +26,8 @@ const SignUp = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -35,7 +40,7 @@ const SignUp = () => {
       console.log(response.data);
       setUser(response.data.user);
       localStorage.setItem('token', response.data.token);
-    //   setRedirect(true);
+      navigate("/login");
     } catch (error) {
       setError(error.response.data.message);
     }
