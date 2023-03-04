@@ -48,18 +48,20 @@ const LoginMui = () => {
     event.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-      console.log(response.data);
+    console.log(response.data);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
       setUser(response.data.user);
-      // localStorage.getItem('token', response.data.token);
-      // const newToken = response.data.token;
-      // setToken(newToken);
-      localStorage.getItem('token', token);
       navigate("/profile");
+    } else {
+      console.error("Token is missing from the response");
+    }
     } catch (error) {
-      // setError(error.response.data.message);
       console.error(error);
     }
   };
+  
+
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault()
@@ -147,7 +149,7 @@ const LoginMui = () => {
       >
         Login
       </Button>
-      <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
+      {/* <LinkReact to="/NavLoggedIn.jsx"></LinkReact> */}
 
       <Typography sx={{ mt: 1, color: "green" }} variant="p">
         Forgot your password?

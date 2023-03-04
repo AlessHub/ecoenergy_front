@@ -13,17 +13,7 @@ import PostForum from '../../views/PostForum';
 
 function PublicRoute() {
   
-    const [user, setUser] = useState(null);
-
-  const login = () =>
-    setUser({
-      id: 1,
-      name: "Eberth",
-      permissions: ["quantum"],
-      roles: ["admin"],
-    });
-  const logout = () => setUser(null);
-
+    
   return (
     <BrowserRouter>
       
@@ -35,13 +25,13 @@ function PublicRoute() {
         <Route path="/" element={<home />} />
         <Route path="/login" element={<LoginMui />} />
         <Route path="/signup" element={<SignUp />} />
+          <Route path="/Forum" element={<Forum />} />
         
 
-        <Route element={<PrivateRoute isAllowed={!!user} />}>
+        <Route element={<PrivateRoute />}>
 
 
           <Route path="/profile" element={<Profile />} />
-          <Route path="/Forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
           
         </Route>
