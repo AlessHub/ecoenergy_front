@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { useForm} from "react-hook-form";
 import jwt_decode from "jwt-decode";
+import { postForum } from "../services/user-service";
 
 
 function PostForum() {
@@ -20,34 +21,37 @@ function PostForum() {
   
     const handleSubmitBook = async (formData) => {
       const token = localStorage.getItem("token");
-      const headers = {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "multipart/form-data"
-        };
-      const {data}= await axios.post('http://127.0.0.1:8000/api/forums' ,formData,{ headers })
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        const { data } = await postForum(formData,{headers});
         
-        console.log("response form ",data.data);
+        // console.log("response form ",data.data);
      };
   
     const customSubmit = (data) => {
 
       const token = localStorage.getItem("token");
-const decodedToken = jwt_decode(token);
-const user_id = decodedToken.sub;
+      const decodedToken = jwt_decode(token);
+      const user_id = decodedToken.sub;
     
-      console.log("data antes de ser transformada",data)
+      // console.log("data antes de ser transformada",data)
       const formData = new FormData();
       formData.append('title', data.title);
       formData.append('description', data.description);
       formData.append('autor', data.autor);
       formData.append('image', data.image[0], data.image[0].name);
-      formData.append('user_id', data.user_id);
+      // formData.append('user_id', data.user_id);
+      formData.append('user_id', user_id);
       
-      console.log('data',data)
+      // console.log('data',data)
       handleSubmitBook(formData);
       
-      console.log("dataForm",formData);
+      // console.log("dataForm",formData);
       swal("Submitted form!", "Successful validation", "success");
+      navigate('/forum')
     };
   
     return (
@@ -55,7 +59,7 @@ const user_id = decodedToken.sub;
         <div className="form-book" id="form">
           <div className="container-formbook">
             <form onSubmit={handleSubmit(customSubmit)} className="form-react" encType="multipart/form-data">
-              <h2>Advertise your book</h2>
+              <h2>Post a Subject on Forum</h2>
               <div className="form-control">
                 <label>Title</label>
                 <input

@@ -25,7 +25,7 @@ const ButtonGreen = ({text}) => {
              boxShadow: "0 0 0 0.2rem main.primary",
            },
          }}
-         href="#contained-buttons"
+         type='submit'
          >
             {text}
         </Button>

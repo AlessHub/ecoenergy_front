@@ -9,8 +9,37 @@ import "swiper/css/pagination";
 import sliderinfo from "../../../../utils/sliderinfo.json";
 import "swiper/css/navigation";
 import { Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { forum } from "../../../../services/user-service";
 
 const Slider = () => {
+  const [forums, setForums] = useState([])
+ 
+
+  useEffect(() => {
+  
+
+    const getForums = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        const { data } = await forum({headers});
+        setForums(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getForums()
+  }, [])
+
+  
+
+
+
   return (
     <>
       <Typography color="main.tertiary" sx={{ m: 2 }} variant="h4">
@@ -44,16 +73,20 @@ const Slider = () => {
               spaceBetween: 10,
             },
             620: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 15,
             },
             1024: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            1200: {
               slidesPerView: 3,
               spaceBetween: 30,
             }
           }}
         >
-          {sliderinfo.map((item, i) => (
+          {forums.slice(0, 3).map((item, i) => (
             <SwiperSlide key={item.id} className="swiperSlide">
               <Item item={item} />
             </SwiperSlide>

@@ -5,6 +5,8 @@ import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
+import { forum } from '../../../services/user-service'
+
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -36,8 +38,9 @@ export default function MediaCard() {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
-        setForums(response.data)
+        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        const { data } = await forum({headers});
+        setForums(data)
       } catch (error) {
         console.error(error)
       }

@@ -1,21 +1,21 @@
 
 import React, { useState , useEffect} from "react";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+// import Menu from "@mui/material/Menu";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 
 import { Link as LinkMui, TextField, Button } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import LinkButton from "../components/layout/navigation/LinkButton";
-import Footer from "../components/layout/navigation/Footer";
-import ButtonGreen from '../components/layout/navigation/ButtonGreen';
+// import LinkButton from "../components/layout/navigation/LinkButton";
+// import Footer from "../components/layout/navigation/Footer";
+// import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 
 import axios from "axios";
 // import axios from "../api/axios";
 
-import { Login } from "@mui/icons-material";
+import { login } from "../services/user-service";
 
 const LoginMui = () => {
 
@@ -47,11 +47,13 @@ const LoginMui = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-    console.log(response.data);
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      setUser(response.data.user);
+    //   const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
+    // console.log(response.data);
+    const { data } = await login(formData);
+    setUser(data);
+    if (data.token) {
+      localStorage.setItem('token',data.token);
+      // setUser(response.data.user);
       navigate("/profile");
     } else {
       console.error("Token is missing from the response");

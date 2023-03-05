@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import AvatarPlaceholder from "../../../../assets/avatar_template.png";
 
 export default function Item({ item }) {
+  const baseUrl = import.meta.env.VITE_IMAGES_URL;
   return (
     <>
       <Container
@@ -22,7 +23,7 @@ export default function Item({ item }) {
             <CardMedia
               component="img"
               height="200"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              image={baseUrl+item.image}
             />
             <Box
               sx={{
@@ -30,11 +31,11 @@ export default function Item({ item }) {
                 top:0,
                 textAlign:'left',
                 width: "100%",
-                color: "white",
+                color: "black",
                 padding: "10px",
               }}
             >
-              <Typography variant="h5">Lizard</Typography>
+              <Typography variant="h5">{item.title}</Typography>
               <Typography variant="body2">Subtitle</Typography>
               <Typography variant="body2">Subtitle</Typography>
               <Typography variant="body2">Subtitle</Typography>
