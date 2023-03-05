@@ -24,8 +24,11 @@ const StyledCardMedia = styled(CardMedia)({
 
 export default function MediaCard() {
   const [forums, setForums] = useState([])
+  const baseUrl = import.meta.env.VITE_IMAGES_URL;
 
   useEffect(() => {
+  
+
     const getForums = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -45,12 +48,13 @@ export default function MediaCard() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       {forums.map((forum) => (
+        
         <StyledCard key={forum.id}>
-          <StyledCardMedia component="img" image={forum.cover} alt="image" />
+          <StyledCardMedia component="img" image={baseUrl+forum.image} alt="image" />
           <Typography variant="h6">{forum.title}</Typography>
           <Typography>{forum.description}</Typography>
-          <Typography>{forum.author}</Typography>
-          <Typography variant="caption">{forum.created_at}</Typography>
+          <Typography>{forum.autor}</Typography>
+          
         </StyledCard>
       ))}
     </Box>

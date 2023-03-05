@@ -1,245 +1,172 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import { Link as LinkReact } from "react-router-dom";
-import { Link as LinkMui, TextField, Button } from "@mui/material";
-
-import { Checkbox } from "@mui/material";
-
-import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
-import AvatarPlaceholder from '../../src/assets/avatar_template.png'
-import { Container } from '@mui/system';
-import CardMedia from '@mui/material/CardMedia';
-
 import axios from "axios";
-
-
-// const endpoint = "https://energy-production-b228.up.railway.app/api/forums";
-
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { useForm} from "react-hook-form";
+import jwt_decode from "jwt-decode";
 
 
 function PostForum() {
 
+  const navigate = useNavigate();
 
-    // const [title, setTitle] = useState("");
-    // const [description, setDescription] = useState("");
-    // const [autor, setAutor] = useState("");
-    // const [cover, setCover] = useState("");
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
 
-    const [formData, setFormData] = useState({
-      title: '',
-      description: '',
-      autor: '',
-      cover: '',
-    });
-
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
-
-    const handleChange = (event) => {
-      setFormData({ ...formData, [event.target.name]: event.target.value });
-    };
-
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const token = localStorage.getItem("token");
-        const headers = {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          };
-        const response = await axios.post('http://127.0.0.1:8000/api/forums', formData, { headers });
-        console.log(response.data);
-        setUser(response.data.user);
-        
-      
-      } catch (error) {
-        setError(error.response.data.message);
-      }
-    };
     
+  
+    const handleSubmitBook = async (formData) => {
+      const token = localStorage.getItem("token");
+      const headers = {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        };
+      const {data}= await axios.post('http://127.0.0.1:8000/api/forums' ,formData,{ headers })
+        
+        console.log("response form ",data.data);
+     };
+  
+    const customSubmit = (data) => {
 
-    // const handleCreateForum = async () => {
-    //     try {
-    //       const token = localStorage.getItem("token");
-    //       const headers = {
-    //         "Authorization": `Bearer ${token}`,
-    //         "Content-Type": "application/json"
-    //       };
-    //       const response = await axios.post(endpoint, {
-    //         title: title,
-    //         description: description,
-    //         autor: autor,
-    //         cover: cover,
-            
-    //       }, { headers });
-    //       console.log(response.data);
-    //     } catch (error) {
-    //       console.error(error.response.data.message);
-    //     }
-    //   };
-
+      const token = localStorage.getItem("token");
+const decodedToken = jwt_decode(token);
+const user_id = decodedToken.sub;
+    
+      console.log("data antes de ser transformada",data)
+      const formData = new FormData();
+      formData.append('title', data.title);
+      formData.append('description', data.description);
+      formData.append('autor', data.autor);
+      formData.append('image', data.image[0], data.image[0].name);
+      formData.append('user_id', data.user_id);
       
-  // const [formData, setFormData] = useState({});
+      console.log('data',data)
+      handleSubmitBook(formData);
+      
+      console.log("dataForm",formData);
+      swal("Submitted form!", "Successful validation", "success");
+    };
+  
+    return (
+      <>
+        <div className="form-book" id="form">
+          <div className="container-formbook">
+            <form onSubmit={handleSubmit(customSubmit)} className="form-react" encType="multipart/form-data">
+              <h2>Advertise your book</h2>
+              <div className="form-control">
+                <label>Title</label>
+                <input
+                  className="place"
+                  placeholder="Enter name"
+                  type="text"
+                  {...register("title", {
+                    required: true,
+                    maxLength: 200,
+                  })}
+                />
+                {errors.title?.type === "required" && (
+                  <small className="fail">The field cannot be empty</small>
+                )}
+                {errors.title?.type === "maxLength" && (
+                  <small className="fail">Maximum characters are eight</small>
+                )}
+              </div>
+  
+              <div className="form-control">
+                <label>Description</label>
+                <input
+                  className="place message"
+                  placeholder="Enter your message"
+                  type="text"
+                  {...register("description", {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 1000,
+                  })}
+                />
+                {errors.description?.type === "required" && (
+                  <small className="fail">The field cannot be empty</small>
+                )}
+                {errors.description?.type === "minLength" && (
+                  <small className="fail">The minimum characters must be 5</small>
+                )}
+                {errors.description?.type === "maxLength" && (
+                  <small className="fail">
+                    The maximum characters should be 200
+                  </small>
+                )}
+              </div>
+  
+              <div className="form-control">
+                <label>Autor</label>
+                <input
+                  className="autor"
+                  placeholder="Enter name"
+                  type="text"
+                  {...register("autor", {
+                    required: true,
+                    maxLength: 200,
+                  })}
+                />
+                {errors.autor?.type === "required" && (
+                  <small className="fail">The field cannot be empty</small>
+                )}
+                {errors.autor?.type === "maxLength" && (
+                  <small className="fail">Maximum characters are eight</small>
+                )}
+              </div>
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   handleCreateForum();
-  // }
 
-
-
-
-  return (
-    <>
-      <NavPublic />
-      <Container sx={{p:{xs:0, sm:0, md:0, xl:0} ,display:'flex', flexDirection:'column', alignItems:'center'}}>
-      <CardMedia
-        component="img"
-        alt="thumbnail"
-        image={AvatarPlaceholder}
-        sx={{
-          overflow:'hidden', 
-            width: '140px',
-            height: '140px',
-            // backgroundColor: 'red',
-            maxWidth: '150px',
-            mt: '-250px'
-            }}
-      />    
-    </Container>
-
-    {/* <form onSubmit={handleSubmit} class="w-full max-w-sm">
-    <label htmlFor="title" class="block font-bold mb-2">Título:</label>
-    <input type="text" value={title} onChange={e => setTitle(e.target.value)} id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-    <label htmlFor="description" class="block font-bold mb-2">Descripción:</label>
-    <input type="text" value={description} onChange={e => setDescription(e.target.value)} id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-    <label htmlFor="tech" class="block font-bold mb-2">Autor:</label>
-    <input type="text" value={autor} onChange={e => setAutor(e.target.value)} id="autor" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-    <label htmlFor="cover" class="block font-bold mb-2">Cover:</label>
-    <input type="text" value={cover} onChange={e => setCover(e.target.value)} id="cover" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Crear forum</button>
-  </form> */}
-
-
-  <Box
-      component="form"
-      sx={{
-        p: 5,
-        display: "flex",
-        maxWidth: "500px",
-        margin: "auto",
-        flexDirection: "column",
-        alignItems: "center",
-        "& .MuiTextField-root": {
-          mb: 3,
-          width: "100%",
-        },
-        "& .MuiButton-root": {
-          width: "100%",
-        },   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "main.primary",
-          color:'main.primary'
-        },
-      }}
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        label="title"
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        id="title"
-        required
-      />
-      <TextField
-        label="description"
-        type="text"
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        id="description"
-        required
-      />
-      <TextField
-        label="autor"
-        type="text"
-        name="autor"
-        value={formData.autor}
-        onChange={handleChange}
-        id="autor"
-        required
-      />
-      <TextField
-        label="cover"
-        type="file"
-        name="cover"
-        value={formData.cover}
-        onChange={handleChange}
-        id="cover"
-        required
-      />
-
-      <Button
-        type="submit"
-        sx={{
-          textTransform: "capitalize",
-          backgroundColor: "main.primary",
-          "&:hover": {
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            boxShadow: "none",
-            color: "main.secondary",
-          },
-          "&:active": {
-            boxShadow: "none",
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            color: "main.secondary",
-          },
-          "&:focus": {
-            boxShadow: "0 0 0 0.2rem main.primary",
-          },
-        }}
-        variant="contained"
-      >
-        Crear Post
-      </Button>
-      {/* <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
-
-      <Typography sx={{ mt: 1, color: "green" }} variant="p">
-        Forgot your password?
-      </Typography>
-      <Typography
-        sx={{ mt: 1, display: "flex", flexDirection: "row", gap: 1 }}
-        variant="p"
-      >
-        New user?{" "}
-        <Typography sx={{ mt: 0, color: "green" }} variant="p">
-          {" "}
-          Sign up
-        </Typography>
-      </Typography> */}
-    </Box>
-
-    {error && (
-    <div className="mt-6 text-center text-red-500">
-      {error}
-    </div>
-  )}
-  {user && (
-    <div className="mt-6 text-center">
-      <h3 className="text-gray-700 font-medium">User Details</h3>
-      <p><strong className="text-gray-700">Name:</strong> {user.name}</p>
-      <p><strong className="text-gray-700">Email:</strong> {user.email}</p>
-    </div>
-  )}
-
-    </>
-  )
+              {/* <div className="form-control">
+                <label>Category</label>
+                <input
+                  className="autor"
+                  placeholder="Enter name"
+                  type="text"
+                  {...register("user_id", {
+                    required: true,
+                    maxLength: 200,
+                  })}
+                />
+                {errors.user_id?.type === "required" && (
+                  <small className="fail">The field cannot be empty</small>
+                )}
+                {errors.user_id?.type === "maxLength" && (
+                  <small className="fail">Maximum characters are eight</small>
+                )}
+              </div> */}
+  
+             
+  
+              <div className="form-control">
+                <label>Image</label>
+                <input
+                  className="place"
+                  placeholder="Enter price"
+                  type="file"
+                  {...register("image", {
+                    required: true,
+                  })}
+                />
+                {errors.image?.type === "required" && (
+                  <small className="fail">The field cannot be empty</small>
+                )}
+                {/* {errors.image?.type === "maxLength" && (
+                  <small className="fail">Maximum characters are eight</small>
+                )} */}
+              </div>
+  
+              <div className="form">
+                <button type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </>
+    );
 }
 
-export default PostForum;
+export default PostForum
