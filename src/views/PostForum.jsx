@@ -1,9 +1,6 @@
-import React from 'react';
-import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import GridForum from "../components/layout/organization/GridForum";
-import Footer from "../components/layout/navigation/Footer";
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import { Link as LinkReact } from "react-router-dom";
@@ -15,7 +12,6 @@ import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
 import AvatarPlaceholder from '../../src/assets/avatar_template.png'
 import { Container } from '@mui/system';
 import CardMedia from '@mui/material/CardMedia';
-import Footer from "../components/layout/navigation/Footer";
 
 import axios from "axios";
 
@@ -24,7 +20,7 @@ import axios from "axios";
 
 
 
-function Forum() {
+function PostForum() {
 
 
     // const [title, setTitle] = useState("");
@@ -54,7 +50,7 @@ function Forum() {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        const response = await axios.post('https://energy-production-b228.up.railway.app/api/forums', formData, { headers });
+        const response = await axios.post('http://127.0.0.1:8000/api/forums', formData, { headers });
         console.log(response.data);
         setUser(response.data.user);
         
@@ -96,11 +92,8 @@ function Forum() {
 
 
 
-
-const Forum = () => {
   return (
     <>
-
       <NavPublic />
       <Container sx={{p:{xs:0, sm:0, md:0, xl:0} ,display:'flex', flexDirection:'column', alignItems:'center'}}>
       <CardMedia
@@ -179,9 +172,9 @@ const Forum = () => {
         onChange={handleChange}
         id="autor"
         required
-        
       />
       <TextField
+        label="cover"
         type="file"
         name="cover"
         value={formData.cover}
@@ -244,10 +237,9 @@ const Forum = () => {
       <p><strong className="text-gray-700">Email:</strong> {user.email}</p>
     </div>
   )}
-  <Footer/>
 
     </>
   )
 }
 
-export default Forum;
+export default PostForum;

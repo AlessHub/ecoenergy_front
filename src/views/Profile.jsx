@@ -73,14 +73,18 @@ function Profile() {
     
     </Container>
     <Container sx={{p:{xs:0, sm:0, md:20, lg:10, xl:4} }}>
+
     <Typography color="main.tertiary" variant="h5">
         Monthly Costs
       </Typography>
+      
+    <Buttons handleOptionClick={handleOptionClick} />
+
+
     <SimpleBarCharts color={color} data={data} />
     {data.map((datas) =>{
       return <BarData color={color} datas={datas}/>
     })}
-    <Buttons handleOptionClick={handleOptionClick} />
     
     </Container>
 
