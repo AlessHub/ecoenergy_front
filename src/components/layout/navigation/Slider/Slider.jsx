@@ -13,7 +13,7 @@ import { Typography } from "@mui/material";
 const Slider = () => {
   return (
     <>
-      <Typography color="main.tertiary" sx={{ m: 2 }} variant="h4">
+      <Typography color="main.tertiary" sx={{ m: '2rem' }} variant="h4">
         Latest forum posts
       </Typography>
       <Container
@@ -60,7 +60,7 @@ const Slider = () => {
           ))}
         </Swiper>
         <Link
-          href="#"
+          href="/forum"
           color="main.primary"
           sx={{
             mr: 3,

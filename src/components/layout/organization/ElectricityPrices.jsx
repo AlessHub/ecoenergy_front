@@ -105,10 +105,7 @@ const ElectricityPrices = () => {
   return (
     <>
       <Typography
-        variant="h5"
-        color="main.tertiary"
-        sx={{ mb: 2 }}
-        fontWeight={600}
+        color="main.tertiary" sx={{ mt: '3rem', mb:'1rem'}} variant="h4"
       >
         Today's electricity prices
       </Typography>

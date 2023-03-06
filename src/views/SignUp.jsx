@@ -111,52 +111,67 @@ const SignUp = () => {
       sx={{ mt: 0, color: "black", fontSize: "0.7rem" }}
       variant="body"
       >
-      I would like to receive your newsletter and other promotional
-      information
-    </Typography>
-  </Box>
 
-  <Button
-            sx={{
-              mt:2,
-              textTransform: "capitalize",
-              backgroundColor: "main.primary",
-              "&:hover": {
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                boxShadow: "none",
-                color: "main.secondary",
-              },
-              "&:active": {
-                boxShadow: "none",
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                color: "main.secondary",
-              },
-              "&:focus": {
-                boxShadow: "0 0 0 0.2rem main.primary",
-              },
-            }}
-            type="submit"
-    color="primary"
-    variant="contained"
-    >
-    Sign up
-  </Button>
-  <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
-</Box>
-{error && (
-<div className="mt-6 text-center text-red-500">
-{error}
-</div>
-)}
-{user && (
-<div className="mt-6 text-center">
-<h3 className="text-gray-700 font-medium">User Details</h3>
-<p><strong className="text-gray-700">Name:</strong> {user.name}</p>
-<p><strong className="text-gray-700">Email:</strong> {user.email}</p>
-</div>
-)}
+        <Typography  
+        color="main.tertiary" variant="h3">
+          Sign Up
+        </Typography>
+
+        <TextField sx={{minWidth: '30%'}}
+          label="Name"
+          type="text"
+          name="name"
+          value={formData.name}
+        onChange={handleChange}
+        required
+          />
+
+        <TextField sx={{minWidth: '30%'}}
+          label="Email"
+          type="email"
+          name="email"
+          value={formData.email}
+        onChange={handleChange}
+        required
+          />
+
+        <TextField sx={{minWidth: '30%'}}
+          label="Password"
+          type="current-password"
+          name="password"
+          value={formData.password}
+        onChange={handleChange}
+        required
+          />
+        <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
+          <Checkbox defaultChecked color="success" />
+          <Typography
+            sx={{ mt: 0, color: "black", fontSize: "0.7rem" }}
+            variant="body"
+            >
+            I would like to receive your newsletter and other promotional
+            information
+          </Typography>
+        </Box>
+        
+        <ButtonGreen
+            text='Sign up'/>
+        <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
+        <Typography sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+        variant="p">
+
+        Already registered?{" "}
+
+        
+                <LinkButton text='Log In' to="/login" sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
+        </Typography>
+
     
 </>
 );

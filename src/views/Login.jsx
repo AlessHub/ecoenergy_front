@@ -105,13 +105,18 @@ const LoginMui = () => {
       }}
       onSubmit={handleSubmit}
     >
-      <TextField
-        label="email"
-        type="email"
-        name="email"
+
+
+    <Typography color="main.tertiary" variant="h3">
+      Log In
+      </Typography>
+    
+      <TextField sx={{minWidth: '30%'}}
+        label="Username"
         value={formData.email}
         onChange={handleChange}
-        required
+
+
       />
       <TextField
         label="Password "
@@ -149,18 +154,31 @@ const LoginMui = () => {
       </Button>
       <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
 
-      <Typography sx={{ mt: 1, color: "green" }} variant="p">
-        Forgot your password?
+      <Typography 
+        variant="p">
+        <LinkButton text='Forgot your password?' to='/' sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
       </Typography>
-      <Typography
-        sx={{ mt: 1, display: "flex", flexDirection: "row", gap: 1 }}
-        variant="p"
-      >
+      <Typography sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+        variant="p">
+
         New user?{" "}
-        <Typography sx={{ mt: 0, color: "green" }} variant="p">
-          {" "}
-          Sign up
-        </Typography>
+
+        
+      <LinkButton text='Sign Up' to="/signup" sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
+
+
       </Typography>
     </Box>
     </>
