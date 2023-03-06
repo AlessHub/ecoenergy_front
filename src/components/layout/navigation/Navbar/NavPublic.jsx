@@ -34,6 +34,10 @@ const NavPublic = () => {
       href: "/forum",
     },
     {
+      text: "Admin",
+      href: "/dashBoard",
+    },
+    {
       text: "Logout",
       href: "/",
     },
