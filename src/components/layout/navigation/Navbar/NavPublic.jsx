@@ -1,5 +1,5 @@
 import { Toolbar, Stack, Button, Container, AppBar } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import { Link as LinkMui } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -14,12 +14,42 @@ import AdbIcon from "@mui/icons-material/Adb";
 import axios from "axios";
 
 const NavPublic = () => {
-  const pages = [
-    { text: "Profile", href: "/profile" },
-    { text: "Forum", href: "/forum" },
-    { text: "Log In", href: "/login" },
-    { text: "Register", href: "/signup" },
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+
+  const pagesLoggedIn = [
+    {
+      text: "Profile",
+      href: "/profile",
+    },
+    {
+      text: "Forum",
+      href: "/forum",
+    },
+    {
+      text: "Logout",
+      href: "/",
+    },
   ];
+  
+  const pagesLoggedOut = [
+    {
+      text: "Login",
+      href: "/login",
+    },
+    {
+      text: "Register",
+      href: "/signup",
+    },
+  ];
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -40,20 +70,7 @@ const NavPublic = () => {
     setAnchorElUser(null);
   };
 
-  // const handleLogout = () => {
-  //   axios.post("http://127.0.0.1:8000/api/logout")
-  //   .then((response) => {
-  //       localStorage.getItem('token', response.data.token);
-  //       console.log(response);
-  //       localStorage.removeItem("token");
-
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
+ 
   const handleLogout = async () => {
     // event.preventDefault();
     try {
@@ -82,6 +99,9 @@ const NavPublic = () => {
             <LinkReact to="/"><Box className="placeHolderLogo"></Box></LinkReact>
             <LinkReact to="/"><Typography color="main.tertiary">EcoEnergy</Typography></LinkReact>
           </Box>
+
+          {isLoggedIn ? (
+
           <Stack
             sx={{
               mr: 5,
@@ -118,6 +138,23 @@ const NavPublic = () => {
                 Forum
               </LinkMui>
             </LinkReact>
+
+            <Tooltip title="Logout">
+            <Button onClick={handleLogout} sx={{ color: "white" }}>
+              <Avatar sx={{ bgcolor: "white", color: "main.primary" }}>
+                <AdbIcon />
+              </Avatar>
+            </Button>
+          </Tooltip>
+                </Stack>
+          ):(
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  justifyContent: "flex-end",
+                  display: { xs: "flex", sm: "none", md: "none" },
+                }}
+              >
             <LinkReact to="/login">
               <LinkMui
                 sx={{
@@ -131,6 +168,7 @@ const NavPublic = () => {
                 Log In
               </LinkMui>
             </LinkReact>
+
             <LinkReact to="/signup">
               <LinkMui
                 sx={{
@@ -144,14 +182,9 @@ const NavPublic = () => {
                 Register
               </LinkMui>
             </LinkReact>
-          </Stack>
-          <Box
-            sx={{
-              flexGrow: 1,
-              justifyContent: "flex-end",
-              display: { xs: "flex", sm: "none", md: "none" },
-            }}
-          >
+            </Box>
+
+          )}
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -181,32 +214,45 @@ const NavPublic = () => {
                 display: { color: "white", xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                  <LinkReact to={page.href}>
-                    <LinkMui
-                      sx={{
-                        "&:hover": {
-                          color: "main.tertiary",
-                        },
-                      }}
-                      underline="none"
-                      color="main.secondary"
-                    >
-                      {page.text}
-                    </LinkMui>
-                  </LinkReact>
-                </MenuItem>
-              ))}
-              <Tooltip title="Logout">
-            <Button onClick={handleLogout} sx={{ color: "white" }}>
-              <Avatar sx={{ bgcolor: "white", color: "main.primary" }}>
-                <AdbIcon />
-              </Avatar>
-            </Button>
-          </Tooltip>
+              {isLoggedIn
+  ? pagesLoggedIn.map((page) => (
+      <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+        <LinkReact to={page.href}>
+          <LinkMui
+            sx={{
+              "&:hover": {
+                color: "main.tertiary",
+              },
+            }}
+            underline="none"
+            color="main.secondary"
+          >
+            {page.text}
+          </LinkMui>
+        </LinkReact>
+      </MenuItem>
+    ))
+  : pagesLoggedOut.map((page) => (
+      <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+        <LinkReact to={page.href}>
+          <LinkMui
+            sx={{
+              "&:hover": {
+                color: "main.tertiary",
+              },
+            }}
+            underline="none"
+            color="main.secondary"
+          >
+            {page.text}
+          </LinkMui>
+        </LinkReact>
+      </MenuItem>
+    ))}
+
+              
             </Menu>
-          </Box>
+          
         </Toolbar>
       </AppBar>
     </div>
