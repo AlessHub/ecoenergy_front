@@ -17,6 +17,7 @@ import axios from "axios";
 
 import { login } from "../services/user-service";
 
+
 const LoginMui = () => {
 
   const [formData, setFormData] = useState({
@@ -49,7 +50,9 @@ const LoginMui = () => {
     try {
     //   const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
     // console.log(response.data);
+
     const { data } = await login(formData);
+
     setUser(data);
     if (data.token) {
       localStorage.setItem('token',data.token);
@@ -62,31 +65,14 @@ const LoginMui = () => {
       console.error(error);
     }
   };
-  
 
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   try{
-  //     await axios.post('/login', formData);
-  //     console.log(response.data);
-  //     setFormData(response.data.user);
-  //     // setUser(response.data.user);
-  //     LocalStorage.getItem('token', token);
-  //     navigate("/profile");
-
-  //   } catch(e){
-  //     console.log(e)
-
-  //   }
-  // }
   
 
 
   return (
     <>
     <NavPublic/>
-    <Typography color="main.tertiary" variant="h3">Log In</Typography>
+    
     <Box
       component="form"
       sx={{
@@ -109,13 +95,19 @@ const LoginMui = () => {
       }}
       onSubmit={handleSubmit}
     >
-      <TextField
+
+
+    <Typography color="main.tertiary" variant="h3">
+      Log In
+      </Typography>
+    
+      <TextField sx={{minWidth: '30%'}}
         label="email"
         type="email"
         name="email"
         value={formData.email}
         onChange={handleChange}
-        required
+
       />
       <TextField
         label="Password "
@@ -153,18 +145,31 @@ const LoginMui = () => {
       </Button>
       {/* <LinkReact to="/NavLoggedIn.jsx"></LinkReact> */}
 
-      <Typography sx={{ mt: 1, color: "green" }} variant="p">
-        Forgot your password?
+      <Typography 
+        variant="p">
+        <LinkButton text='Forgot your password?' to='/' sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
       </Typography>
-      <Typography
-        sx={{ mt: 1, display: "flex", flexDirection: "row", gap: 1 }}
-        variant="p"
-      >
+      <Typography sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+        variant="p">
+
         New user?{" "}
-        <Typography sx={{ mt: 0, color: "green" }} variant="p">
-          {" "}
-          Sign up
-        </Typography>
+
+        
+      <LinkButton text='Sign Up' to="/signup" sx={{
+                "&:hover": {
+                  color: "main.tertiary",
+                },
+              }}
+              underline="none"
+              color="main.secondary"/>
+
+
       </Typography>
     </Box>
     </>

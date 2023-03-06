@@ -1,12 +1,13 @@
 import React from "react";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import NavLoggedIn from "../components/layout/navigation/Navbar/NavLoggedIn";
 import Slider from "../components/layout/navigation/Slider/Slider";
 import { useState } from "react";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import Footer from "../components/layout/navigation/Footer";
 import ElectricityPrices from "../components/layout/organization/ElectricityPrices";
+import LinkButton from "../components/layout/navigation/LinkButton";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -14,10 +15,11 @@ const Home = () => {
 
   return (
     <>
+    <div>
     <NavPublic />
       <Typography
         sx={{ fontWeight: "bold", mt: 1 }}
-        variant="h4"
+        variant="h2"
         color="main.tertiary"
       >
         EcoEnergy
@@ -28,7 +30,8 @@ const Home = () => {
       </Typography>
 
       <Slider />
-      <Button
+      <ButtonGreen text='Get Started'/>
+      {/* <Button
         variant="contained"
         sx={{
           mt:2,
@@ -54,9 +57,10 @@ const Home = () => {
         href="#contained-buttons"
       >
         Get Started
-      </Button>
+      </Button> */}
       <ElectricityPrices/>
       <Footer/>
+      </div>
     </>
   );
 };

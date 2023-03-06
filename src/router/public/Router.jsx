@@ -10,8 +10,10 @@ import PrivateRoute from '../private/PrivateRoute';
 import LoginMui from '../../views/Login';
 import SignUp from '../../views/SignUp'
 import PostForum from '../../views/PostForum';
+
 import Advices from '../../views/Advices'
 import PostAdvice from '../../views/PostAdvice';
+
 
 function PublicRoute() {
   
@@ -33,11 +35,13 @@ function PublicRoute() {
 
 
           <Route path="/profile" element={<Profile />} />
-          <Route path="/Forum" element={<Forum />} />
+          <Route path="/forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
+
           <Route path="/advices" element={<Advices />} />
           <Route path="/postadvice" element={<PostAdvice />} />
           
+
           
         </Route>
         {/* <Route
@@ -68,4 +72,5 @@ function PublicRoute() {
 }
 
 export default PublicRoute
+
 

@@ -7,9 +7,11 @@ import Footer from "../components/layout/navigation/Footer";
 import LinkButton from '../components/layout/navigation/LinkButton';
 import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 import CardAdvice from '../components/layout/organization/CardAdvice';
+
 import TabsChoice from '../components/layout/navigation/TabsChoice'
 import { advice } from '../services/user-service';
 import NavPublic from '../components/layout/navigation/Navbar/NavPublic';
+
 
 
 const Advices = () => {
@@ -75,12 +77,22 @@ const Advices = () => {
         
     </Box>
 
-    {advices.map((advice) => (   
+
+    
+    <Box
+        sx= {{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center', 
+          gap:'1rem'
+          }}>
+          {advices.map((advice) => (   
 
     <CardAdvice text={advice.content} image='src/assets/avatar_template.png' />
-          
+           
+    
+    </Box>
 
-    ))}
     </Container>
     <Footer/>
     </>

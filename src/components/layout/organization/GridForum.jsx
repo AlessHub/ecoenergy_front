@@ -56,8 +56,13 @@ export default function MediaCard() {
           <StyledCardMedia component="img" image={baseUrl+forum.image} alt="image" />
           <Typography variant="h6">{forum.title}</Typography>
           <Typography>{forum.description}</Typography>
-          <Typography>{forum.autor}</Typography>
-          
+
+          <Typography>{forum.author}</Typography>
+          <Typography variant="caption">
+              {new Date(forum.created_at).toLocaleTimeString([], 
+              { hour: '2-digit', minute: '2-digit', hour12: false })}
+          </Typography>
+
         </StyledCard>
       ))}
     </Box>
