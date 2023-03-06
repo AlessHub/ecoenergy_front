@@ -50,7 +50,10 @@ export default function MediaCard() {
           <Typography variant="h6">{forum.title}</Typography>
           <Typography>{forum.description}</Typography>
           <Typography>{forum.author}</Typography>
-          <Typography variant="caption">{forum.created_at}</Typography>
+          <Typography variant="caption">
+              {new Date(forum.created_at).toLocaleTimeString([], 
+              { hour: '2-digit', minute: '2-digit', hour12: false })}
+          </Typography>
         </StyledCard>
       ))}
     </Box>
