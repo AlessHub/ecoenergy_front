@@ -40,7 +40,7 @@ function PostAdvice() {
           console.log(response.data);
           setUser(response.data.user);
         //   localStorage.setItem('token', response.data.token);
-          navigate("/advices");
+          navigate("/advice");
         } catch (error) {
           setError(error.response.data.message);
         }

@@ -19,7 +19,7 @@ function PostForum() {
 
     
   
-    const handleSubmitBook = async (formData) => {
+    const handleSubmitPost = async (formData) => {
       const token = localStorage.getItem("token");
         const headers = {
             "Authorization": `Bearer ${token}`,
@@ -47,7 +47,7 @@ function PostForum() {
       formData.append('user_id', user_id);
       
       // console.log('data',data)
-      handleSubmitBook(formData);
+      handleSubmitPost(formData);
       
       console.log("dataForm",formData);
       swal("Submitted form!", "Successful validation", "success");

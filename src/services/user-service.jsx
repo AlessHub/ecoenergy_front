@@ -24,7 +24,7 @@ export const forum = (data) => {
     return axios.post(baseUrl + "/forums", data);
  };
 
- export const advice = (data) => {
+ export const adviceAll = (data) => {
     return axios.get(baseUrl + "/advices", data);
  };
 

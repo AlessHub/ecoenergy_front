@@ -4,13 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const CardAdvice = ({text, image}) => {
+const CardAdvice = ({text}) => {
   return (
     <>
     <Card sx={{ 
       maxWidth: 340,
       width: 400,
-      height: 'auto', 
+      height: '8rem', 
       display: 'flex', 
       alignItems: 'center', 
       padding: 1,
@@ -27,7 +27,7 @@ const CardAdvice = ({text, image}) => {
           width:95,
           border: 2 }}
 
-        image={image}
+        image="src/assets/react.svg"
       />
       <CardContent>
         <Typography 

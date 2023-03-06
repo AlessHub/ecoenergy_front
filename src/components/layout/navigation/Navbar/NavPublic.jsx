@@ -30,6 +30,10 @@ const NavPublic = () => {
       href: "/profile",
     },
     {
+      text: "Advice",
+      href: "/advice",
+    },
+    {
       text: "Forum",
       href: "/forum",
     },
@@ -125,6 +129,20 @@ const NavPublic = () => {
               </LinkMui>
             </LinkReact>
 
+            <LinkReact to="/advice">
+              <LinkMui
+                sx={{
+                  "&:hover": {
+                    color: "main.tertiary",
+                  },
+                }}
+                underline="none"
+                color="main.secondary"
+              >
+                Advice
+              </LinkMui>
+            </LinkReact>
+
             <LinkReact to="/forum">
               <LinkMui
                 sx={{
@@ -138,6 +156,7 @@ const NavPublic = () => {
                 Forum
               </LinkMui>
             </LinkReact>
+
 
             <Tooltip title="Logout">
             <Button onClick={handleLogout} sx={{ color: "white" }}>

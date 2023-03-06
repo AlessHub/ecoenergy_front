@@ -11,8 +11,8 @@ import LoginMui from '../../views/Login';
 import SignUp from '../../views/SignUp'
 import PostForum from '../../views/PostForum';
 
-import Advices from '../../views/Advices'
 import PostAdvice from '../../views/PostAdvice';
+import Advice from '../../views/Advice';
 
 
 function PublicRoute() {
@@ -38,7 +38,7 @@ function PublicRoute() {
           <Route path="/forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
 
-          <Route path="/advices" element={<Advices />} />
+          <Route path="/advice" element={<Advice />} />
           <Route path="/postadvice" element={<PostAdvice />} />
           
 
