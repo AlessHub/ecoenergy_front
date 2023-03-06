@@ -23,15 +23,15 @@ function PostForum() {
       const token = localStorage.getItem("token");
         const headers = {
             "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
+            "Content-Type": "multipart/form-data"
           };
-        const data = await axios.post('http://127.0.0.1:8000/api/forums' ,{ headers })
-        // const { data } = await postForum(formData,{headers});
+        const response = await axios.post('http://127.0.0.1:8000/api/forums' ,formData,{ headers })
+       
         
-        // console.log("response form ",data.data);
+        console.log("response form ",response.data);
      };
   
-    const customSubmit = (data) => {
+    const customSubmit = (response) => {
 
       const token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token);
@@ -39,19 +39,19 @@ function PostForum() {
     
       // console.log("data antes de ser transformada",data)
       const formData = new FormData();
-      formData.append('title', data.title);
-      formData.append('description', data.description);
-      formData.append('autor', data.autor);
-      formData.append('image', data.image[0], data.image[0].name);
+      formData.append('title', response.title);
+      formData.append('description', response.description);
+      formData.append('autor', response.autor);
+      formData.append('image', response.image[0], response.image[0].name);
       // formData.append('user_id', data.user_id);
       formData.append('user_id', user_id);
       
       // console.log('data',data)
       handleSubmitBook(formData);
       
-      // console.log("dataForm",formData);
+      console.log("dataForm",formData);
       swal("Submitted form!", "Successful validation", "success");
-      navigate('/forum')
+      // navigate('/forum')
     };
   
     return (
@@ -124,24 +124,7 @@ function PostForum() {
               </div>
 
 
-              {/* <div className="form-control">
-                <label>Category</label>
-                <input
-                  className="autor"
-                  placeholder="Enter name"
-                  type="text"
-                  {...register("user_id", {
-                    required: true,
-                    maxLength: 200,
-                  })}
-                />
-                {errors.user_id?.type === "required" && (
-                  <small className="fail">The field cannot be empty</small>
-                )}
-                {errors.user_id?.type === "maxLength" && (
-                  <small className="fail">Maximum characters are eight</small>
-                )}
-              </div> */}
+              
   
              
   
@@ -158,9 +141,7 @@ function PostForum() {
                 {errors.image?.type === "required" && (
                   <small className="fail">The field cannot be empty</small>
                 )}
-                {/* {errors.image?.type === "maxLength" && (
-                  <small className="fail">Maximum characters are eight</small>
-                )} */}
+               
               </div>
   
               <div className="form">
