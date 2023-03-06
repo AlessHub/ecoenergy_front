@@ -40,7 +40,7 @@ const SignUp = () => {
       console.log(response.data);
       setUser(response.data.user);
       localStorage.setItem('token', response.data.token);
-      navigate("/login");
+      navigate("/profile");
     } catch (error) {
       setError(error.response.data.message);
     }

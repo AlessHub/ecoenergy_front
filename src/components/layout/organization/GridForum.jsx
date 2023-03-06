@@ -5,6 +5,8 @@ import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
+import { forum } from '../../../services/user-service'
+
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -24,8 +26,11 @@ const StyledCardMedia = styled(CardMedia)({
 
 export default function MediaCard() {
   const [forums, setForums] = useState([])
+  const baseUrl = import.meta.env.VITE_IMAGES_URL;
 
   useEffect(() => {
+  
+
     const getForums = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -33,8 +38,9 @@ export default function MediaCard() {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
-        setForums(response.data)
+        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        const { data } = await forum({headers});
+        setForums(data)
       } catch (error) {
         console.error(error)
       }
@@ -45,15 +51,18 @@ export default function MediaCard() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       {forums.map((forum) => (
+        
         <StyledCard key={forum.id}>
-          <StyledCardMedia component="img" image={forum.cover} alt="image" />
+          <StyledCardMedia component="img" image={baseUrl+forum.image} alt="image" />
           <Typography variant="h6">{forum.title}</Typography>
           <Typography>{forum.description}</Typography>
+
           <Typography>{forum.author}</Typography>
           <Typography variant="caption">
               {new Date(forum.created_at).toLocaleTimeString([], 
               { hour: '2-digit', minute: '2-digit', hour12: false })}
           </Typography>
+
         </StyledCard>
       ))}
     </Box>

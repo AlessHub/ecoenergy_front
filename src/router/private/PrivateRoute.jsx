@@ -8,35 +8,50 @@ const PrivateRoute = ({ component: component, ...rest }) => {
 
 export default PrivateRoute;
 
+// import React from 'react';
+// import { Route, Navigate, Routes } from 'react-router-dom';
 
-// import React, { useState, useEffect } from "react";
+// const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+//   <Routes>
 
-// import axios from "axios";
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   const [isValidToken, setIsValidToken] = useState(false);
-//   const token = localStorage.getItem("token");
-
-//   useEffect(() => {
-//     const checkTokenValidity = async () => {
-//       try {
-//         const response = await axios.get(
-//           "http://localhost:8000/api/forums",
-//           {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           }
-//         );
-//         setIsValidToken(true);
-//       } catch (error) {
-//         setIsValidToken(false);
-//       }
-//     };
-//     checkTokenValidity();
-//   }, [token]);
-
-//   return isValidToken ? <Component {...rest} /> : <Navigate to="/login" />;
-// };
+//   <Route {...rest} render={(props) => (
+//     isAuthenticated
+//     ? <Component {...props} />
+//     : <Navigate to="/login" />
+//     )} />
+//     </Routes>
+// );
 
 // export default PrivateRoute;
+
+
+
+
+//new request
+
+
+// import { useState,useEffect } from "react";
+// import { Navigate, Outlet } from "react-router-dom";
+// import axios from "axios";
+
+// // const PrivateRoute = ({ component: Component, ...rest }) => {
+// //   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+// //   useEffect(() => {
+// //     const checkLoggedIn = async () => {
+// //       try {
+// //         const response = await axios.get("http://localhost:8000/api/checkLoggedIn");
+// //         setIsLoggedIn(response.data.loggedIn);
+// //       } catch (error) {
+// //         setIsLoggedIn(false);
+// //       }
+// //     };
+
+// //     checkLoggedIn();
+// //   }, []);
+
+// //   return isLoggedIn ? <Component {...rest} /> : <Navigate to="/login" />;
+// // };
+
+// // export default PrivateRoute;
+

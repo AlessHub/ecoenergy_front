@@ -10,21 +10,14 @@ import PrivateRoute from '../private/PrivateRoute';
 import LoginMui from '../../views/Login';
 import SignUp from '../../views/SignUp'
 import PostForum from '../../views/PostForum';
-import Advices from '../../views/Advices';
+
+import Advices from '../../views/Advices'
+import PostAdvice from '../../views/PostAdvice';
+
 
 function PublicRoute() {
   
-    const [user, setUser] = useState(null);
-
-  const login = () =>
-    setUser({
-      id: 1,
-      name: "Eberth",
-      permissions: ["quantum"],
-      roles: ["admin"],
-    });
-  const logout = () => setUser(null);
-
+    
   return (
     <BrowserRouter>
       
@@ -38,13 +31,17 @@ function PublicRoute() {
         <Route path="/signup" element={<SignUp />} />
         
 
-        <Route element={<PrivateRoute isAllowed={!!user} />}>
+        <Route element={<PrivateRoute />}>
 
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
-          <Route path="/advice" element={<Advices />} />
+
+          <Route path="/advices" element={<Advices />} />
+          <Route path="/postadvice" element={<PostAdvice />} />
+          
+
           
         </Route>
         {/* <Route

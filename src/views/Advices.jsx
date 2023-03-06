@@ -1,17 +1,44 @@
 import React from 'react';
 import { Link as LinkReact } from "react-router-dom";
 import NavLoggedIn from "../components/layout/navigation/Navbar/NavLoggedIn";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Typography, Box, Container} from "@mui/material";
 import Footer from "../components/layout/navigation/Footer";
 import LinkButton from '../components/layout/navigation/LinkButton';
 import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 import CardAdvice from '../components/layout/organization/CardAdvice';
-import TabsChoice from '../components/layout/navigation/TabsChoice';
-import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
+
+import TabsChoice from '../components/layout/navigation/TabsChoice'
+import { advice } from '../services/user-service';
+import NavPublic from '../components/layout/navigation/Navbar/NavPublic';
+
 
 
 const Advices = () => {
+  const [advices, setAdvices] = useState([])
+  // const baseUrl = import.meta.env.VITE_IMAGES_URL;
+
+  useEffect(() => {
+  
+
+    const getAdvices = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        const { data } = await advice({headers});
+        setAdvices(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getAdvices()
+  }, [])
+
+  
   return (
     <>
    <NavPublic/>
@@ -50,6 +77,7 @@ const Advices = () => {
         
     </Box>
 
+
     
     <Box
         sx= {{
@@ -58,14 +86,13 @@ const Advices = () => {
           alignItems: 'center', 
           gap:'1rem'
           }}>
+          {advices.map((advice) => (   
+
+    <CardAdvice text={advice.content} image='src/assets/avatar_template.png' />
            
-    <CardAdvice text='Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica'/>
-          <CardAdvice/>
-    <CardAdvice text='Text' type='Water' image='src/assets/avatar_template.png'/>
-    <CardAdvice/>
-    <CardAdvice/>
+    
     </Box>
+
     </Container>
     <Footer/>
     </>

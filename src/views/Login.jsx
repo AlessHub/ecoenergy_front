@@ -1,20 +1,21 @@
 
 import React, { useState , useEffect} from "react";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+// import Menu from "@mui/material/Menu";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 
 import { Link as LinkMui, TextField, Button } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import LinkButton from "../components/layout/navigation/LinkButton";
-import Footer from "../components/layout/navigation/Footer";
-import ButtonGreen from '../components/layout/navigation/ButtonGreen';
+// import LinkButton from "../components/layout/navigation/LinkButton";
+// import Footer from "../components/layout/navigation/Footer";
+// import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 
 import axios from "axios";
 // import axios from "../api/axios";
 
+import { login } from "../services/user-service";
 
 
 const LoginMui = () => {
@@ -49,7 +50,9 @@ const LoginMui = () => {
     try {
     //   const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
     // console.log(response.data);
-    const { data } = await axios.post('http://127.0.0.1:8000/api/login', formData);
+
+    const { data } = await login(formData);
+
     setUser(data);
     if (data.token) {
       localStorage.setItem('token',data.token);
@@ -62,6 +65,7 @@ const LoginMui = () => {
       console.error(error);
     }
   };
+
   
 
 
@@ -139,7 +143,7 @@ const LoginMui = () => {
       >
         Login
       </Button>
-      <LinkReact to="/NavLoggedIn.jsx"></LinkReact>
+      {/* <LinkReact to="/NavLoggedIn.jsx"></LinkReact> */}
 
       <Typography 
         variant="p">
