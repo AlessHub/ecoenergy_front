@@ -25,8 +25,8 @@ function PostForum() {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
-        const { data } = await postForum(formData,{headers});
+        const data = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        // const { data } = await postForum(formData,{headers});
         
         // console.log("response form ",data.data);
      };

@@ -1,12 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Pagination, Autoplay } from "swiper";
+import { FreeMode, Navigation, Autoplay } from "swiper";
 import { Container } from "@mui/system";
-import { Button } from "@mui/material";
+
 import { Link } from "@mui/material";
 import Item from "./Item";
 import "swiper/css";
 import "swiper/css/pagination";
-import sliderinfo from "../../../../utils/sliderinfo.json";
 import "swiper/css/navigation";
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
@@ -26,7 +25,7 @@ const Slider = () => {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           };
-        // const response = await axios.get('http://127.0.0.1:8000/api/forums' ,{ headers })
+        
         const { data } = await forum({headers});
         setForums(data)
       } catch (error) {

@@ -1,5 +1,5 @@
 
-import React,{useState} from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import Profile from '../../views/Profile';
@@ -44,28 +44,7 @@ function PublicRoute() {
 
           
         </Route>
-        {/* <Route
-          path="/analytics"
-          element={
-            <ProtectedRoute
-              redirectTo="/home"
-              isAllowed={!!user && user.permissions.includes("analize")}
-            >
-              <Analytics />
-            </ProtectedRoute>
-          }
-        /> */}
-        {/* <Route
-          path="/admin"
-          element={
-            <ProtectedRoute
-              redirectTo="/home"
-              isAllowed={!!user && user.roles.includes("admin")}
-            >
-              <Admin />
-            </ProtectedRoute>
-          }
-        /> */}
+       
       </Routes>
     </BrowserRouter>
   )
