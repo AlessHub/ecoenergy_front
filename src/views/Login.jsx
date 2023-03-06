@@ -15,7 +15,7 @@ import ButtonGreen from '../components/layout/navigation/ButtonGreen';
 import axios from "axios";
 // import axios from "../api/axios";
 
-import { Login } from "@mui/icons-material";
+
 
 const LoginMui = () => {
 
@@ -47,42 +47,28 @@ const LoginMui = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-      console.log(response.data);
-      setUser(response.data.user);
-      // localStorage.getItem('token', response.data.token);
-      // const newToken = response.data.token;
-      // setToken(newToken);
-      localStorage.getItem('token', token);
+    //   const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
+    // console.log(response.data);
+    const { data } = await axios.post('http://127.0.0.1:8000/api/login', formData);
+    setUser(data);
+    if (data.token) {
+      localStorage.setItem('token',data.token);
+      // setUser(response.data.user);
       navigate("/profile");
+    } else {
+      console.error("Token is missing from the response");
+    }
     } catch (error) {
-      // setError(error.response.data.message);
       console.error(error);
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   try{
-  //     await axios.post('/login', formData);
-  //     console.log(response.data);
-  //     setFormData(response.data.user);
-  //     // setUser(response.data.user);
-  //     LocalStorage.getItem('token', token);
-  //     navigate("/profile");
-
-  //   } catch(e){
-  //     console.log(e)
-
-  //   }
-  // }
   
 
 
   return (
     <>
     <NavPublic/>
-    <Typography color="main.tertiary" variant="h3">Log In</Typography>
+    
     <Box
       component="form"
       sx={{
@@ -112,10 +98,11 @@ const LoginMui = () => {
       </Typography>
     
       <TextField sx={{minWidth: '30%'}}
-        label="Username"
+        label="email"
+        type="email"
+        name="email"
         value={formData.email}
         onChange={handleChange}
-
 
       />
       <TextField

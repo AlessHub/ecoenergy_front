@@ -48,6 +48,7 @@ const SignUp = () => {
  
 
   return (
+
     <>
 
 <NavPublic />      
@@ -105,6 +106,7 @@ const SignUp = () => {
   onChange={handleChange}
   required
     />
+    </Box>
   <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
     <Checkbox defaultChecked color="success" />
     <Typography
@@ -143,6 +145,9 @@ const SignUp = () => {
         onChange={handleChange}
         required
           />
+          </Typography>
+          </Box>
+          
         <Box sx={{display:'flex', textAlign:'start', alignItems:'center'}}>
           <Checkbox defaultChecked color="success" />
           <Typography
@@ -171,10 +176,11 @@ const SignUp = () => {
               underline="none"
               color="main.secondary"/>
         </Typography>
+        
 
     
 </>
-);
-};
+ )
+}
 
 export default SignUp;
