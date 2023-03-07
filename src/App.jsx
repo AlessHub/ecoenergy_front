@@ -9,14 +9,14 @@ import { green, grey, red, orange, blue } from '@mui/material/colors';
 const theme = createTheme({
   palette: {
     main: {
-      primary: green[400],
+      primary: '#42CF94' ,
       secondary: grey[50],
-      tertiary: green[900],
+      tertiary: '#4B4E4B',
       danger: red[400],
       warning: orange[500],
     },
     background: {
-      paper: green[400],
+      paper: '#4B4E4B',
     },
   },
 });

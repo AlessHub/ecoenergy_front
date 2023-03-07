@@ -1,18 +1,15 @@
-import React from "react";
-import { Link as LinkReact } from "react-router-dom";
-
 import { useState, useEffect } from "react";
-import { Typography, Box, Container } from "@mui/material";
-import Footer from "../components/layout/navigation/Footer";
-import LinkButton from "../components/layout/navigation/LinkButton";
-
-import CardAdvice from "../components/layout/organization/CardAdvice";
-
-import TabsChoice from "../components/layout/navigation/TabsChoice";
-import { adviceAll } from "../services/user-service";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+import TabsChoice from "../components/layout/navigation/TabsChoice";
+import CardAdvice from "../components/layout/organization/CardAdvice";
+import Footer from "../components/layout/navigation/Footer";
+
+import { adviceAll } from "../services/user-service";
+
+import { Typography, Box } from "@mui/material";
 
 const Advice = () => {
+  const [value, setValue] = useState(0);
   const [advice, setAdvice] = useState([]);
 
   useEffect(() => {
@@ -33,7 +30,20 @@ const Advice = () => {
     getAdvice();
   }, []);
 
-  
+  const handleTabChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const filteredAdvice = advice.filter((a) => {
+    if (value === 1 && a.type === "1") {
+      return true;
+    } else if (value === 2 && a.type === "2") {
+      return true;
+    } else if (value === 0) {
+      return true;
+    }
+    return false;
+  });
 
   return (
     <>
@@ -49,24 +59,11 @@ const Advice = () => {
           scrollMarginBottom: 2,
         }}
       >
-        {/* <Box
-        sx= {{
-          display: 'flex',
-          flexDirection: 'column',          
-          mt: '1rem',
-          mb: '1rem',
-        }}>
-           
-            <LinkReact to='/'><LinkButton 
-                   text='Back'/></LinkReact>
-        
-    </Box> */}
-
         <Typography color="main.tertiary" sx={{ mb: 1 }} variant="h3">
           Advice
         </Typography>
 
-        <TabsChoice />
+        <TabsChoice value={value} handleTabChange={handleTabChange} />
 
         <Box
           sx={{
@@ -78,10 +75,8 @@ const Advice = () => {
             gap: "4rem",
           }}
         >
-          {advice.map((advice) => (
-            <CardAdvice
-              text={advice.content}              
-            />
+          {filteredAdvice.map((a) => (
+            <CardAdvice key={a.id} text={a.content} tab={a.type} />
           ))}
         </Box>
       </Box>

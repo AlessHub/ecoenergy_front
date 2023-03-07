@@ -3,17 +3,13 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-const TabsChoice = ({}) => {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+const TabsChoice = ({value, handleTabChange}) => {
+  
 
   return (
     <div>
       <Box>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} onChange={handleTabChange}>
           <Tab
             label="All"
             sx={{

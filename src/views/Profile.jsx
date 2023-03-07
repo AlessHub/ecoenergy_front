@@ -41,7 +41,7 @@ const data2 = [
 function Profile() {
   
   const [selectedOption, setSelectedOption] = useState("electric");
-  const color = selectedOption === "electric" ? "#d4bc32" : "#1263ce";
+  const color = selectedOption === "electric" ? "#42CF94" : "#1263ce";
   const data = selectedOption === "electric" ? data1 : data2;
 
   const handleOptionClick = (option) => {
@@ -82,8 +82,8 @@ function Profile() {
 
 
     <SimpleBarCharts color={color} data={data} />
-    {data.map((datas) =>{
-      return <BarData color={color} datas={datas}/>
+    {data.map((datas,id) =>{
+      return <BarData color={color} datas={datas} key={id} />
     })}
     
     </Container>
