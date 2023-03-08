@@ -1,49 +1,54 @@
-# ecoenergy_front
 
-##EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings
+<h2>🌿 EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings</h2>
 
-This project is part of my final bootcamp project at Factoria F5. The goal is to build a mobile application that helps people save money, energy, and reduce their environmental impact. The application offers personalized advice based on the user's behavior and home usage data.
+This project is part of our final bootcamp project at Factoria F5. The goal is to build a mobile application that helps people save money, energy, and reduce their environmental impact. The application will offer personalized advice based on the user's behavior and home usage data. It also has a Forum where people can post different things, and comment on them to communicate with each others.
 
 
-##Features
+<h4>🚀 - Features</h4>
 
+        -Realtime prices of electricity
         -User login and registration
-        -Monitoring of energy and water usage
-        -Personalized tips for saving money and reducing environmental impact
-        -Calculation of the user's environmental impact (% Carbon)
-        -Creation of savings goals and tracking of progress
+        -Monitoring of energy, water and monthly bills.
+        -Personalized tips for saving money and reducing environmental impact.
+        -Forum for registered users, where they can post and comment to communicate with each other.
+        
+### :space_invader: Tech Stack
 
+<details>
+<summary>Tech</summary>
+  <ul>
+    <li><a href="https://reactjs.org">React</a></li>
+    <li><a href="https://mui.com">MaterialUI</a></li>
+    <li><a href="https://react-hook-form.com">React-Hook-Form</a></li>
+    <li><a href="https://reactrouter.com/en/main">React-Router-Dom</a></li>
+    <li><a href="https://jestjs.io">Jest</a></li>
+    <li><a href="https://swiperjs.com/react">Swiper</a></li>
+    <li><a href="https://axios-http.com/docs/intro">Axios</a></li>
+    <li><a href="https://recharts.org/en-US/guide">Recharts</a></li>
+    <li><a href="https://sweetalert2.github.io">SweetAlerts</a></li>
+  </ul>
+</details>
 
-## Project setup
+<details>
+<summary>Tools</summary>
+  <ul>
+    <li><a href="https://www.trello.com/">Trello</a></li>
+    <li><a href="https://www.figma.com/">Figma</a></li>
+    <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+    <li><a href="https://www.postman.com/">Postman</a></li>
+  </ul>
+</details>
+
+<h4> Project setup </h4>
 
 ```
 Front-End:
 git clone https://github.com/EberthCastro/ecoenergy_front.git
 
 Back-End:
+git clone https://github.com/EberthCastro/energy.git
 
 ```
-
-
-##Screenshot
-
-```
-Digital Advisor for Economic, Energy, and Environmental Savings
-```
-
-
-## Technologies Used (front and back)
-```
-Front-End:
-```
-        -React: A JavaScript library for building user interfaces.
-        -UI Material: A UI component library for React.
-```
-Back-End:
-```
-        -Laravel: A PHP framework for building web applications.
-        -PHP: An open-source programming language suitable for web development.
-        -PhpMyAdmin: A free software tool written in PHP for managing MySQL databases.
 
 
 ##Installation
@@ -53,17 +58,14 @@ Back-End:
         -Configure the database credentials in config/database.php
         -Run the database migrations using the php artisan migrate command
         -Start the server using the php artisan serve command
-        -Access the application at http://localhost:8000
+        -Start the front-end with npm run dev
 
 
-##Contribution
 
-If you want to contribute to the project, feel free to send a pull request or open an issue.
-
-
-##Authors
-        -Alessandro(https://github.com/AlessHub)
-        -Alexandra(https://github.com/AlexandraJaramillo)
-        -Eberth(https://github.com/EberthCastro)
-        -Isabel(https://github.com/Behbiz)
-        -Mamadou(https://github.com/deakamm)
+<h4>:handshake: Authors</h4>
+        [Alessandro](https://github.com/AlessHub)<br>
+        [Alexandra](https://github.com/AlexandraJaramillo)<br>
+        [Eberth](https://github.com/EberthCastro)<br>
+        [Isabel](https://github.com/Behbiz)<br>
+        [Jerry](https://github.com/JerryAiyaniyo)<br>
+        [Mamadou](https://github.com/deakamm)<br>
