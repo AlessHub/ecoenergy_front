@@ -1,5 +1,4 @@
-
-<h2>🌿 EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings</h2>
+## 🌿 EcoEnergy - Digital Advisor for Economic, Energy, and Environmental Savings
 
 This project is part of our final bootcamp project at Factoria F5. The goal is to build a mobile application that helps people save money, energy, and reduce their environmental impact. The application will offer personalized advice based on the user's behavior and home usage data. It also has a Forum where people can post different things, and comment on them to communicate with each others.
 
@@ -63,9 +62,9 @@ git clone https://github.com/EberthCastro/energy.git
 
 
 <h4>:handshake: Authors</h4>
-        [Alessandro](https://github.com/AlessHub)<br>
-        [Alexandra](https://github.com/AlexandraJaramillo)<br>
-        [Eberth](https://github.com/EberthCastro)<br>
-        [Isabel](https://github.com/Behbiz)<br>
-        [Jerry](https://github.com/JerryAiyaniyo)<br>
-        [Mamadou](https://github.com/deakamm)<br>
+<a href="https://github.com/AlessHub">Alessandro</a><br>
+<a href="https://github.com/AlexandraJaramillo">Alexandra</a><br>
+<a href="https://github.com/EberthCastro">Eberth</a><br>
+<a href="https://github.com/Behbiz">Isabel</a><br>
+<a href="https://github.com/deakamm">Mamadou</a><br>
+<a href="https://github.com/JerryAiyaniyo">Jerry</a><br>
