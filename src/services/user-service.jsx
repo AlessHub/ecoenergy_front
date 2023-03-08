@@ -13,8 +13,8 @@ export const register = (data) => {
    return axios.post(baseUrl + "/register", data);
 };
 
-export const forum = (data) => {
-   return axios.get(baseUrl + "/forums", data);
+export const forum = (data,headers) => {
+   return axios.get(baseUrl + "/forums", data, headers);
  };
 
  export const forumSingle = (id,data) => {
