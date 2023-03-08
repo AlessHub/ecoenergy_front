@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
+
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+
 import { Button, Pagination } from "@mui/material";
+
 import { forum } from "../../../services/user-service";
 import axios from "axios";
 
@@ -74,6 +78,7 @@ export default function MediaCard(props) {
 
   return (
     <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "2rem" }}>
+
   {forumList.map((forum) => (
     <React.Fragment key={forum.id}>
       <Link to={`/${forum.id}`}>
@@ -138,6 +143,7 @@ export default function MediaCard(props) {
     />
   </Box>
 </Box>
+
 
   );
 }

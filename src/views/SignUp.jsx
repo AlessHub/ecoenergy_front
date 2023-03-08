@@ -1,20 +1,13 @@
 import React, { useState } from "react";
+import { Link as LinkReact, useNavigate } from "react-router-dom";
+import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
-import Menu from "@mui/material/Menu";
-import { Link as LinkReact, useNavigate } from "react-router-dom";
 import { Link as LinkMui, TextField, Button } from "@mui/material";
-
-import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import { Checkbox } from "@mui/material";
-import Footer from "../components/layout/navigation/Footer";
-import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 import LinkButton from "../components/layout/navigation/LinkButton";
 
-import axios from "axios";
-
-import { Email, Login } from "@mui/icons-material";
 import { register } from "../services/user-service";
 
 const SignUp = () => {
@@ -34,17 +27,23 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    if (!formData.email.includes(".com")) {
+      setError("Email must contain '.com'");
+      return;
+    }
     try {
-      const {data} = await register(
-        
-        formData
-      );
-      console.log(data);
+      const { data } = await register(formData);
+
       setUser(data.user);
       localStorage.setItem("token", data.token);
       navigate("/profile");
     } catch (error) {
-      // setError(error.data.message);
+      setError(error.data);
     }
   };
 
@@ -62,8 +61,7 @@ const SignUp = () => {
           padding: "6rem",
         }}
       >
-
-<Box
+        <Box
           component="form"
           sx={{
             p: 5,
@@ -89,43 +87,42 @@ const SignUp = () => {
           }}
           onSubmit={handleSubmit}
         >
-        <Typography color="main.tertiary" variant="h3">
+          <Typography color="main.tertiary" variant="h3">
             Sign Up
           </Typography>
 
-        <TextField
-          label="Name"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+          <TextField
+            label="Name"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
 
-        <TextField
-          sx={{ background: "" }}
-          label="Email"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+          <TextField
+            sx={{ background: "" }}
+            label="Email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-        <TextField
-          label="Password"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-       <Button
+          <TextField
+            label="Password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <Button
             type="submit"
             sx={{
               textTransform: "capitalize",
-              backgroundColor: "main.tertiary",
-              // color: "main.tertiary",
+              backgroundColor: "main.tertiary",              
               "&:hover": {
                 backgroundColor: "main.primary",
                 borderColor: "main.primary",
@@ -144,42 +141,54 @@ const SignUp = () => {
             }}
             variant="contained"
           >
-
-        Sign Up
+            Sign Up
           </Button>
-        
-      </Box>      
-      
+        </Box>
 
-      <Box sx={{ display: "flex", textAlign: "start", alignItems: "center", width:'15rem' }}>
-        <Checkbox defaultChecked color="success" />
-        <Typography
-          sx={{ mt: 0, color: "black", fontSize: "0.7rem", textAlign:'left' }}
-          variant="body"
-        >
-          I would like to receive your newsletter and other promotional
-          information
-        </Typography>
-      </Box>
-
-      
-      <Typography
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-        variant="p"
-      >
-        Already registered?{" "}
-        <LinkButton
-          text="Log In"
-          to="/login"
+        <Box
           sx={{
-            "&:hover": {
-              color: "main.tertiary",
-            },
+            display: "flex",
+            textAlign: "start",
+            alignItems: "center",
+            width: "15rem",
           }}
-          underline="none"
-          color="main.secondary"
-        />
-      </Typography>
+        >
+          <Checkbox defaultChecked color="success" />
+          <Typography
+            sx={{
+              mt: 0,
+              color: "black",
+              fontSize: "0.7rem",
+              textAlign: "left",
+            }}
+            variant="body"
+          >
+            I would like to receive your newsletter and other promotional
+            information
+          </Typography>
+        </Box>
+
+        <Typography
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          variant="p"
+        >
+          Already registered?{" "}
+          <LinkButton
+            text="Log In"
+            to="/login"
+            sx={{
+              "&:hover": {
+                color: "main.tertiary",
+              },
+            }}
+            underline="none"
+            color="main.secondary"
+          />
+        </Typography>
       </Box>
     </>
   );

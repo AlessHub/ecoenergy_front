@@ -13,8 +13,8 @@ export const register = (data) => {
    return axios.post(baseUrl + "/register", data);
 };
 
-export const forum = (data) => {
-   return axios.get(baseUrl + "/forums", data);
+export const forum = (data,headers) => {
+   return axios.get(baseUrl + "/forums", data, headers);
  };
 
  export const forumSingle = (id,data) => {
@@ -35,6 +35,16 @@ export const forum = (data) => {
     return axios.post(baseUrl + "/advices", data, headers);
  };
 
- export const getUser = (data) => {
-   return axios.get(baseUrl + "/users", data);
+//  export const getUser = (data) => {
+//    return axios.get(baseUrl + "/users", data);
+// };
+
+export const getAllComment = (data,headers) => {
+   
+   return axios.get(baseUrl + "/comments", data, headers);
+};
+
+export const postSingleComment = (data,headers) => {
+   
+   return axios.post(baseUrl + "/comments", data, headers);
 };

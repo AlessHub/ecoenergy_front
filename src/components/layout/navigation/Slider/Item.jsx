@@ -32,6 +32,7 @@ export default function Item({ item }) {
   }, []);
 
   return (
+
     <>
       <Container
         sx={{
@@ -82,5 +83,6 @@ export default function Item({ item }) {
         </Card>
       </Container>
     </>
+
   );
 }
