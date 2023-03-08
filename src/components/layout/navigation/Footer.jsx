@@ -32,7 +32,7 @@ const Footer = () => {
             sx={{ fontSize: 12 }}
             color="main.secondary"
           >
-            <Box color="main.tertiary">Links</Box>
+            <Box color="main.secondary">Links</Box>
             <Box>Community Policy</Box>
             <Box>Contact</Box>
           </Typography>
@@ -41,11 +41,11 @@ const Footer = () => {
             sx={{ fontSize: 12 }}
             color="main.secondary"
           >
-            <Box color="main.tertiary">About us</Box>
+            <Box color="main.secondary">About us</Box>
             <Box>Our works</Box>
             <Box>FAQ</Box>
           </Typography>
-          <Typography sx={{ fontSize: 12 }} color="main.tertiary">
+          <Typography sx={{ fontSize: 12 }} color="main.secondary">
             <Box>Social Media</Box>
             <Box>
               <BottomNavigationAction

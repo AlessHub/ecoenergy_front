@@ -4,19 +4,23 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const CardAdvice = ({text, image}) => {
+const CardAdvice = ({text,tab}) => {
   return (
     <>
     <Card sx={{ 
       maxWidth: 340,
       width: 400,
-      height: 'auto', 
+      height: '8rem', 
       display: 'flex', 
       alignItems: 'center', 
       padding: 1,
       backgroundColor: 'main.secondary',
-      border: 2,
-      borderColor: 'main.primary',
+      // borderBottom: 3,
+      // borderLeft:5,
+      borderRight:5,
+
+      boxShadow: 1,
+      borderColor:  tab === "1"? "rgba(249, 213, 5, 0.3)" : "rgba(16, 95, 188, 0.5)",
       textAlign: 'initial',
     }}>
 
@@ -25,9 +29,9 @@ const CardAdvice = ({text, image}) => {
           minWidth: '30%',
           height: 95, 
           width:95,
-          border: 2 }}
+          borderRadius: 5 }}
 
-        image={image}
+        image={tab==="1"?"src/assets/rayo.png" : "src/assets/drop.jpg"}
       />
       <CardContent>
         <Typography 
