@@ -1,6 +1,6 @@
-import { Toolbar, Stack, Button, Container, AppBar } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
+import { Toolbar, Stack, Button, Container, AppBar } from "@mui/material";
 import { Link as LinkMui } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CardMedia from "@mui/material/CardMedia";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import axios from "axios";
+import { logout } from "../../../../services/user-service";
 
 const NavPublic = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,7 +45,7 @@ const NavPublic = () => {
     {
       text: "Forum",
       href: "/forum",
-    },   
+    },
   ];
 
   const pagesLoggedOut = [
@@ -83,19 +83,15 @@ const NavPublic = () => {
   };
 
   const handleLogout = async () => {
-    // event.preventDefault();
+    
     try {
       const token = localStorage.getItem("token");
       const headers = {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-      };
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/logout",
-        null,
-        { headers }
-      );
-      console.log(response);
+      };      
+      const {data} = await logout(null,{headers})
+      console.log(data);
       console.log(token);
       localStorage.removeItem("token");
       navigate("/");
@@ -274,33 +270,23 @@ const NavPublic = () => {
           >
             {isLoggedIn
               ? pagesLoggedIn.map((page) => (
-                 <Box>
-
-                  <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                    <LinkReact to={page.href}>
-                      <LinkMui
-                        sx={{
-                          "&:hover": {
-                            color: "main.primary",
-                          },
-                        }}
-                        underline="none"
-                        color="main.secondary"
-                      >
-                        {page.text}
-                      </LinkMui>
-                    </LinkReact>
-                  </MenuItem>
-                    {/* <Tooltip title="Logout">
-                      <Button onClick={handleLogout} sx={{ color: "white" }}>
-                        <Avatar
-                          sx={{ bgcolor: "white", color: "main.tertiary" }}
+                  
+                    <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+                      <LinkReact to={page.href}>
+                        <LinkMui
+                          sx={{
+                            "&:hover": {
+                              color: "main.primary",
+                            },
+                          }}
+                          underline="none"
+                          color="main.secondary"
                         >
-                          <LogoutIcon />
-                        </Avatar>
-                      </Button>
-                    </Tooltip> */}
-                 </Box>
+                          {page.text}
+                        </LinkMui>
+                      </LinkReact>
+                    </MenuItem>
+                    
                 ))
               : pagesLoggedOut.map((page) => (
                   <MenuItem key={page.text} onClick={handleCloseNavMenu}>

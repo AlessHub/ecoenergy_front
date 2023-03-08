@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+import { TextField, Grid, Button, Box, Typography } from "@mui/material";
 import swal from "sweetalert";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
-import { TextField, Grid, Button, Box, Typography } from "@mui/material";
-
 import { postForum } from "../services/user-service";
-import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 
 function PostForum() {
   const navigate = useNavigate();
@@ -24,30 +22,26 @@ function PostForum() {
       Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     };
-    const response = await axios.post(
-      "http://127.0.0.1:8000/api/forums",
-      formData,
-      { headers }
-    );
 
-    console.log("response form ", response.data);
+    const { data } = await postForum(formData, { headers });
+
+    console.log("data form ", data.data);
   };
 
-  const customSubmit = (response) => {
+  const customSubmit = (data) => {
     const token = localStorage.getItem("token");
     const decodedToken = jwt_decode(token);
     const user_id = decodedToken.sub;
 
-    
     const formData = new FormData();
-    formData.append("title", response.title);
-    formData.append("description", response.description);
-    formData.append("autor", response.autor);
-    formData.append("image", response.image[0], response.image[0].name);   
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("autor", data.autor);
+    formData.append("image", data.image[0], data.image[0].name);
     formData.append("user_id", user_id);
-    
+
     handleSubmitPost(formData);
-    
+
     swal("Submitted form!", "Successful validation", "success");
     navigate("/forum");
   };
@@ -161,9 +155,7 @@ function PostForum() {
                 required: true,
               })}
             />
-            <label htmlFor="contained-button-file">
-              
-            </label>
+            <label htmlFor="contained-button-file"></label>
             {errors.image?.type === "required" && (
               <small className="fail">The field cannot be empty</small>
             )}
@@ -175,7 +167,7 @@ function PostForum() {
           sx={{
             textTransform: "capitalize",
             backgroundColor: "main.tertiary",
-            
+
             "&:hover": {
               backgroundColor: "main.primary",
               borderColor: "main.primary",

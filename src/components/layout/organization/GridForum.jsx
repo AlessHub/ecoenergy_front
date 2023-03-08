@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
-
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
-import { Button, Pagination } from "@mui/material";
-
-import { forum } from "../../../services/user-service";
+import { Pagination } from "@mui/material";
+import { deleteForum, forum } from "../../../services/user-service";
 import axios from "axios";
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -31,7 +27,8 @@ const handleDelete = (id) => {
     "Content-Type": "application/json",
   };
   
-  axios.delete(`http://127.0.0.1:8000/api/forums/${id}`, { headers })
+  // axios.delete(`http://127.0.0.1:8000/api/forums/${id}`, { headers })
+  deleteForum(id,{headers})
     .then((response) => {
       console.log("Deleted succesfully");
     })
@@ -88,6 +85,12 @@ export default function MediaCard(props) {
             gap: "1rem",
             textAlign: "justify",
             height: "12rem",
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              borderColor: "main.primary",
+              boxShadow: "none",
+              color: "main.tertiary",
+            },
           }}
         >
           <StyledCardMedia

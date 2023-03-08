@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link as LinkMui, TextField, Button } from "@mui/material";
 import { Checkbox } from "@mui/material";
 import LinkButton from "../components/layout/navigation/LinkButton";
-
 import { register } from "../services/user-service";
 
 const SignUp = () => {

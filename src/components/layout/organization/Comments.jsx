@@ -1,13 +1,11 @@
 import React,{useState,useEffect} from 'react'
-
+import PostComment from './PostComment';
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
 import { getAllComment } from '../../../services/user-service';
-import PostComment from './PostComment';
 
 const StyledCard = styled(Card)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -26,10 +24,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 function Comments({id}) {
 
-    const [comments, setComments] = useState([]);
-  
-
-  const baseUrl = import.meta.env.VITE_IMAGES_URL;
+    const [comments, setComments] = useState([]);  
 
   useEffect(() => {
     const getComments = async () => {
@@ -66,13 +61,7 @@ function Comments({id}) {
               height: "12rem",
             }}
           >
-            {/* <StyledCardMedia
-              component="img"
-              image={baseUrl + comment.image}
-              alt="image"
-              sx={{ width: "10rem", height: "10rem" }}
-            /> */}
-
+           
             <Box
               sx={{
                 display: "flex",
@@ -82,7 +71,7 @@ function Comments({id}) {
               }}
             >
               <Typography variant="h6">{comment.content}</Typography>
-              {/* <Typography>{comment.description}</Typography> */}
+              
 
               <Typography>@{comment.autor}</Typography>
 

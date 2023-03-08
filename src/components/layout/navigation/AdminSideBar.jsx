@@ -1,4 +1,8 @@
-import * as React from "react";
+import { React, useState } from "react";
+import PostAdvice from "../organization/PostAdviceForm";
+import GridForum from "../organization/GridForum";
+import AdviceRender from "../organization/AdviceRender";
+import ButtonGreen from "../navigation/ButtonGreen";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -10,13 +14,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import Toolbar from "@mui/material/Toolbar";
-import { useState } from "react";
-import PostAdvice from "../organization/PostAdviceForm";
-import GridForum from "../organization/GridForum";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import AdviceRender from "../organization/AdviceRender";
 import { Button } from "@mui/material";
-import ButtonGreen from "../navigation/ButtonGreen";
 
 const drawerWidth = 240;
 
@@ -26,7 +25,7 @@ function AdminSideBar(props) {
   const [currentPage, setCurrentPage] = useState("advices");
 
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -101,14 +100,14 @@ function AdminSideBar(props) {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "block" },
