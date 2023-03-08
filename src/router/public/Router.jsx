@@ -13,6 +13,8 @@ import PostForum from '../../views/PostForum';
 
 import PostAdvice from '../../views/PostAdvice';
 import Advice from '../../views/Advice';
+import SinglePost from '../../views/SinglePost';
+// import PostForo from '../../views/PostForo';
 
 
 function PublicRoute() {
@@ -37,6 +39,8 @@ function PublicRoute() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
+          {/* <Route path="/postForo" element={<PostForo/>} /> */}
+          <Route path="/:id" element={<SinglePost />} />
 
           <Route path="/advice" element={<Advice />} />
           <Route path="/postadvice" element={<PostAdvice />} />
