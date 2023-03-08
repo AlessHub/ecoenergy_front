@@ -35,6 +35,14 @@ const NavPublic = () => {
       href: "/advice",
     },
     {
+      text: "Admin",
+      href: "/dashBoard",
+    },
+    {
+      text: "Logout",
+      href: "/",
+    },
+    {
       text: "Forum",
       href: "/forum",
     },   
@@ -168,6 +176,19 @@ const NavPublic = () => {
                       color="main.secondary"
                     >
                       Forum
+                    </LinkMui>
+                  </LinkReact>
+                  <LinkReact to="/dashBoard">
+                    <LinkMui
+                      sx={{
+                        "&:hover": {
+                          color: "main.primary",
+                        },
+                      }}
+                      underline="none"
+                      color="main.secondary"
+                    >
+                      Admin
                     </LinkMui>
                   </LinkReact>
 

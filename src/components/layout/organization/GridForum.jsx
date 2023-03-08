@@ -5,8 +5,9 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Pagination } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 import { forum } from "../../../services/user-service";
+import axios from "axios";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,11 +20,28 @@ const StyledCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
+const handleDelete = (id) => {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
+  
+  axios.delete(`http://127.0.0.1:8000/api/forums/${id}`, { headers })
+    .then((response) => {
+      console.log("Deleted succesfully");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+
 const StyledCardMedia = styled(CardMedia)({
   width: 75,
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const [forums, setForums] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -56,26 +74,23 @@ export default function MediaCard() {
 
   return (
     <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "2rem" }}>
-      {forumList.map((forum) => (
-        <Link to={`/${forum.id}`}>
-
+  {forumList.map((forum) => (
+    <React.Fragment key={forum.id}>
+      <Link to={`/${forum.id}`}>
         <StyledCard
-          key={forum.id}
           sx={{
             display: "flex",
             gap: "1rem",
             textAlign: "justify",
             height: "12rem",
           }}
-          >
-          {/* <Link to={`/${forum.id}`}> */}
-            <StyledCardMedia
-              component="img"
-              image={baseUrl + forum.image}
-              alt="image"
-              sx={{ width: "10rem", height: "10rem" }}
-              />
-          {/* </Link> */}
+        >
+          <StyledCardMedia
+            component="img"
+            image={baseUrl + forum.image}
+            alt="image"
+            sx={{ width: "10rem", height: "10rem" }}
+          />
           <Box
             sx={{
               display: "flex",
@@ -83,12 +98,10 @@ export default function MediaCard() {
               justifyContent: "space-between",
               paddingLeft: "1rem",
             }}
-            >
+          >
             <Typography variant="h6">{forum.title}</Typography>
             <Typography>{forum.description}</Typography>
-
             <Typography>@{forum.autor}</Typography>
-
             <Typography variant="caption">
               {(() => {
                 const created = new Date(forum.created_at);
@@ -105,16 +118,26 @@ export default function MediaCard() {
             </Typography>
           </Box>
         </StyledCard>
-              </Link>
+      </Link>
+      {props.buttons && props.buttons.length > 0 && (
+        <Box sx={{ display: "flex", mt: 2, mb:2, gap: 2 }}>
+          {props.buttons.map((button) =>
+            React.cloneElement(button, {
+              onClick: () => handleDelete(forum.id),
+            })
+          )}
+        </Box>
+      )}
+    </React.Fragment>
+  ))}
+  <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+    <Pagination
+      count={Math.ceil(forums.length / 5)}
+      page={page}
+      onChange={(event, value) => setPage(value)}
+    />
+  </Box>
+</Box>
 
-      ))}
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-        <Pagination
-          count={Math.ceil(forums.length / 5)}
-          page={page}
-          onChange={(event, value) => setPage(value)}
-        />
-      </Box>
-    </Box>
   );
 }
