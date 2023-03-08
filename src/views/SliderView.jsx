@@ -115,18 +115,17 @@ Cuéntanos cuántos dispositivos usas y el tiempo estimado de uso general para q
         <SliderGrados/>
     </Box>
     </Container>
-
     
     <Container sx={{p:{xs:7, sm:7, md:7, xl:7}, display:'flex', flexDirection:'column', alignItems:'center' , mt:-6 }}>
     <Box>
-    <FormControl fullWidth sx={{   width: '25ch' }} variant="standard">
+    <FormControl fullWidth sx={{ m:1,  width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">¿Cuanto es la factura de la luz?</InputLabel>
           <Input
             id="standard-adornment-amount"
             startAdornment={<InputAdornment position="start">'€'</InputAdornment>}
           />
         </FormControl>
-        <FormControl  sx={{   width: '25ch' }} variant="standard">
+        <FormControl  sx={{  m:1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">¿Cuanto es la factura del agua?</InputLabel>
           <Input
             id="standard-adornment-amount"
