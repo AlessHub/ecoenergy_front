@@ -35,6 +35,16 @@ export const forum = (data,headers) => {
     return axios.post(baseUrl + "/advices", data, headers);
  };
 
- export const getUser = (data) => {
-   return axios.get(baseUrl + "/users", data);
+//  export const getUser = (data) => {
+//    return axios.get(baseUrl + "/users", data);
+// };
+
+export const getAllComment = (data,headers) => {
+   
+   return axios.get(baseUrl + "/comments", data, headers);
+};
+
+export const postSingleComment = (data,headers) => {
+   
+   return axios.post(baseUrl + "/comments", data, headers);
 };

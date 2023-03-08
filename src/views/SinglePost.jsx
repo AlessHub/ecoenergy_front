@@ -1,22 +1,22 @@
-
-import { useParams } from "react-router-dom";
-import CardMedia from '@mui/material/CardMedia';
-import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-import { Stack } from "@mui/material";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import Footer from "../components/layout/navigation/Footer";
+
+import { Link, useParams } from "react-router-dom";
+
+import CardMedia from "@mui/material/CardMedia";
+import { Box } from "@mui/system";
+import { Stack, Typography } from "@mui/material";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+
 import { forumSingle } from "../services/user-service";
-
-const endpoint = "http://127.0.0.1:8000/api";
-
+import Comments from "../components/layout/organization/Comments";
 
 function SinglePost() {
   const baseUrl = import.meta.env.VITE_IMAGES_URL;
 
-  const [post, setPost] = useState()
+  const [post, setPost] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,43 +27,73 @@ function SinglePost() {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         };
-        // const response = await axios.get(`${endpoint}/forums/${id}`, { headers });
-        const {data} = await forumSingle(id, {headers});
+
+        const { data } = await forumSingle(id, { headers });
         setPost(data);
       }
     };
-  
+
     getSinglepost();
   }, [id]);
-  
-
-
 
   return (
     <>
-      <NavPublic/>
-      <Box sx={{margin:'10px', minHeight:'100vh'}}>
-      <CardMedia
-        sx={{ height: 100, borderRadius: "5px"}}
-        
-        image={baseUrl+post?.image}
-        title={post?.title}
-        
-        />
-        
-      <Stack direction={{ xs: 'column', sm: 'row', md: 'row', lg:'row' }} sx={{margin:'5px'}}>
-        <Stack padding={2}>
-          <h1>{post?.title}</h1>
-          <p>{post?.description}</p>
-        </Stack>
-       
-      </Stack>
-
+      <NavPublic />
+      <Box
+        sx={{
+          margin: "10px",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",          
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            width: "90%",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Link to="/forum">
+            <KeyboardBackspaceIcon sx={{ color: "main.tertiary" }} />
+          </Link>
         </Box>
-      <Footer/>
 
+        <Typography  sx={{textAlign:'start', width:'90%'}}>
+          {new Date(
+            post?.created_at.slice(0, 16).replace("T", " ")
+          ).toLocaleString()}
+        </Typography>
+
+        <Typography sx={{fontWeight:'900', fontSize:'3rem'}}>
+        {post?.title}
+        </Typography>
+
+        <CardMedia
+          sx={{ borderRadius: "5px", width: "30%", height: "30%" }}
+          image={baseUrl + post?.image}
+          title={post?.title}
+        />
+
+        <Box
+          sx={{ margin: "5px", width:'90%'}}
+        >
+          <Stack
+            padding={2}
+            sx={{ display: "flex", textAlign: "justify", gap: "2rem" }}
+          >
+            <Typography sx={{ fontWeight: "900" }}>@{post?.autor}</Typography>
+            <Typography>{post?.description}</Typography>
+          </Stack>
+        </Box>
+
+        <Comments id={id}/>
+        
+      </Box>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default SinglePost
+export default SinglePost;

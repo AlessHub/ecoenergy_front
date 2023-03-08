@@ -69,7 +69,7 @@ export default function MediaCard({item}) {
             <StyledCardMedia component="img" image={baseUrl+item.image} alt="" />
             <Typography variant="h6">{item.title}</Typography>
             <Typography>{item.description}</Typography>
-            <Typography>{item.author}</Typography>
+            <Typography>{item.autor}</Typography>
             <Typography variant="caption">
               {new Date(item.created_at).toLocaleTimeString([], 
               { hour: '2-digit', minute: '2-digit', hour12: false })}

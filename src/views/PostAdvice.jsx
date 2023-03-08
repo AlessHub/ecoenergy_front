@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
+
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link as LinkMui, TextField, Button, Grid } from "@mui/material";
-import { Checkbox } from "@mui/material";
+
 import { postAdvice } from "../services/user-service";
 
 function PostAdvice() {
@@ -50,9 +50,7 @@ function PostAdvice() {
         sx={{
           p: 5,
           display: "flex",
-          margin: "auto",
-          // maxWidth: "500px",
-          // width: '80%',
+          margin: "auto",          
           flexDirection: "column",
           alignItems: "center",
           "& .MuiTextField-root": {

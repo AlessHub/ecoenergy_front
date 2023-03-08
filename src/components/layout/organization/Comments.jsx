@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import React,{useState,useEffect} from 'react'
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Pagination } from "@mui/material";
 
-import { forum } from "../../../services/user-service";
+import { getAllComment } from '../../../services/user-service';
+import PostComment from './PostComment';
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  color: theme.palette.text.primary,
-  maxWidth: 1000,
-  margin: "auto",
-  marginTop: theme.spacing(1),
-  marginBottom: theme.spacing(1),
-  padding: theme.spacing(2),
-}));
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    color: theme.palette.text.primary,
+    maxWidth: 1000,
+    margin: "auto",
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(2),
+  }));
+  
+  const StyledCardMedia = styled(CardMedia)({
+    width: 75,
+  });
 
-const StyledCardMedia = styled(CardMedia)({
-  width: 75,
-});
+function Comments({id}) {
 
-export default function MediaCard() {
-  const [forums, setForums] = useState([]);
-  const [page, setPage] = useState(1);
+    const [comments, setComments] = useState([]);
+  
 
   const baseUrl = import.meta.env.VITE_IMAGES_URL;
 
   useEffect(() => {
-    const getForums = async () => {
+    const getComments = async () => {
       try {
         const token = localStorage.getItem("token");
         const headers = {
@@ -41,28 +40,25 @@ export default function MediaCard() {
           "Content-Type": "application/json",
         };
 
-        const { data } = await forum({ headers });
-        setForums(data);
+        const { data } = await getAllComment({ headers });
+        setComments(data);
       } catch (error) {
         console.error(error);
       }
     };
-    getForums();
+    getComments();
   }, []);
 
-  const forumList = forums
-    .sort(
-      (a, b) =>
-        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    )
-    .slice((page - 1) * 5, page * 5);
+
 
   return (
-    <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "2rem" }}>
-      {forumList.map((forum) => (
-        <Link to={`/${forum.id}`}>
+
+   <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "2rem", minHeight:'50vh' }}>
+    <Typography sx={{fontSize:'1.2rem', fontWeight:'900'}}>COMMENTS</Typography>
+      {comments.map((comment) => (
+        
           <StyledCard
-            key={forum.id}
+            key={comment.id}
             sx={{
               display: "flex",
               gap: "1rem",
@@ -70,12 +66,12 @@ export default function MediaCard() {
               height: "12rem",
             }}
           >
-            <StyledCardMedia
+            {/* <StyledCardMedia
               component="img"
-              image={baseUrl + forum.image}
+              image={baseUrl + comment.image}
               alt="image"
               sx={{ width: "10rem", height: "10rem" }}
-            />
+            /> */}
 
             <Box
               sx={{
@@ -85,14 +81,14 @@ export default function MediaCard() {
                 paddingLeft: "1rem",
               }}
             >
-              <Typography variant="h6">{forum.title}</Typography>
-              <Typography>{forum.description}</Typography>
+              <Typography variant="h6">{comment.content}</Typography>
+              {/* <Typography>{comment.description}</Typography> */}
 
-              <Typography>@{forum.autor}</Typography>
+              <Typography>@{comment.autor}</Typography>
 
               <Typography variant="caption">
                 {(() => {
-                  const created = new Date(forum.created_at);
+                  const created = new Date(comment.created_at);
                   const now = new Date();
                   const diffMs = now - created;
                   const diffMins = Math.floor(diffMs / (1000 * 60));
@@ -106,15 +102,12 @@ export default function MediaCard() {
               </Typography>
             </Box>
           </StyledCard>
-        </Link>
+        
       ))}
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-        <Pagination
-          count={Math.ceil(forums.length / 5)}
-          page={page}
-          onChange={(event, value) => setPage(value)}
-        />
-      </Box>
+
+      <PostComment id={id}/>
     </Box>
-  );
+  )
 }
+
+export default Comments
