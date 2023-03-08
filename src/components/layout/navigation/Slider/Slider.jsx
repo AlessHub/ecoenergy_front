@@ -57,11 +57,11 @@ const Slider = () => {
             prevEl: ".swiper-button-prev",
           }}
           observeParents={true}
-          autoplay={{
-            delay: 1500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          // autoplay={{
+          //   delay: 1500,
+          //   disableOnInteraction: false,
+          //   pauseOnMouseEnter: true,
+          // }}
           modules={[FreeMode, Navigation, Autoplay]}
           grabCursor={true}
           loop={true}
@@ -72,11 +72,11 @@ const Slider = () => {
               spaceBetween: 10,
             },
             620: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 15,
             },
             1024: {
-              slidesPerView: 1,
+              slidesPerView: 3,
               spaceBetween: 30,
             },
             1200: {
@@ -85,7 +85,7 @@ const Slider = () => {
             }
           }}
         >
-          {forums.slice(0, 3).map((item, i) => (
+          {forums.slice(0, 6).map((item, i) => (
             <SwiperSlide key={item.id} className="swiperSlide">
               <Item item={item} />
             </SwiperSlide>

@@ -30,7 +30,7 @@ const ElectricityPrices = () => {
 
   useEffect(() => {
     if (priceNow["is-cheap"] && priceNow["is-under-avg"]) {
-      setPriceNowBgColor("main.success");
+      setPriceNowBgColor("main.primary");
       setPriceNowTextColor("main.secondary");
     } else if (!priceNow["is-cheap"] && priceNow["is-under-avg"]) {
       setPriceNowBgColor("main.warning");
@@ -48,7 +48,7 @@ const ElectricityPrices = () => {
 
   const headers = {
     headers: {
-      "x-cors-api-key": "temp_96f4c56fd3ea427dd7aa10a51badf9a9",
+      "x-cors-api-key": "temp_60f4b6691b98d4695b2cba8636278353",
     },
   }
 
@@ -185,16 +185,16 @@ const ElectricityPrices = () => {
           let bgColor, textColor;
           switch (true) {
             case !price["is-cheap"] && price["is-under-avg"]:
-              bgColor = "main.warning";
-              textColor = "main.secondary";
+              bgColor = "main.danger";
+              textColor = "white";
               break;
             case !price["is-cheap"] && !price["is-under-avg"]:
-              bgColor = "main.danger";
-              textColor = "main.secondary";
+              bgColor = "main.warning";
+              textColor = "white";
               break;
             default:
               bgColor = "main.primary";
-              textColor = "main.secondary";
+              textColor = "white";
           }
 
           return (

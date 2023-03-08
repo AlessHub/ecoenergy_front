@@ -16,6 +16,8 @@ import Advice from '../../views/Advice';
 import SinglePost from '../../views/SinglePost';
 
 
+import AdminDashBoard from '../../views/AdminDashBoard';
+
 
 function PublicRoute() {
   
@@ -39,7 +41,10 @@ function PublicRoute() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/postForum" element={<PostForum />} />
+
+          <Route path="/dashBoard" element={<AdminDashBoard />} />
           
+
           <Route path="/:id" element={<SinglePost />} />
 
           <Route path="/advice" element={<Advice />} />
