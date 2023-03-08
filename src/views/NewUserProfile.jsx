@@ -74,7 +74,7 @@ const NewUserProfile = () => {
           <Typography
           className="pol"
           sx={{ color: "white" }}>
-       Get Started 
+      Start Saving
         </Typography>
          
         </Container>
