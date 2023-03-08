@@ -11,6 +11,10 @@ import Home from '../../views/Home';
 import SignUp from '../../views/SignUp';
 import Login from '../../views/Login';
 import Advices from '../../views/Advices';
+import CommunityPolicy from '../../views/CommunityPolicy';
+import Congratulations from '../../views/Congratulations';
+import NewUserProfile from '../../views/NewUserProfile';
+
 
 export default class PublicRoute extends React.Component {
     render() {
@@ -21,6 +25,9 @@ export default class PublicRoute extends React.Component {
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/signup" element={<SignUp/>}/>
                 <Route exact path="/advices" element={<Advices/>}/>
+                <Route exact path="/CommunityPolicy" element={<CommunityPolicy/>}/>
+                <Route exact path="/Congratulations" element={<Congratulations/>}/>
+                <Route exact path="/NewUserProfile" element={<NewUserProfile/>}/>
             </Routes>
         </Router>
       );

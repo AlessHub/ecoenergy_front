@@ -19,7 +19,7 @@ const CommunityPolicy = () => {
           
         
         
-    <Container className="policycontainer" sx= {{ display:"flex",flexDirection:"column", Width:"50%",minHeight:"70%",  gap: "10px", bgcolor:"white", alignItems:"center"}}>
+    <Container className="policycontainer" sx= {{ display:"flex",flexDirection:"column", Width:"100vw",minHeight:"65%",  gap: "10px", bgcolor:"white", alignItems:"center"}}>
     <Typography className="commpol"  color="main.tertiary" variant="h4">Community Policy</Typography>
     
         <Typography className="pol" sx={{  color: "green", textAlign:"justify",marginTop:"20px" }} variant="p">

@@ -1,102 +1,108 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { TextField, Button } from "@mui/material";
+import React from "react";
+import { Container, Typography, Box, CardMedia } from "@mui/material";
+import { Link } from "react-router-dom";
+import AvatarPlaceholder from '../../src/assets/avatar_template.png'
+import NavLoggedIn from "../components/layout/navigation/Navbar/NavLoggedIn";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
+import Footer from "../components/layout/navigation/Footer";
 
-
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Box } from '@mui/material';
-import { FormatAlignJustify, Height } from '@mui/icons-material';
-import { height } from '@mui/system';
-import { Link } from 'react-router-dom';
-
-
- function NewUserProfile() {
+const NewUserProfile = () => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", bgcolor: "#5DB075", minHeight: "100vh", alignItems: "center"}}>
-    <Card sx={{ maxWidth: "80vw", height: "80vh", bgcolor: "white", borderRadius: 2, justifyContent:"center", alignItems:"center" }}>
+    <>
+      <NavLoggedIn />
+      
+      
+      <Container className="picsandname" 
+      sx={{
+        display: "flex",
+        height: "73vh",
+        width: "100vw",
+        flexDirection: "column",
+        gap: "0px",
+        alignItems:"center",
+        justifyContent:"center"
+      }}>
+       
+      <CardMedia
+        component="img"
+        alt="thumbnail"
+        image={AvatarPlaceholder}
+        sx={{
+          overflow:'none', 
+            zIndex:"1",
+            height: '340px',            
+            maxWidth: '300px',
+            mt:"70px"
+        
+            }}>
+              
+            </CardMedia>
+    
+    
+      
      
-        <CardContent sx={{ display: "flex",flexDirection: "column",alignItems:"center", justifyContent: "space-evenly", height:"25rem", mt: "10%"}}>
+        <Typography
+          className="name"
+          color="main.tertiary"
+          variant="h4"
+        >
+          Victoria Robertson
+        </Typography>
 
-        <Card className='circle' sx= {{ display:"flex",width: "30%",minHeight: "18%", flexDirection: "row",bgcolor: "red",justifyContent:"space-between",borderRadius:"50%"}}></Card>
-
-          <Typography variant="body2" color="text.secondary">
-          Victoria Pepino
-          </Typography>
+        <Typography
+          className="pol"
+          sx={{ color: "green", textAlign: "justify", marginBottom:"100px" }}>
+          Reduced carbon emission (value)
+        </Typography>
          
 
-          <Card className='circle' sx= {{ display:"flex",width: "30%",minHeight: "20%", flexDirection: "row",bgcolor: "yellow",justifyContent:"space-between",borderRadius:"50%"}}></Card>
-
-          <Card className='buttonContainer' sx= {{ display:"flex",width: "40vw",minHeight: "80vh", flexDirection: "row",bgcolor: "white",justifyContent:"space-between", alignItems:"center", }}>
-
-          <Link to="/">
-          <Button  
-           type="submit"
-           sx={{ width: "15vw",
-           textTransform: "capitalize",
-           backgroundColor: "main.primary",
-          "&:hover": {
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            boxShadow: "none",
-            color: "main.secondary",
-          },
-          "&:active": {
-            boxShadow: "none",
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            color: "main.secondary",
-          },
-          "&:focus": {
-            boxShadow: "0 0 0 0.2rem main.primary",
-          },
-        }}
-        variant="contained">
-        More Info
-      </Button >
-      </Link>
-   
-      
        
+        </Container>
+        <Container className="getstarted" 
+        sx={{ display:"flex",
       
-      <Link to="/">
-          <Button  
-          type="submit"
-          sx={{ width: "15vw",
-          textTransform: "capitalize",
-          backgroundColor: "main.primary",
-          "&:hover": {
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            boxShadow: "none",
-            color: "main.secondary",
-          },
-          "&:active": {
-            boxShadow: "none",
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            color: "main.secondary",
-          },
-          "&:focus": {
-            boxShadow: "0 0 0 0.2rem main.primary",
-          },
+        marginTop:"50px",
+        marginBottom:"100px",
+        height:"200px",
+        width:"200px",
+        borderRadius:"200px",
+        alignItems:"center",
+        justifyContent:"center",
+        display:"flex",
+        bgcolor:"main.primary",
+        color:"white"}}>
+          <Typography
+          className="pol"
+          sx={{ color: "white" }}>
+       Get Started 
+        </Typography>
+         
+        </Container>
+      
+        <Container
+        className="buttons"
+        sx={{
+          display: "flex",
+          height: "10vh",
+          width: "30vw",
+          flexDirection: "row",
+          gap: "2px",
+          alignItems:"center",
+          justifyContent:"center",
+          bgcolor:"none",
+          gap:"20px",
+          marginBottom:"40px"
         }}
-        variant="contained"
       >
-        More Info
-      </Button >
-      </Link>
-      </Card>
-    
-     
-        </CardContent>
+
+        <ButtonGreen text="Details" component={Link} to="/NavLoggedIn.jsx" />
+
+        <ButtonGreen text="Advice" component={Link} to="/NavLoggedIn.jsx" />
+        </Container>
       
-   
-    </Card>
-    
-    </Box>
+      <Footer />
+    </>
   );
-}
+};
 
 export default NewUserProfile;
-       
