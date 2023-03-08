@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import { TextField, Grid, Button, Box, Typography } from "@mui/material";
 
-import { postForum } from "../services/user-service";
+// import { postForum } from "../services/user-service";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 
 function PostForum() {
