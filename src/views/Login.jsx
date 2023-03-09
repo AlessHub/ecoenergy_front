@@ -1,23 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import LinkButton from "../components/layout/navigation/LinkButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link as LinkMui, TextField, Button } from "@mui/material";
+import {
+  Link as LinkMui,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,  
+} from "@mui/material";
 import { login } from "../services/user-service";
 import ButtonGreen from "../components/layout/navigation/ButtonGreen";
+
 
 const LoginMui = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [user, setUser] = useState(null); 
-
-  const navigate = useNavigate();
-
-  const [token, setToken] = useState("");
+  const [user, setUser] = useState(null);  
+  const navigate = useNavigate();  
+  const [token, setToken] = useState("");    
+  const [openModal, setOpenModal] = useState(false);
+  
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -30,6 +39,12 @@ const LoginMui = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const handleCloseModal = () => {
+    clearTimeout(timerRef.current);
+    setOpenModal(false);
+    navigate("/profile");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -37,15 +52,17 @@ const LoginMui = () => {
       setUser(data);
 
       if (data.token) {
-        localStorage.setItem("token", data.token);
-        navigate("/profile");
+        localStorage.setItem("token", data.token);       
+          setOpenModal(true);  
+          timerRef.current = setTimeout(handleCloseModal, 2000);          
+        
       } else {
         console.error("Token is missing from the response");
       }
     } catch (error) {
       console.error(error);
     }
-  };
+  }; 
 
   return (
     <>
@@ -130,6 +147,24 @@ const LoginMui = () => {
           />
         </Typography>
       </Box>
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <Box
+        sx={{
+          "&:hover": {
+            color: "main.primary",
+          },
+        }}
+        underline="none"
+        color="main.secondary"
+        >
+        <DialogTitle>Login Successful!</DialogTitle>
+        <DialogContent>
+          <p>You have successfully logged in.</p>
+        </DialogContent>        
+        </Box>
+      </Dialog>
+
     </>
   );
 };

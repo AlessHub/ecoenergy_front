@@ -54,7 +54,7 @@ const Home = () => {
     EcoEnergy
   </Typography>
 </Box>
-<Typography sx={{ fontWeight: "800", margin: 5, textAlign:'center' }} variant="body1">
+<Typography sx={{ fontWeight: "800", margin: 5, textAlign:'justify' }} variant="body1">
       We are dedicated to providing effective solutions to reduce energy and water consumption to people who need to reduce the bills. Our mission is to educate and provide practical tools so that people can make conscious and responsible decisions in their daily consumption, promoting a sustainable lifestyle committed to caring for the planet.
       </Typography>
       

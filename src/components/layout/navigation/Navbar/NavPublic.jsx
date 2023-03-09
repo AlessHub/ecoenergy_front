@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
-import { Toolbar, Stack, Button, Container, AppBar } from "@mui/material";
-import { Link as LinkMui } from "@mui/material";
+import { Toolbar, Stack, AppBar } from "@mui/material";
+import {
+  Link as LinkMui, 
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,  
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -17,6 +23,8 @@ import { logout } from "../../../../services/user-service";
 
 const NavPublic = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [openModal, setOpenModal] = useState(false);  
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -94,11 +102,18 @@ const NavPublic = () => {
       console.log(data);
       console.log(token);
       localStorage.removeItem("token");
-      navigate("/");
+      setOpenModal(true);  
+          timerRef.current = setTimeout(handleCloseModal, 2000); 
     } catch (error) {
       console.error(error);
     }
     window.location.reload();
+  };
+
+  const handleCloseModal = () => {
+    clearTimeout(timerRef.current);
+    setOpenModal(false);
+    navigate("/");
   };
 
   return (
@@ -210,9 +225,9 @@ const NavPublic = () => {
                 <Box
                   sx={{
                     flexGrow: 1,
+                    gap:'2rem',
                     justifyContent: "flex-end",
-                    display: { xs: "flex" },
-                    gap: '2rem'
+                    display: { xs: "flex"},
                   }}
                 >
                   <LinkReact to="/login">
@@ -319,6 +334,22 @@ const NavPublic = () => {
           </Menu>
         </Toolbar>
       </AppBar>
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <Box
+        sx={{
+          "&:hover": {
+            color: "main.primary",
+          },
+        }}
+        underline="none"
+        color="main.secondary"
+        >
+        <DialogTitle>Logout successfully!</DialogTitle>
+        <DialogContent>
+          <p></p>
+        </DialogContent>        
+        </Box>
+      </Dialog>
     </div>
   );
 };

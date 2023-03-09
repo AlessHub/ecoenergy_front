@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Link as LinkMui, TextField, Button, Grid } from "@mui/material";
+import {
+  Link as LinkMui,
+  TextField,
+  Typography,
+  Grid,
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
 import { postAdvice } from "../../../services/user-service";
 import ButtonGreen from "../navigation/ButtonGreen";
 
@@ -14,8 +22,9 @@ function PostAdvice() {
   });
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const timerRef = useRef(null);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -31,10 +40,17 @@ function PostAdvice() {
       };
       const { data } = await postAdvice(formData, { headers });
       setUser(data.user);
-      navigate("/advice");
+      setOpenModal(true);
+      timerRef.current = setTimeout(handleCloseModal, 2000);
     } catch (error) {
       setError(error);
     }
+  };
+
+  const handleCloseModal = () => {
+    clearTimeout(timerRef.current);
+    setOpenModal(false);
+    navigate("/advice");
   };
 
   return (
@@ -107,6 +123,23 @@ function PostAdvice() {
         <ButtonGreen
             text='Add'
           />
+        
+        <Dialog open={openModal} onClose={handleCloseModal}>
+          <Box
+            sx={{
+              "&:hover": {
+                color: "main.primary",
+              },
+            }}
+            underline="none"
+            color="main.secondary"
+          >
+            <DialogTitle>Advice created!</DialogTitle>
+            <DialogContent>
+              <p></p>
+            </DialogContent>
+          </Box>
+        </Dialog>
       </Box>
       {error && (
         <div className="mt-6 text-center text-red-500">
