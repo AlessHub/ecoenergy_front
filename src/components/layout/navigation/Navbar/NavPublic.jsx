@@ -98,6 +98,7 @@ const NavPublic = () => {
     } catch (error) {
       console.error(error);
     }
+    window.location.reload();
   };
 
   return (
@@ -198,7 +199,7 @@ const NavPublic = () => {
                   </LinkReact>
 
                   <Tooltip title="Logout">
-                    <Button onClick={handleLogout} sx={{ color: "white" }} href='/'>
+              <Button onClick={handleLogout} sx={{ color: "white" }} >
                       <Avatar sx={{ bgcolor: "white", color: "main.tertiary" }}>
                         <LogoutIcon />
                       </Avatar>

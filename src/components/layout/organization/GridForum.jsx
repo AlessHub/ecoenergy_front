@@ -23,8 +23,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 
 
+
 const handleDelete = (id) => {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ const handleDelete = (id) => {
   deleteForum(id,{headers})
     .then((response) => {
       console.log("Deleted succesfully");
-      navigate('/forum')
+      
     })
     .catch((error) => {
       console.error(error);
