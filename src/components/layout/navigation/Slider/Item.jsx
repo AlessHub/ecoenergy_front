@@ -48,9 +48,9 @@ export default function Item({ item }) {
                 padding: "10px",
               }}
             >
-              <Typography variant="h6">{item.title}</Typography>
+              <Typography variant="h6">{item.title} </Typography>
               
-              <Typography>@{item.autor}</Typography>
+              <Typography>@{item.autor} </Typography>
               <Typography variant="caption">
               {(() => {
                 const created = new Date(item.created_at);

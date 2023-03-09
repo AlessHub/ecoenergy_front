@@ -39,12 +39,12 @@ const NavPublic = () => {
       href: "/dashBoard",
     },
     {
-      text: "Logout",
-      href: "/",
-    },
-    {
       text: "Forum",
       href: "/forum",
+    },
+    {
+      text: "Logout",
+      href: "/",
     },
   ];
 

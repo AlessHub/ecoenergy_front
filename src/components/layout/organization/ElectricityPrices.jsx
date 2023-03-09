@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
+
 const ElectricityPrices = () => {
 
   const formatHour = (hour) => {
@@ -106,10 +107,10 @@ const ElectricityPrices = () => {
     <>
       <Typography
         color="main.tertiary"
-        sx={{ mt: "3rem", mb: "1rem" }}
+        sx={{ mt: "3rem", mb: "1rem", fontWeight: 'bold' }}
         variant="h4"
       >
-        Today's electricity prices
+        Today's Electricity Prices
       </Typography>
       <Box
         bgcolor={priceNowBgColor}
@@ -236,7 +237,7 @@ const ElectricityPrices = () => {
           color="success"
           onChange={handlePageChange}
           size={isTablet ? "medium" : "small"}
-          sx={{ mb: 4 }}
+          sx={{ mb: 4}}
           renderItem={(item) => {
             if (item.type === "next") {
               return (
