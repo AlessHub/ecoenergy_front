@@ -3,14 +3,14 @@ import { Button } from "@mui/material";
 import { Link} from "@mui/material";
 import { Link as LinkReact } from "react-router-dom";
 
-const ButtonGreen = ({ text }) => {
+const ButtonGreen = ({ text, to }) => {
   return (
     <>
       <Button
         variant="contained"
         sx={{
           width: "fit-content",
-          margin:'2rem',
+          margin:'0.5rem',
           textTransform: "capitalize",
           backgroundColor: "main.buttons",
           color: "main.secondary",
@@ -31,7 +31,7 @@ const ButtonGreen = ({ text }) => {
           },
         }}
         type="submit"
-        href="/advice"
+        href={to}
       >
         {text}
       </Button>

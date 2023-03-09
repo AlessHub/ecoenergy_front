@@ -8,7 +8,6 @@ import ElectricityPrices from "../components/layout/organization/ElectricityPric
 import Box from '@mui/material/Box';
 
 
-
 const Home = () => {
   
   return (

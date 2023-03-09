@@ -5,6 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { BottomNavigationAction } from "@mui/material";
 import { Box } from "@mui/system";
+import LinkButton from "./LinkButton";
 
 const Footer = () => {
   return (
@@ -32,8 +33,8 @@ const Footer = () => {
             color="main.secondary"
           >
             <Box color="main.primary">Links</Box>
-            <Box>Community Policy</Box>
-            <Box>Contact</Box>
+            <LinkButton to='/communityPolicy' text='Community Policy'color='main.secondary'/>
+            <LinkButton to='mailto: abc@example.com' text='Contact'color='main.secondary'/>
           </Box>
           <Box
             
@@ -41,8 +42,7 @@ const Footer = () => {
             color="main.secondary"
           >
             <Box color="main.primary">About us</Box>
-            <Box>Our works</Box>
-            <Box>FAQ</Box>
+            <LinkButton to='/' text='Our Works'color='main.secondary'/>
           </Box>
           <Box sx={{ fontSize: 12 }} color="main.primary">
             <Box>Social Media</Box>

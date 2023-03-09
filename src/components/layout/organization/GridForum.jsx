@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Pagination } from "@mui/material";
 import { deleteForum, forum } from "../../../services/user-service";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -20,6 +21,9 @@ const StyledCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
+
+
+
 const handleDelete = (id) => {
   const token = localStorage.getItem("token");
   const headers = {
@@ -27,10 +31,12 @@ const handleDelete = (id) => {
     "Content-Type": "application/json",
   };
   
+  
 
   deleteForum(id,{headers})
     .then((response) => {
       console.log("Deleted succesfully");
+      
     })
     .catch((error) => {
       console.error(error);

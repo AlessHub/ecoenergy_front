@@ -12,6 +12,7 @@ import {
   DialogContent,
 } from "@mui/material";
 import { postAdvice } from "../../../services/user-service";
+import ButtonGreen from "../navigation/ButtonGreen";
 
 function PostAdvice() {
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ function PostAdvice() {
         onSubmit={handleSubmit}
       >
         <Typography color="main.tertiary" sx={{ mb: 4 }} variant="h3">
-          Add an advice
+          Add an Advice
         </Typography>
 
         <Grid container spacing={2}>
@@ -119,32 +120,10 @@ function PostAdvice() {
           </Grid>
         </Grid>
 
-        <Button
-          type="submit"
-          sx={{
-            textTransform: "capitalize",
-            backgroundColor: "main.tertiary",
-
-            "&:hover": {
-              backgroundColor: "main.primary",
-              borderColor: "main.primary",
-              boxShadow: "none",
-              color: "main.secondary",
-            },
-            "&:active": {
-              boxShadow: "none",
-              backgroundColor: "main.primary",
-              borderColor: "main.primary",
-              color: "main.secondary",
-            },
-            "&:focus": {
-              boxShadow: "0 0 0 0.2rem main.primary",
-            },
-          }}
-          variant="contained"
-        >
-          Add
-        </Button>
+        <ButtonGreen
+            text='Add'
+          />
+        
         <Dialog open={openModal} onClose={handleCloseModal}>
           <Box
             sx={{

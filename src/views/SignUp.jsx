@@ -15,6 +15,7 @@ import {
 import { Checkbox } from "@mui/material";
 import LinkButton from "../components/layout/navigation/LinkButton";
 import { register } from "../services/user-service";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -24,9 +25,9 @@ const SignUp = () => {
   });
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();  const [openModal, setOpenModal] = useState(false);  
+  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
   const timerRef = useRef(null);
- 
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -37,7 +38,6 @@ const SignUp = () => {
     setOpenModal(false);
     navigate("/profile");
   };
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,8 +55,8 @@ const SignUp = () => {
 
       setUser(data.user);
       localStorage.setItem("token", data.token);
-      setOpenModal(true);  
-      timerRef.current = setTimeout(handleCloseModal, 2000);   
+      setOpenModal(true);
+      timerRef.current = setTimeout(handleCloseModal, 2000);
     } catch (error) {
       setError(error.data);
     }
@@ -133,31 +133,7 @@ const SignUp = () => {
             onChange={handleChange}
             required
           />
-          <Button
-            type="submit"
-            sx={{
-              textTransform: "capitalize",
-              backgroundColor: "main.tertiary",
-              "&:hover": {
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                boxShadow: "none",
-                color: "main.secondary",
-              },
-              "&:active": {
-                boxShadow: "none",
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                color: "main.secondary",
-              },
-              "&:focus": {
-                boxShadow: "0 0 0 0.2rem main.primary",
-              },
-            }}
-            variant="contained"
-          >
-            Sign Up
-          </Button>
+          <ButtonGreen text="Sign Up" />
         </Box>
 
         <Box
@@ -192,37 +168,26 @@ const SignUp = () => {
           variant="p"
         >
           Already registered?{" "}
-          <LinkButton
-            text="Log In"
-            to="/login"
-            sx={{
-              "&:hover": {
-                color: "main.tertiary",
-              },
-            }}
-            underline="none"
-            color="main.secondary"
-          />
+          <LinkButton text="Log In" to="/login" color="main.buttons" />
         </Typography>
       </Box>
 
       <Dialog open={openModal} onClose={handleCloseModal}>
         <Box
-        sx={{
-          "&:hover": {
-            color: "main.primary",
-          },
-        }}
-        underline="none"
-        color="main.secondary"
+          sx={{
+            "&:hover": {
+              color: "main.primary",
+            },
+          }}
+          underline="none"
+          color="main.secondary"
         >
-        <DialogTitle>Register Successful!</DialogTitle>
-        <DialogContent>
-          <p>You have successfully registered.</p>
-        </DialogContent>        
+          <DialogTitle>Register Successful!</DialogTitle>
+          <DialogContent>
+            <p>You have successfully registered.</p>
+          </DialogContent>
         </Box>
       </Dialog>
-
     </>
   );
 };

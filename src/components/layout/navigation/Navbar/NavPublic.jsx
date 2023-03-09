@@ -107,6 +107,7 @@ const NavPublic = () => {
     } catch (error) {
       console.error(error);
     }
+    window.location.reload();
   };
 
   const handleCloseModal = () => {
@@ -132,7 +133,16 @@ const NavPublic = () => {
               />
             </LinkReact>
             <LinkReact to="/">
-              <Typography color="main.primary">EcoEnergy</Typography>
+              <Typography 
+              color="white" 
+              fontWeight='bold' 
+              fontSize={18}
+              sx={{ "&:hover": {
+                color: "main.primary",}}}
+              >
+                EcoEnergy
+                
+                </Typography>
             </LinkReact>
           </Box>
 
@@ -204,7 +214,7 @@ const NavPublic = () => {
                   </LinkReact>
 
                   <Tooltip title="Logout">
-                    <Button onClick={handleLogout} sx={{ color: "white" }}>
+              <Button onClick={handleLogout} sx={{ color: "white" }} >
                       <Avatar sx={{ bgcolor: "white", color: "main.tertiary" }}>
                         <LogoutIcon />
                       </Avatar>

@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { forum } from "../../../../services/user-service";
+import LinkButton from "../LinkButton";
 
 
 const Slider = () => {
@@ -49,14 +50,14 @@ const Slider = () => {
     <>
       {isLoggedIn ? (
       <Container
-        sx={{
+        sx={{ mb:'2rem',
           maxWidth: { xs: "250px", sm: "700px", md: "900px", xl: "1200px" },
         }}
       >
         <Typography color="main.tertiary"
         sx={{ mt: "3rem", mb: "1rem", fontWeight: 'bold' }}
         variant="h4">New Forum Posts</Typography>
-        <Swiper
+        <Swiper 
           freeMode={true}
           observer={true}
           navigation={{
@@ -88,34 +89,18 @@ const Slider = () => {
           }}
         >
           {forums.slice(0, 6).map((item, i) => (
-            <SwiperSlide key={item.id} className="swiperSlide">
+            <SwiperSlide  key={item.id} className="swiperSlide">
               <Item item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
-        <Link
-          href="/forum"
-          underline="none"
-          variant="text"
-        >
-          <Box
-          color="main.buttons"
-          sx={{
-            mr: 3,
-            mt: 2,
-            fontWeight:'900',
-            display: "flex",
-            justifyContent: "flex-end",
-            "&:hover": {
-              color: "main.tertiary",
-            },
-          }}
-          
-          >
-          More...
-
-          </Box>
-        </Link>
+      
+        <LinkButton
+            text="More Posts..."
+            to="/forum"
+            color='main.buttons'
+          />
+      
       </Container>
       ):(<div></div>)}
     </>

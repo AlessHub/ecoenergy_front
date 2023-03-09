@@ -72,15 +72,15 @@ function Profile() {
             mt: "20px",
           }}
         />
-        <Typography color="main.tertiary" variant="h4">
+        <Typography color="main.tertiary" variant="h4" fontWeight= 'bold'>
           Victoria Robertson
         </Typography>
-        <Typography color="main.tertiary" sx={{ mb: "2rem" }} variant="h6">
+        <Typography color="main.tertiary" sx={{ mb: "5rem" }} variant="h6">
           Reduced carbon emission (value)
         </Typography>
       </Container>
       <Container sx={{ p: { xs: 0, sm: 0, md: 20, lg: 10, xl: 4 } }}>
-        <Typography color="main.tertiary" variant="h5">
+        <Typography color="main.tertiary" variant="h5" fontWeight= 'bold'>
           Monthly Costs
         </Typography>
 

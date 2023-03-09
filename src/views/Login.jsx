@@ -13,6 +13,7 @@ import {
   DialogContent,  
 } from "@mui/material";
 import { login } from "../services/user-service";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 
 
 const LoginMui = () => {
@@ -123,45 +124,12 @@ const LoginMui = () => {
             required
           />
 
-          <Button
-            type="submit"
-            sx={{
-              textTransform: "capitalize",
-              backgroundColor: "main.tertiary",
-
-              "&:hover": {
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                boxShadow: "none",
-                color: "main.secondary",
-              },
-              "&:active": {
-                boxShadow: "none",
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                color: "main.secondary",
-              },
-              "&:focus": {
-                boxShadow: "0 0 0 0.2rem main.primary",
-              },
-            }}
-            variant="contained"
-          >
-            Login
-          </Button>
+          <ButtonGreen
+            text='Log In'
+          />
         </Box>
         <Typography variant="p">
-          <LinkButton
-            text="Forgot your password?"
-            to="/"
-            sx={{
-              "&:hover": {
-                color: "main.tertiary",
-              },
-            }}
-            underline="none"
-            color="main.secondary"
-          />
+         
         </Typography>
         <Typography
           sx={{
@@ -175,13 +143,7 @@ const LoginMui = () => {
           <LinkButton
             text="Sign Up"
             to="/signup"
-            sx={{
-              "&:hover": {
-                color: "main.tertiary",
-              },
-            }}
-            underline="none"
-            color="main.secondary"
+            color='main.buttons'
           />
         </Typography>
       </Box>
