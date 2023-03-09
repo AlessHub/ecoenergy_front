@@ -26,7 +26,7 @@ const NavPublic = () => {
   const [openModal, setOpenModal] = useState(false);
   const timerRef = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
