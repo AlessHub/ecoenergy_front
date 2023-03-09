@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link as LinkMui, TextField, Button, Grid } from "@mui/material";
-import { postAdvice } from "../../../services/user-service"
+import { postAdvice } from "../../../services/user-service";
 
 function PostAdvice() {
   const [formData, setFormData] = useState({
@@ -37,7 +35,6 @@ function PostAdvice() {
       setError(error);
     }
   };
-   
 
   return (
     <>
@@ -47,8 +44,6 @@ function PostAdvice() {
           p: 5,
           display: "flex",
           margin: "auto",
-          // maxWidth: "500px",
-          // width: '80%',
           flexDirection: "column",
           alignItems: "center",
           "& .MuiTextField-root": {

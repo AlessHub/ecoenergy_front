@@ -1,18 +1,14 @@
 import React from "react";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import Slider from "../components/layout/navigation/Slider/Slider";
-import { useState } from "react";
-import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
-import Footer from "../components/layout/navigation/Footer";
-import ElectricityPrices from "../components/layout/organization/ElectricityPrices";
-import LinkButton from "../components/layout/navigation/LinkButton";
 import ButtonGreen from "../components/layout/navigation/ButtonGreen";
+import Footer from "../components/layout/navigation/Footer";
+import { Typography } from "@mui/material";
+import ElectricityPrices from "../components/layout/organization/ElectricityPrices";
+
 
 const Home = () => {
-  const [isLogin, setIsLogin] = useState(true);
   
-
   return (
     <>
     <div>
@@ -20,44 +16,17 @@ const Home = () => {
       <Typography
         sx={{ fontWeight: "bold", mt: 1 }}
         variant="h2"
-        color="main.tertiary"
+        color="rgba(13, 105, 66, 0.65)"
       >
         EcoEnergy
-      </Typography>
-      <Typography sx={{ fontWeight: "500", mt: 3 }} variant="body1">
-        Consequat velit qui adipisicing sunt do reprehenderit ad la Consequat
-        velit qui adipisicing sunt.
       </Typography>
 
       <Slider />
       <ButtonGreen text='Get Started'/>
-      {/* <Button
-        variant="contained"
-        sx={{
-          mt:2,
-          mb: 5,
-          textTransform: 'capitalize',
-          backgroundColor: "main.primary",
-          "&:hover": {
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            boxShadow: "none",
-            color: "main.secondary"
-          },
-          "&:active": {
-            boxShadow: "none",
-            backgroundColor: "main.primary",
-            borderColor: "main.primary",
-            color: "main.secondary"
-          },
-          "&:focus": {
-            boxShadow: "0 0 0 0.2rem main.primary",
-          },
-        }}
-        href="#contained-buttons"
-      >
-        Get Started
-      </Button> */}
+      <Typography sx={{ fontWeight: "800", margin: 5, textAlign:'justify' }} variant="body1">
+      We are dedicated to providing effective solutions to reduce energy and water consumption in homes and businesses. Our mission is to educate and provide practical tools so that people can make conscious and responsible decisions in their daily consumption, promoting a sustainable lifestyle committed to caring for the planet.
+      </Typography>
+      
       <ElectricityPrices/>
       <Footer/>
       </div>

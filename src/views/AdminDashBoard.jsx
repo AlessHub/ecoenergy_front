@@ -1,14 +1,14 @@
-import React from 'react'
-import NavPublic from '../components/layout/navigation/Navbar/NavPublic'
-import AdminSideBar from '../components/layout/navigation/AdminSideBar'
+import React from "react";
+import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+import AdminSideBar from "../components/layout/navigation/AdminSideBar";
 
 const AdminDashBoard = () => {
   return (
     <>
-    <NavPublic/>
-    <AdminSideBar/>
+      <NavPublic />
+      <AdminSideBar />
     </>
-  )
-}
+  );
+};
 
-export default AdminDashBoard
+export default AdminDashBoard;

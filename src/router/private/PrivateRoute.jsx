@@ -1,4 +1,3 @@
-
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = ({ component: component, ...rest }) => {
@@ -7,4 +6,3 @@ const PrivateRoute = ({ component: component, ...rest }) => {
 };
 
 export default PrivateRoute;
-

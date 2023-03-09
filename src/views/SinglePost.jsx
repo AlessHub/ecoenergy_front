@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+import Comments from "../components/layout/organization/Comments";
 import Footer from "../components/layout/navigation/Footer";
-
 import { Link, useParams } from "react-router-dom";
-
 import CardMedia from "@mui/material/CardMedia";
 import { Box } from "@mui/system";
 import { Stack, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-
 import { forumSingle } from "../services/user-service";
-import Comments from "../components/layout/organization/Comments";
 
 function SinglePost() {
   const baseUrl = import.meta.env.VITE_IMAGES_URL;

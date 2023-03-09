@@ -1,18 +1,14 @@
-
-import React from 'react';
-import PostAdviceForm from '../components/layout/organization/PostAdviceForm';
-import NavPublic from '../components/layout/navigation/Navbar/NavPublic';
-
+import React from "react";
+import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
+import PostAdviceForm from "../components/layout/organization/PostAdviceForm";
 
 const PostAdvice = () => {
   return (
     <>
-
-    <NavPublic />
-      <PostAdviceForm/>
-
+      <NavPublic />
+      <PostAdviceForm />
     </>
-  )
-}
+  );
+};
 
-export default PostAdvice
+export default PostAdvice;

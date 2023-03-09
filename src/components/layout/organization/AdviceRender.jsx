@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import TabsChoice from "../../layout/navigation/TabsChoice.jsx";
 import CardAdvice from "../../layout/organization/CardAdvice";
-
-import { adviceAll } from "../../../services/user-service";
-
 import { Typography, Box } from "@mui/material";
+import { adviceAll } from "../../../services/user-service";
 
 const AdviceRender = () => {
   const [value, setValue] = useState(0);
