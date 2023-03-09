@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
-import { TextField, Grid, Button, Box, Typography } from "@mui/material";
-import swal from "sweetalert";
+import {
+  Link as LinkMui,
+  TextField,
+  Typography,
+  Grid,
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import { postForum } from "../services/user-service";
 
 function PostForum() {
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const timerRef = useRef(null);
 
   const {
     register,
@@ -24,8 +35,15 @@ function PostForum() {
     };
 
     const { data } = await postForum(formData, { headers });
+    setOpenModal(true);
+    timerRef.current = setTimeout(handleCloseModal, 2000);
+    
+  };
 
-    console.log("data form ", data.data);
+  const handleCloseModal = () => {
+    clearTimeout(timerRef.current);
+    setOpenModal(false);
+    navigate("/forum");
   };
 
   const customSubmit = (data) => {
@@ -40,10 +58,7 @@ function PostForum() {
     formData.append("image", data.image[0], data.image[0].name);
     formData.append("user_id", user_id);
 
-    handleSubmitPost(formData);
-
-    swal("Submitted form!", "Successful validation", "success");
-    navigate("/forum");
+    handleSubmitPost(formData);  
   };
 
   return (
@@ -189,6 +204,22 @@ function PostForum() {
           Send
         </Button>
       </Box>
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <Box
+        sx={{
+          "&:hover": {
+            color: "main.primary",
+          },
+        }}
+        underline="none"
+        color="main.secondary"
+        >
+        <DialogTitle>Post created!</DialogTitle>
+        <DialogContent>
+          <p></p>
+        </DialogContent>        
+        </Box>
+      </Dialog>
     </>
   );
 }

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import NavPublic from "../components/layout/navigation/Navbar/NavPublic";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link as LinkMui, TextField, Button } from "@mui/material";
+import {
+  Link as LinkMui,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { Checkbox } from "@mui/material";
 import LinkButton from "../components/layout/navigation/LinkButton";
 import { register } from "../services/user-service";
@@ -16,12 +24,20 @@ const SignUp = () => {
   });
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
-  const navigate = useNavigate();
+  const navigate = useNavigate();  const [openModal, setOpenModal] = useState(false);  
+  const timerRef = useRef(null);
+ 
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleCloseModal = () => {
+    clearTimeout(timerRef.current);
+    setOpenModal(false);
+    navigate("/profile");
+  };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +55,8 @@ const SignUp = () => {
 
       setUser(data.user);
       localStorage.setItem("token", data.token);
-      navigate("/profile");
+      setOpenModal(true);  
+      timerRef.current = setTimeout(handleCloseModal, 2000);   
     } catch (error) {
       setError(error.data);
     }
@@ -120,7 +137,7 @@ const SignUp = () => {
             type="submit"
             sx={{
               textTransform: "capitalize",
-              backgroundColor: "main.tertiary",              
+              backgroundColor: "main.tertiary",
               "&:hover": {
                 backgroundColor: "main.primary",
                 borderColor: "main.primary",
@@ -188,6 +205,24 @@ const SignUp = () => {
           />
         </Typography>
       </Box>
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <Box
+        sx={{
+          "&:hover": {
+            color: "main.primary",
+          },
+        }}
+        underline="none"
+        color="main.secondary"
+        >
+        <DialogTitle>Register Successful!</DialogTitle>
+        <DialogContent>
+          <p>You have successfully registered.</p>
+        </DialogContent>        
+        </Box>
+      </Dialog>
+
     </>
   );
 };

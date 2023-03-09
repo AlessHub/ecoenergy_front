@@ -35,6 +35,7 @@ const handleDelete = (id) => {
     .catch((error) => {
       console.error(error);
     });
+    
 };
 
 
