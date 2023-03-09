@@ -14,7 +14,7 @@ const Home = () => {
     <div>
     <NavPublic />
       <Typography
-        sx={{ fontWeight: "bold", mt: 1 }}
+        sx={{ fontWeight: "bold", margin: 5 }}
         variant="h2"
         color="rgba(13, 105, 66, 0.65)"
       >
@@ -24,7 +24,7 @@ const Home = () => {
       <Slider />
       <ButtonGreen text='Get Started'/>
       <Typography sx={{ fontWeight: "800", margin: 5, textAlign:'justify' }} variant="body1">
-      We are dedicated to providing effective solutions to reduce energy and water consumption in homes and businesses. Our mission is to educate and provide practical tools so that people can make conscious and responsible decisions in their daily consumption, promoting a sustainable lifestyle committed to caring for the planet.
+      We are dedicated to providing effective solutions to reduce energy and water consumption to people who need to reduce the bills. Our mission is to educate and provide practical tools so that people can make conscious and responsible decisions in their daily consumption, promoting a sustainable lifestyle committed to caring for the planet.
       </Typography>
       
       <ElectricityPrices/>

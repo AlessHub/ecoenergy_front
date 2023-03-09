@@ -52,11 +52,18 @@ export default function Item({ item }) {
               
               <Typography>@{item.autor}</Typography>
               <Typography variant="caption">
-                {new Date(item.created_at).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: false,
-                })}
+              {(() => {
+                const created = new Date(item.created_at);
+                const now = new Date();
+                const diffMs = now - created;
+                const diffMins = Math.floor(diffMs / (1000 * 60));
+                const diffHours = Math.floor(diffMins / 60);
+                if (diffMins < 60) {
+                  return `${diffMins} min ago`;
+                } else {
+                  return `${diffHours} h ago`;
+                }
+              })()}
               </Typography>
             </Box>
           </Box>
