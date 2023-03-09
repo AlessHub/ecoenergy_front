@@ -200,8 +200,9 @@ const NavPublic = () => {
                 <Box
                   sx={{
                     flexGrow: 1,
+                    gap:'2rem',
                     justifyContent: "flex-end",
-                    display: { xs: "flex", sm: "none", md: "none" },
+                    display: { xs: "flex"},
                   }}
                 >
                   <LinkReact to="/login">
