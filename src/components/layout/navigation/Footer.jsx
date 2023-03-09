@@ -12,8 +12,7 @@ const Footer = () => {
       <BottomNavigation
 
         sx={{ minHeight: "100px", width: "100%", marginTop: 2 }}
-        showLabels
-
+        
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
@@ -27,25 +26,25 @@ const Footer = () => {
             pr: 0,
           }}
         >
-          <Typography
-            textAlign="left"
-            sx={{ fontSize: 12 }}
+          <Box
+            
+            sx={{ fontSize: 12, textAlign:"left" }}
             color="main.secondary"
           >
-            <Box color="main.tertiary">Links</Box>
+            <Box color="main.secondary">Links</Box>
             <Box>Community Policy</Box>
             <Box>Contact</Box>
-          </Typography>
-          <Typography
-            textAlign="left"
-            sx={{ fontSize: 12 }}
+          </Box>
+          <Box
+            
+            sx={{ fontSize: 12, textAlign:"left" }}
             color="main.secondary"
           >
-            <Box color="main.tertiary">About us</Box>
+            <Box color="main.secondary">About us</Box>
             <Box>Our works</Box>
             <Box>FAQ</Box>
-          </Typography>
-          <Typography sx={{ fontSize: 12 }} color="main.tertiary">
+          </Box>
+          <Box sx={{ fontSize: 12 }} color="main.secondary">
             <Box>Social Media</Box>
             <Box>
               <BottomNavigationAction
@@ -61,7 +60,7 @@ const Footer = () => {
                 icon={<InstagramIcon />}
               />
             </Box>
-          </Typography>
+          </Box>
         </Container>
       </BottomNavigation>
     </>

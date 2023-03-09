@@ -1,8 +1,7 @@
 import React from "react";
 import {
   Box,
-  Typography,
-  Container,
+  Typography, 
   useTheme,
   useMediaQuery,
   PaginationItem,
@@ -11,7 +10,9 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
 const ElectricityPrices = () => {
+
   const formatHour = (hour) => {
     // Esto nos dara una string vacia si el lenght es menor de 2, y sino sacará los 2 primeros para obtener la hora
     // de esta manera el test funcionará en Jest
@@ -30,7 +31,7 @@ const ElectricityPrices = () => {
 
   useEffect(() => {
     if (priceNow["is-cheap"] && priceNow["is-under-avg"]) {
-      setPriceNowBgColor("main.success");
+      setPriceNowBgColor("main.primary");
       setPriceNowTextColor("main.secondary");
     } else if (!priceNow["is-cheap"] && priceNow["is-under-avg"]) {
       setPriceNowBgColor("main.warning");
@@ -41,32 +42,31 @@ const ElectricityPrices = () => {
     }
   }, [priceNow]);
 
+  const API_URL_NOW =
+    "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB";
 
-  const API_URL_NOW = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/now?zone=PCB"
-
-  const API_URL_ALL = "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB"
+  const API_URL_ALL =
+    "https://proxy.cors.sh/https://api.preciodelaluz.org/v1/prices/all?zone=PCB";
 
   const headers = {
     headers: {
-      "x-cors-api-key": "temp_96f4c56fd3ea427dd7aa10a51badf9a9",
+      "x-cors-api-key": "temp_60f4b6691b98d4695b2cba8636278353",
     },
-  }
-
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [responseNow, responseAll] = await Promise.all([
           axios.get(API_URL_NOW, headers),
-          axios.get(API_URL_ALL, headers)
+          axios.get(API_URL_ALL, headers),
         ]);
         setPriceNow(responseNow.data);
         setPrices(responseAll.data);
       } catch (error) {
         console.log(error.message);
       }
-    }
+    };
     fetchData();
   });
 
@@ -105,10 +105,9 @@ const ElectricityPrices = () => {
   return (
     <>
       <Typography
-        variant="h5"
         color="main.tertiary"
-        sx={{ mb: 2 }}
-        fontWeight={600}
+        sx={{ mt: "3rem", mb: "1rem" }}
+        variant="h4"
       >
         Today's electricity prices
       </Typography>
@@ -135,7 +134,10 @@ const ElectricityPrices = () => {
               outlineOffset: "10px",
             }}
           >
-            <Typography data-testid="price-now" sx={{ fontSize: "0.75rem", mb: 1, mt: 0.8 }}>
+            <Typography
+              data-testid="price-now"
+              sx={{ fontSize: "0.75rem", mb: 1, mt: 0.8 }}
+            >
               Price now
             </Typography>
             <Typography>
@@ -188,16 +190,16 @@ const ElectricityPrices = () => {
           let bgColor, textColor;
           switch (true) {
             case !price["is-cheap"] && price["is-under-avg"]:
-              bgColor = "main.warning";
-              textColor = "main.secondary";
+              bgColor = "main.danger";
+              textColor = "white";
               break;
             case !price["is-cheap"] && !price["is-under-avg"]:
-              bgColor = "main.danger";
-              textColor = "main.secondary";
+              bgColor = "main.warning";
+              textColor = "white";
               break;
             default:
               bgColor = "main.primary";
-              textColor = "main.secondary";
+              textColor = "white";
           }
 
           return (
@@ -237,7 +239,13 @@ const ElectricityPrices = () => {
           sx={{ mb: 4 }}
           renderItem={(item) => {
             if (item.type === "next") {
-              return <PaginationItem {...item} data-testid="next-button" disabled={!hasNextPage} />;
+              return (
+                <PaginationItem
+                  {...item}
+                  data-testid="next-button"
+                  disabled={!hasNextPage}
+                />
+              );
             }
             return <PaginationItem {...item} />;
           }}
