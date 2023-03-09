@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link as LinkReact, useNavigate } from "react-router-dom";
 import { Toolbar, Stack, AppBar } from "@mui/material";
 import {
-  Link as LinkMui, 
+  Link as LinkMui,
   Button,
   Dialog,
   DialogTitle,
-  DialogContent,  
+  DialogContent,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -23,7 +23,7 @@ import { logout } from "../../../../services/user-service";
 
 const NavPublic = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [openModal, setOpenModal] = useState(false);  
+  const [openModal, setOpenModal] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -91,29 +91,29 @@ const NavPublic = () => {
   };
 
   const handleLogout = async () => {
-    
     try {
       const token = localStorage.getItem("token");
       const headers = {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-      };      
-      const {data} = await logout(null,{headers})
+      };
+      const { data } = await logout(null, { headers });
       console.log(data);
       console.log(token);
       localStorage.removeItem("token");
-      setOpenModal(true);  
-          timerRef.current = setTimeout(handleCloseModal, 2000); 
+      setOpenModal(true);
+      timerRef.current = setTimeout(handleCloseModal, 2000);
     } catch (error) {
       console.error(error);
     }
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleCloseModal = () => {
     clearTimeout(timerRef.current);
     setOpenModal(false);
     navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -133,16 +133,18 @@ const NavPublic = () => {
               />
             </LinkReact>
             <LinkReact to="/">
-              <Typography 
-              color="white" 
-              fontWeight='bold' 
-              fontSize={18}
-              sx={{ "&:hover": {
-                color: "main.primary",}}}
+              <Typography
+                color="white"
+                fontWeight="bold"
+                fontSize={18}
+                sx={{
+                  "&:hover": {
+                    color: "main.primary",
+                  },
+                }}
               >
                 EcoEnergy
-                
-                </Typography>
+              </Typography>
             </LinkReact>
           </Box>
 
@@ -214,7 +216,7 @@ const NavPublic = () => {
                   </LinkReact>
 
                   <Tooltip title="Logout">
-              <Button onClick={handleLogout} sx={{ color: "white" }} >
+                    <Button onClick={handleLogout} sx={{ color: "white" }}>
                       <Avatar sx={{ bgcolor: "white", color: "main.tertiary" }}>
                         <LogoutIcon />
                       </Avatar>
@@ -225,9 +227,9 @@ const NavPublic = () => {
                 <Box
                   sx={{
                     flexGrow: 1,
-                    gap:'2rem',
+                    gap: "2rem",
                     justifyContent: "flex-end",
-                    display: { xs: "flex"},
+                    display: { xs: "flex" },
                   }}
                 >
                   <LinkReact to="/login">
@@ -296,23 +298,21 @@ const NavPublic = () => {
           >
             {isLoggedIn
               ? pagesLoggedIn.map((page) => (
-                  
-                    <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                      <LinkReact to={page.href}>
-                        <LinkMui
-                          sx={{
-                            "&:hover": {
-                              color: "main.primary",
-                            },
-                          }}
-                          underline="none"
-                          color="main.secondary"
-                        >
-                          {page.text}
-                        </LinkMui>
-                      </LinkReact>
-                    </MenuItem>
-                    
+                  <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+                    <LinkReact to={page.href}>
+                      <LinkMui
+                        sx={{
+                          "&:hover": {
+                            color: "main.primary",
+                          },
+                        }}
+                        underline="none"
+                        color="main.secondary"
+                      >
+                        {page.text}
+                      </LinkMui>
+                    </LinkReact>
+                  </MenuItem>
                 ))
               : pagesLoggedOut.map((page) => (
                   <MenuItem key={page.text} onClick={handleCloseNavMenu}>
@@ -336,18 +336,18 @@ const NavPublic = () => {
       </AppBar>
       <Dialog open={openModal} onClose={handleCloseModal}>
         <Box
-        sx={{
-          "&:hover": {
-            color: "main.primary",
-          },
-        }}
-        underline="none"
-        color="main.secondary"
+          sx={{
+            "&:hover": {
+              color: "main.primary",
+            },
+          }}
+          underline="none"
+          color="main.secondary"
         >
-        <DialogTitle>Logout successfully!</DialogTitle>
-        <DialogContent>
-          <p></p>
-        </DialogContent>        
+          <DialogTitle>Logout successfully!</DialogTitle>
+          <DialogContent>
+            <p></p>
+          </DialogContent>
         </Box>
       </Dialog>
     </div>
