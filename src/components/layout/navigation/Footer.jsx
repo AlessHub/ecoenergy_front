@@ -31,7 +31,7 @@ const Footer = () => {
             sx={{ fontSize: 12, textAlign:"left" }}
             color="main.secondary"
           >
-            <Box color="main.secondary">Links</Box>
+            <Box color="main.primary">Links</Box>
             <Box>Community Policy</Box>
             <Box>Contact</Box>
           </Box>
@@ -40,23 +40,23 @@ const Footer = () => {
             sx={{ fontSize: 12, textAlign:"left" }}
             color="main.secondary"
           >
-            <Box color="main.secondary">About us</Box>
+            <Box color="main.primary">About us</Box>
             <Box>Our works</Box>
             <Box>FAQ</Box>
           </Box>
-          <Box sx={{ fontSize: 12 }} color="main.secondary">
+          <Box sx={{ fontSize: 12 }} color="main.primary">
             <Box>Social Media</Box>
             <Box>
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
+                sx={{ color: "main.primary", p: 0, minWidth: "20px" }}
                 icon={<TwitterIcon />}
               />
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
+                sx={{ color: "main.primary", p: 0, minWidth: "20px" }}
                 icon={<FacebookIcon />}
               />
               <BottomNavigationAction
-                sx={{ color: "main.secondary", p: 0, minWidth: "20px" }}
+                sx={{ color: "main.primary", p: 0, minWidth: "20px" }}
                 icon={<InstagramIcon />}
               />
             </Box>

@@ -1,7 +1,7 @@
 import { react, useState, useEffect } from "react";
 import Item from "./Item";
 import { Container } from "@mui/system";
-import { Box, Link } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Autoplay } from "swiper";
 import "swiper/css";
@@ -9,9 +9,17 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { forum } from "../../../../services/user-service";
 
+
 const Slider = () => {
   const [forums, setForums] = useState([])
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   useEffect(() => {
   
@@ -39,12 +47,15 @@ const Slider = () => {
 
   return (
     <>
-      
+      {isLoggedIn ? (
       <Container
         sx={{
           maxWidth: { xs: "250px", sm: "700px", md: "900px", xl: "1200px" },
         }}
       >
+        <Typography color="main.tertiary"
+        sx={{ mt: "3rem", mb: "1rem", fontWeight: 'bold' }}
+        variant="h4">New Forum Posts</Typography>
         <Swiper
           freeMode={true}
           observer={true}
@@ -88,7 +99,7 @@ const Slider = () => {
           variant="text"
         >
           <Box
-          color="main.tertiary"
+          color="main.buttons"
           sx={{
             mr: 3,
             mt: 2,
@@ -106,6 +117,7 @@ const Slider = () => {
           </Box>
         </Link>
       </Container>
+      ):(<div></div>)}
     </>
   );
 };

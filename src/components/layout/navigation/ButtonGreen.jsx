@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { Link} from "@mui/material";
+import { Link as LinkReact } from "react-router-dom";
 
 const ButtonGreen = ({ text }) => {
   return (
@@ -10,7 +12,7 @@ const ButtonGreen = ({ text }) => {
           width: "fit-content",
           margin:'2rem',
           textTransform: "capitalize",
-          backgroundColor: "main.tertiary",
+          backgroundColor: "main.buttons",
           color: "main.secondary",
           "&:hover": {
             backgroundColor: "main.primary",
@@ -29,7 +31,7 @@ const ButtonGreen = ({ text }) => {
           },
         }}
         type="submit"
-        href="/signup"
+        href="/advice"
       >
         {text}
       </Button>
