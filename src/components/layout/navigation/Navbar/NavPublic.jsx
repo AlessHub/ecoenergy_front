@@ -106,7 +106,6 @@ const NavPublic = () => {
     } catch (error) {
       console.error(error);
     }
-    // window.location.reload();
   };
 
   const handleCloseModal = () => {
