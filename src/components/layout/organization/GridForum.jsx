@@ -128,7 +128,7 @@ export default function MediaCard(props) {
         </StyledCard>
       </Link>
       {props.buttons && props.buttons.length > 0 && (
-        <Box sx={{ display: "flex", mt: 2, mb:2, gap: 2 }}>
+        <Box sx={{ display: "flex", mt: 1, mb:6, gap: 1 }}>
           {props.buttons.map((button) =>
             React.cloneElement(button, {
               onClick: () => handleDelete(forum.id),

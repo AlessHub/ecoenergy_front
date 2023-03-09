@@ -82,9 +82,9 @@ function AdminSideBar(props) {
           <Button variant="contained" sx={{ bgcolor:'main.danger'}} onClick={() => handleDelete(forum.id)}>
             Delete
           </Button>,
-          <ButtonGreen text="Edit Forum" sx={{bgcolor:'main.primary'}} variant="contained">
+          <Button sx={{bgcolor:'main.primary'}} variant="contained">
             Edit Forum
-          </ButtonGreen>,
+          </Button>,
         ]}/>;
       case "add advice":
         return <PostAdvice/>;
