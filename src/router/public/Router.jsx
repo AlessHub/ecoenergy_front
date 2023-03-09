@@ -11,6 +11,7 @@ import PostAdvice from "../../views/PostAdvice";
 import Advice from "../../views/Advice";
 import SinglePost from "../../views/SinglePost";
 import AdminDashBoard from "../../views/AdminDashBoard";
+import CommunityPolicy from "../../views/ComunityPolicy";
 
 function PublicRoute() {
   return (
@@ -20,6 +21,7 @@ function PublicRoute() {
         <Route path="/" element={<home />} />
         <Route path="/login" element={<LoginMui />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/communityPolicy" element={<CommunityPolicy/>}/>
 
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
@@ -32,6 +34,7 @@ function PublicRoute() {
 
           <Route path="/advice" element={<Advice />} />
           <Route path="/postadvice" element={<PostAdvice />} />
+          
         </Route>
       </Routes>
     </BrowserRouter>

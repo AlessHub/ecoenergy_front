@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import { postForum } from "../services/user-service";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 
 function PostForum() {
   const navigate = useNavigate();
@@ -162,32 +163,9 @@ function PostForum() {
           </Grid>
         </Grid>
 
-        <Button
-          type="submit"
-          sx={{
-            textTransform: "capitalize",
-            backgroundColor: "main.tertiary",
-
-            "&:hover": {
-              backgroundColor: "main.primary",
-              borderColor: "main.primary",
-              boxShadow: "none",
-              color: "main.secondary",
-            },
-            "&:active": {
-              boxShadow: "none",
-              backgroundColor: "main.primary",
-              borderColor: "main.primary",
-              color: "main.secondary",
-            },
-            "&:focus": {
-              boxShadow: "0 0 0 0.2rem main.primary",
-            },
-          }}
-          variant="contained"
-        >
-          Send
-        </Button>
+        <ButtonGreen
+            text='Send'
+          />
       </Box>
     </>
   );

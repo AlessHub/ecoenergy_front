@@ -6,6 +6,7 @@ import Footer from "../components/layout/navigation/Footer";
 import { Box, Typography } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import LinkButton from "../components/layout/navigation/LinkButton";
 
 const Forum = () => {
   return (
@@ -18,6 +19,7 @@ const Forum = () => {
           justifyContent: "space-between",
         }}
       >
+        
         <Box
           sx={{
             display: "flex",
@@ -25,6 +27,7 @@ const Forum = () => {
             padding: "2rem",
           }}
         >
+          
           <Link to="/profile">
             <KeyboardBackspaceIcon sx={{ color: "main.tertiary" }} />
           </Link>
@@ -35,6 +38,24 @@ const Forum = () => {
 
         <Typography color="main.tertiary" variant="h3">
           Forum
+        </Typography>
+
+        <Typography
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: 'end',
+            marginRight:'7rem',
+            mt: '1rem'
+          }}
+          variant="p"
+        >
+          Read our... {' '}
+          <LinkButton
+            text="Community Policy"
+            to="/communityPolicy"
+            color='main.buttons'
+          />
         </Typography>
 
         <GridForum />

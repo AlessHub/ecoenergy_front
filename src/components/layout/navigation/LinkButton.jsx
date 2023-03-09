@@ -2,23 +2,22 @@ import React from 'react';
 import { Link} from "@mui/material";
 import { Link as LinkReact } from "react-router-dom";
 
-const LinkButton = ({text, to}) => {
+const LinkButton = ({text, to, color}) => {
   return (
     <>
-        <LinkReact to={to}><Link 
-            href="#" 
+        <Link 
+            href={to}
             underline="none"
-            color='main.primary'
+            color={color}
             sx={{textAlign:'left',
             display: 'flex',
             "&:hover": {
-              color: "main.tertiary",
-              
+              color: "main.primary",
             },
           }}
             >{text}
         </Link>
-        </LinkReact>
+      
     </>
   )
 }

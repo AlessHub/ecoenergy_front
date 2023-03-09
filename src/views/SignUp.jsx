@@ -7,6 +7,7 @@ import { Link as LinkMui, TextField, Button } from "@mui/material";
 import { Checkbox } from "@mui/material";
 import LinkButton from "../components/layout/navigation/LinkButton";
 import { register } from "../services/user-service";
+import ButtonGreen from "../components/layout/navigation/ButtonGreen";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -116,31 +117,9 @@ const SignUp = () => {
             onChange={handleChange}
             required
           />
-          <Button
-            type="submit"
-            sx={{
-              textTransform: "capitalize",
-              backgroundColor: "main.tertiary",              
-              "&:hover": {
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                boxShadow: "none",
-                color: "main.secondary",
-              },
-              "&:active": {
-                boxShadow: "none",
-                backgroundColor: "main.primary",
-                borderColor: "main.primary",
-                color: "main.secondary",
-              },
-              "&:focus": {
-                boxShadow: "0 0 0 0.2rem main.primary",
-              },
-            }}
-            variant="contained"
-          >
-            Sign Up
-          </Button>
+          <ButtonGreen
+            text='Sign Up'
+          />
         </Box>
 
         <Box
@@ -178,13 +157,7 @@ const SignUp = () => {
           <LinkButton
             text="Log In"
             to="/login"
-            sx={{
-              "&:hover": {
-                color: "main.tertiary",
-              },
-            }}
-            underline="none"
-            color="main.secondary"
+            color='main.buttons'
           />
         </Typography>
       </Box>
