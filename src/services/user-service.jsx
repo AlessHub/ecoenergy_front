@@ -14,6 +14,10 @@ export const logout = (data,headers) => {
   return axios.post(baseUrl + "/logout", data, headers);
 };
 
+export const userSingle = (user_id, headers) => {
+  return axios.get(baseUrl + "/user/" + `${user_id}`, headers);
+};
+
 export const forum = (data, headers) => {
   return axios.get(baseUrl + "/forums", data, headers);
 };
